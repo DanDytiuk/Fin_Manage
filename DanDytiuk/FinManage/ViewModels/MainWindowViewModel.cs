@@ -1,6 +1,9 @@
-﻿namespace FinManage.ViewModels
+﻿using FinManage.ViewModels.Base;
+
+namespace FinManage.ViewModels
 {
-    internal class MainWindowViewModel : Base
+    internal class MainWindowViewModel : BaseViewModel
     {
+
     }
 }
