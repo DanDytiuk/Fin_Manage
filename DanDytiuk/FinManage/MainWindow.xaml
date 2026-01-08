@@ -18,30 +18,7 @@
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl>
             <TabItem Header="Финансовая таблица">
-                <DataGrid 
-                    ItemsSource="{Binding}"
-                    AutoGenerateColumns="False"
-                    CanUserAddRows="False"
-                    IsReadOnly="False"
-                    GridLinesVisibility="All"
-                    HeadersVisibility="Column"
-                    FontSize="16">
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Месяц"
-                                Binding="{Binding Month}"
-                                IsReadOnly="True"/>
-
-                        <DataGridTextColumn Header="Доход"
-                                Binding="{Binding Income, StringFormat=N2}"/>
-
-                        <DataGridTextColumn Header="Расходы"
-                                Binding="{Binding Expenses, StringFormat=N2}"/>
-
-                        <DataGridTextColumn Header="Сбережения"
-                                Binding="{Binding Savings, StringFormat=N2}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                
             </TabItem>
             <TabItem Header="Список расходов"></TabItem>
             <TabItem></TabItem>
