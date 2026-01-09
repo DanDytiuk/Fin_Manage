@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:FinManage.ViewModels"
         xmlns:local="clr-namespace:FinManage"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1600">
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -13,7 +17,7 @@
             </MenuItem>
             <MenuItem Header="Настройки"></MenuItem>
             <MenuItem Header="О программе"></MenuItem>
-            <MenuItem Header="Выход"></MenuItem>
+            <MenuItem Header="Выход" Command="{Binding CloseAppCommand}"></MenuItem>
         </Menu>
         <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl>

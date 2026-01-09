@@ -25,10 +25,5 @@ namespace FinManage
             InitializeComponent();
         }
 
-        private void OpenButtonIn_Click(object sender, RoutedEventArgs e)
-        {
-
-
-        }
     }
 }
