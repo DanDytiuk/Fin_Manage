@@ -22,6 +22,9 @@ namespace FinManage.View.Windows
         public SettingsWindow()
         {
             InitializeComponent();
+
+
         }
+
     }
 }
