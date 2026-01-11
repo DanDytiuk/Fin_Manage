@@ -5,9 +5,9 @@ namespace FinManage.Models
 {
     public class SettingsModel
     {
-        public string Theme { get; set; }
+        public Themes Theme { get; set; }
         public TypesOfCurrency Currency { get; set; }
         public decimal MonthlyLimit { get; set; }
-
+        public TypeOperation LimitOfOperation { get; set; }
     }
 }

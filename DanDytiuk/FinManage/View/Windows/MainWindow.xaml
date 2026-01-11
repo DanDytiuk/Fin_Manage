@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:FinManage.ViewModels"
         xmlns:local="clr-namespace:FinManage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1600">
+        Title="FinManage" Height="900" Width="1600">
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
