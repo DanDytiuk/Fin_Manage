@@ -15,7 +15,7 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Настройки"></MenuItem>
+            <MenuItem Header="Настройки" Command="{Binding OpenSettingsCommand}"></MenuItem>
             <MenuItem Header="О программе"></MenuItem>
             <MenuItem Header="Выход" Command="{Binding CloseAppCommand}"></MenuItem>
         </Menu>

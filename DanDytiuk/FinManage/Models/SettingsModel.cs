@@ -1,13 +1,57 @@
-﻿using System.Security.Policy;
+﻿using FinManage.ViewModels.Base;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
-namespace FinManage.Models
+namespace FinManage.Models 
 {
-    public class SettingsModel
+    internal class SettingsModel : BaseViewModel
     {
-        public Themes Theme { get; set; } = Themes.Light;
-        public TypesOfCurrency Currency { get; set; } = TypesOfCurrency.USD;
-        public decimal? MonthlyLimit { get; set; } = 0;
-        public TypeOperation LimitOfOperation { get; set; } = 0;
+        #region PropertyChangedValue
+        private Themes _theme;
+        private TypesOfCurrency _currency;
+        private decimal _monthlylimit;
+        private TypeOperation _limitoperation;
+        #endregion
+        #region ItemsSettings
+        public Themes Theme
+        {
+            get => _theme;
+            set
+            {
+                if(value == _theme) return;
+                _theme = value;
+                OnPropertyChanged();
+            }
+        }
+        public TypesOfCurrency Currency
+        {
+            get => _currency;
+            set
+            {
+                if(value == _currency) return;
+                _currency = value;
+                OnPropertyChanged();
+            }
+        }
+        public decimal? MonthlyLimit 
+        {
+            get => _monthlylimit;
+            set
+            {
+                if(value == _monthlylimit) return;
+                _monthlylimit = (decimal)value;
+                OnPropertyChanged();
+            }
+        }
+        public TypeOperation LimitOfOperation
+        {
+            get => _limitoperation;
+            set
+            {
+                if(value == _limitoperation) return;
+                _limitoperation = value;
+                OnPropertyChanged();
+            }
+        }
+        #endregion
     }
 }

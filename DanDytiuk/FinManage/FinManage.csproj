@@ -73,6 +73,7 @@
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
     <Compile Include="Models\AboutApp.cs" />
     <Compile Include="Models\AppModel.cs" />
+    <Compile Include="Models\LimitOperation.cs" />
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\SettingsWindowsViewModel.cs" />

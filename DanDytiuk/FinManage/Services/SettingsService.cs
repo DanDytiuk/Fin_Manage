@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using System.IO;
 namespace FinManage.Services
 {
-    public class SettingsService
+    internal class SettingsService
     {
         private const string FileName = "Settings.json";
         public SettingsModel Load()
