@@ -1,21 +1,42 @@
 ﻿using FinManage.Models;
-using Newtonsoft.Json;
+using System;
 using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FinManage.Services
 {
     public class SettingsService
     {
-        private const string FileName = "Settings.json";
+        private readonly string _filePath;
+
+        private readonly JsonSerializerOptions _options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+        };
+        public SettingsService() 
+        {
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+            string appFolder = Path.Combine(appData, "FinManage");
+
+            Directory.CreateDirectory(appFolder);
+
+            _filePath = Path.Combine(appFolder, "settings.json");
+            _options.Converters.Add(new JsonStringEnumConverter());
+        }
         internal SettingsModel Load()
         {
-            if(!File.Exists(FileName)) return new SettingsModel();
-            return JsonConvert.DeserializeObject<SettingsModel>(File.ReadAllText(FileName));
+            if (!File.Exists(_filePath)) return new SettingsModel();
+
+            string json = File.ReadAllText(_filePath);
+            return JsonSerializer.Deserialize<SettingsModel>(json, _options) ?? new SettingsModel();
         }
 
-        internal void Save(SettingsModel settings) 
+        internal void Save(SettingsModel settings)
         { 
-            File.WriteAllText(FileName, JsonConvert.SerializeObject(settings, Formatting.Indented));
+            string json = JsonSerializer.Serialize(settings, _options);
+            File.WriteAllText(_filePath, json);
         }
     }
 }

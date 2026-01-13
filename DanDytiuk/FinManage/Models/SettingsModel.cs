@@ -1,4 +1,5 @@
 ﻿using FinManage.ViewModels.Base;
+using System.Text.Json.Serialization;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.Models 
@@ -12,6 +13,7 @@ namespace FinManage.Models
         private Category _limitoperation;
         #endregion
         #region ItemsSettings
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public Themes Theme
         {
             get => _theme;
