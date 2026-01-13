@@ -17,7 +17,7 @@ namespace FinManage.ViewModels
         #region Заполнение ComboBox
         public ObservableCollection<Themes> Themes { get; }
         public ObservableCollection<TypesOfCurrency> Currency { get; }
-        public ObservableCollection<TypeOperation> Operation { get; }
+        public ObservableCollection<Category> Category { get; }
         #endregion
 
         public ICommand SaveCommand { get; }
@@ -28,7 +28,7 @@ namespace FinManage.ViewModels
         {
             Themes = new ObservableCollection<Themes>((Themes[])Enum.GetValues(typeof(Themes)));
             Currency = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
-            Operation = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
+            Category = new ObservableCollection<Category>((Category[])Enum.GetValues(typeof(Category)));
 
             _settingsService = new SettingsService();
             Settings = _settingsService.Load();

@@ -9,7 +9,7 @@ namespace FinManage.Models
         private Themes _theme;
         private TypesOfCurrency _currency;
         private decimal _monthlylimit;
-        private TypeOperation _limitoperation;
+        private Category _limitoperation;
         #endregion
         #region ItemsSettings
         public Themes Theme
@@ -42,16 +42,23 @@ namespace FinManage.Models
                 OnPropertyChanged();
             }
         }
-        public TypeOperation LimitOfOperation
+        public Category? LimitOfOperation
         {
             get => _limitoperation;
             set
             {
                 if(value == _limitoperation) return;
-                _limitoperation = value;
+                _limitoperation = (Category)value;
                 OnPropertyChanged();
             }
         }
         #endregion
+        public SettingsModel()
+        {
+            Theme = Themes.Light;
+            MonthlyLimit = 0;
+            Currency = TypesOfCurrency.USD;
+            LimitOfOperation = 0;
+        }
     }
 }
