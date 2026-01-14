@@ -101,6 +101,7 @@
     <Compile Include="Models\AboutApp.cs" />
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Services\LimitService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\SettingsWindowsViewModel.cs" />
     <Compile Include="View\Windows\AboutApp.xaml.cs">

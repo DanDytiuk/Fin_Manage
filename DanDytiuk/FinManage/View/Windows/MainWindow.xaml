@@ -15,18 +15,27 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть"></MenuItem>
             </MenuItem>
+            <MenuItem Header="Лимиты">
+                <MenuItem Header="Создать лимиты"></MenuItem>
+                <MenuItem Header="Посмотреть лимиты"></MenuItem>
+            </MenuItem>
             <MenuItem Header="Настройки" Command="{Binding OpenSettingsCommand}"></MenuItem>
             <MenuItem Header="О программе"></MenuItem>
             <MenuItem Header="Выход" Command="{Binding CloseAppCommand}"></MenuItem>
         </Menu>
-        <StatusBar DockPanel.Dock="Bottom"></StatusBar>
         <TabControl>
             <TabItem Header="Финансовая таблица">
                 
             </TabItem>
-            <TabItem Header="Список расходов"></TabItem>
-            <TabItem></TabItem>
-            <TabItem></TabItem>
+            <TabItem Header="Список расходов">
+                
+            </TabItem>
+            <TabItem Header="Список доходов">
+                
+            </TabItem>
+            <TabItem Header="Фильтры">
+                
+            </TabItem>
             <TabItem></TabItem>
         </TabControl>
     </DockPanel>

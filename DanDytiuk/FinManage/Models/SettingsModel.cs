@@ -58,7 +58,6 @@ namespace FinManage.Models
         public SettingsModel()
         {
             Theme = Themes.Light;
-            MonthlyLimit = 0;
             Currency = TypesOfCurrency.USD;
         }
         
