@@ -9,8 +9,6 @@ namespace FinManage.Models
         #region PropertyChangedValue
         private Themes _theme;
         private TypesOfCurrency _currency;
-        private decimal _monthlylimit;
-        private Category _limitoperation;
         #endregion
         #region ItemsSettings
         [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -34,26 +32,7 @@ namespace FinManage.Models
                 OnPropertyChanged();
             }
         }
-        public decimal? MonthlyLimit 
-        {
-            get => _monthlylimit;
-            set
-            {
-                if(value == _monthlylimit) return;
-                _monthlylimit = (decimal)value;
-                OnPropertyChanged();
-            }
-        }
-        public Category? LimitOfOperation
-        {
-            get => _limitoperation;
-            set
-            {
-                if(value == _limitoperation) return;
-                _limitoperation = (Category)value;
-                OnPropertyChanged();
-            }
-        }
+        
         #endregion
         public SettingsModel()
         {

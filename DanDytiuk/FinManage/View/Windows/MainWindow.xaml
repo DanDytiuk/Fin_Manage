@@ -16,7 +16,7 @@
                 <MenuItem Header="Открыть"></MenuItem>
             </MenuItem>
             <MenuItem Header="Лимиты">
-                <MenuItem Header="Создать лимиты"></MenuItem>
+                <MenuItem Header="Создать лимиты" Command="{Binding}"></MenuItem>
                 <MenuItem Header="Посмотреть лимиты"></MenuItem>
             </MenuItem>
             <MenuItem Header="Настройки" Command="{Binding OpenSettingsCommand}"></MenuItem>

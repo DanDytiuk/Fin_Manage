@@ -1,12 +1,41 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FinManage.Models;
+using System;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FinManage.Services
 {
-    internal class LimitService
+    public class LimitService
     {
+        private readonly string json_file_name;
+
+        private readonly JsonSerializerOptions _options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+        };
+
+        public LimitService()
+        {
+            string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string appFolder = Path.Combine(appData, "FinManage");
+            json_file_name = Path.Combine(appFolder, "limit.json");
+            _options.Converters.Add(new JsonStringEnumConverter());
+        }
+
+        internal LimitModel Load()
+        {
+            if (!File.Exists(json_file_name)) return new LimitModel();
+
+            string json = File.ReadAllText(json_file_name);
+            return JsonSerializer.Deserialize<LimitModel>(json, _options) ?? new LimitModel();
+        }
+
+        internal LimitModel Save(LimitModel limitModel)
+        {
+            string json = JsonSerializer.Serialize(limitModel, _options);
+            File.WriteAllText(json_file_name, json);
+            return limitModel;
+        }
     }
 }
