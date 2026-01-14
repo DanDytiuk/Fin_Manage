@@ -60,7 +60,7 @@ namespace FinManage.Models
             Theme = Themes.Light;
             MonthlyLimit = 0;
             Currency = TypesOfCurrency.USD;
-            LimitOfOperation = 0;
         }
+        
     }
 }

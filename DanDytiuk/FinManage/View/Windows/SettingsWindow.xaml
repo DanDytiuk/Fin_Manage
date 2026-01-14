@@ -8,22 +8,35 @@
         xmlns:infrastracture="clr-namespace:FinManage.Infrastructure" d:DataContext="{d:DesignInstance Type=viewmodels:SettingsWindowsViewModel}"
         mc:Ignorable="d"
         Title="Settings FinManage" Height="600" Width="800">
-    <Grid Background="SeaGreen" Margin="0,0,0,-61">
-        <Button Content="Save" HorizontalAlignment="Left" Margin="20,542,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveCommand}"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="177,542,0,0" VerticalAlignment="Top" Width="100" Command="{Binding CancelCommand}"/>
+    <Grid Background="MediumSeaGreen" Margin="0,0,0,-61">
+        <!--Buttons-->
+        <Button Content="Save" HorizontalAlignment="Left" Margin="20,603,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveCommand}"/>
+        <Button Content="Cancel" HorizontalAlignment="Left" Margin="177,603,0,0" VerticalAlignment="Top" Width="100" Command="{Binding CancelCommand}"/>
+        <Button Content="Add ValueLimit" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="196,10,0,0" TextWrapping="Wrap" Text="Currency" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="45,10,0,0" TextWrapping="Wrap" Text="Theme" VerticalAlignment="Top"/>
+        <!--#endregion-->
+
+        <!--AddLimit-->
+        <TextBlock HorizontalAlignment="Left" Margin="98,79,0,0" TextWrapping="Wrap" Text="Category of operation" VerticalAlignment="Top" />
+        <TextBlock HorizontalAlignment="Left" Margin="110,151,0,0" TextWrapping="Wrap" Text="Types of currency" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="142,235,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top"/>
+
+        <ComboBox x:Name="Category" HorizontalAlignment="Left" Margin="101,100,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding Category}" />
+        <ComboBox x:Name="TypeOfCurrency"  HorizontalAlignment="Left" Margin="102,188,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Currency}"/>
+
+        <DataGrid x:Name="MonthLimit" d:ItemsSource="{d:SampleData ItemCount=18}" Margin="301,0,10,10"/>
+
+        <TextBox HorizontalAlignment="Left" Margin="99,265,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+        <!--#endregion-->
+
         <ComboBox x:Name="Themes" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top" Width="85" ItemsSource="{Binding Themes}" SelectedItem="{Binding Settings.Theme, Mode=TwoWay}"/>
         <ComboBox x:Name="Currency" HorizontalAlignment="Left" Margin="177,31,0,0" VerticalAlignment="Top" Width="85" ItemsSource="{Binding Currency}" SelectedItem="{Binding Settings.Currency, Mode=TwoWay}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="196,10,0,0" TextWrapping="Wrap" Text="Currency" VerticalAlignment="Top"/>
-        <DataGrid x:Name="MonthLimit" d:ItemsSource="{d:SampleData ItemCount=18}" Margin="301,0,10,10"/>
-        <TextBlock HorizontalAlignment="Left" Margin="84,73,0,0" TextWrapping="Wrap" Text="Add Limit for Operation" VerticalAlignment="Top"/>
-        <ComboBox x:Name="Category" HorizontalAlignment="Left" Margin="89,122,0,0" VerticalAlignment="Top" Width="110" ItemsSource="{Binding Category}" />
-        
-        <ComboBox x:Name="TypeOfCurrency"  HorizontalAlignment="Left" Margin="90,210,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding Currency}"/>
-        <TextBlock HorizontalAlignment="Left" Margin="86,101,0,0" TextWrapping="Wrap" Text="Category of operation" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="98,173,0,0" TextWrapping="Wrap" Text="Types of currency" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="130,257,0,0" TextWrapping="Wrap" Text="Value" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="87,287,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="120"/>
+
+
+
+
 
     </Grid>
 </Window>
