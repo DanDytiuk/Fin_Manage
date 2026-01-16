@@ -16,7 +16,7 @@ namespace FinManage.ViewModels
     internal class LimitWindowsViewModel : BaseViewModel
     {
         private readonly LimitService _limitService;
-
+        public LimitModel LimitData { get; }
         public LimitService LimitService { get; }
         public Category SelectedCategory {  get; set; }
         #region Заполнение ComboBox
@@ -25,9 +25,10 @@ namespace FinManage.ViewModels
 
         #endregion
         public ICommand AddLimitCommand { get; }
-        public LimitModel()
+        public LimitWindowsViewModel()
         {
-            
+            _limitService = new LimitService();
+            LimitData = _limitService.Load();
         }
 
         private void AddLimit()
