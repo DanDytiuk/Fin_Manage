@@ -12,9 +12,10 @@ namespace FinManage.Models
     {
         #region PropertyChangedValue
         private decimal _monthlylimit;
-        private Category _category;
+        private Category _selectedCategory;
+        public Array Categories => Enum.GetValues(typeof(Category));
         #endregion
-
+        public Dictionary<Category, decimal> Limits {  get; set; } = new Dictionary<Category, decimal>();
         public decimal Monthlylimit
         {
             get => _monthlylimit;
@@ -26,20 +27,16 @@ namespace FinManage.Models
             }
         }
 
-        public Category Category
+        public Category SelectedCategory
         {
-            get => _category;
+            get => _selectedCategory;
             set
             {
-                if (_category != value) return;
-                _category = value;
+                if (_selectedCategory != value) return;
+                _selectedCategory = value;
                 OnPropertyChanged();
             }
         }
 
-        public LimitModel()
-        {
-            
-        }
     }
 }

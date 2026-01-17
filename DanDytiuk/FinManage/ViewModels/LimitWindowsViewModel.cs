@@ -16,24 +16,32 @@ namespace FinManage.ViewModels
     internal class LimitWindowsViewModel : BaseViewModel
     {
         private readonly LimitService _limitService;
-        public LimitModel LimitData { get; }
+        /*public LimitModel LimitData { get; }
         public LimitService LimitService { get; }
-        public Category SelectedCategory {  get; set; }
+        public Category SelectedCategory {  get; set; }*/
         #region Заполнение ComboBox
         public ObservableCollection<Category> Categories { get; }
         public ObservableCollection<LimitModel> Limits { get; } = new ObservableCollection<LimitModel>();
 
         #endregion
         public ICommand AddLimitCommand { get; }
+        public ICommand CancelLimitCommand { get; }
+       
+
+        private void AddLimitCommandExecute()
+        {
+            
+        } 
+        private void CancelLimitCommandExecute()
+        {
+
+        }
+        private bool CanAddLimitCommand(object parameter) => true;
+        private bool CanCancelLimitCommand(object parameter) => true;
         public LimitWindowsViewModel()
         {
             _limitService = new LimitService();
-            LimitData = _limitService.Load();
-        }
-
-        private void AddLimit()
-        {
-            if (Limits.Any(l => l.Category == SelectedCategory)) return;
+            //LimitData = _limitService.Load();
         }
     }
 }

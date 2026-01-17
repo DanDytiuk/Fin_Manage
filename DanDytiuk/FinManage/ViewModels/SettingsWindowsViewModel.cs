@@ -23,20 +23,8 @@ namespace FinManage.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
         public Action CloseAction { get; set; }
-
-        public SettingsWindowsViewModel()
-        {
-            Themes = new ObservableCollection<Themes>((Themes[])Enum.GetValues(typeof(Themes)));
-            Currency = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
-            Category = new ObservableCollection<Category>((Category[])Enum.GetValues(typeof(Category)));
-
-            _settingsService = new SettingsService();
-            Settings = _settingsService.Load();
-
-            SaveCommand = new LambdaCommand(Save);
-            CancelCommand = new LambdaCommand(Cancel);
-        }
-
+        private bool CanSaveCommand(object parameter) => true;
+        private bool CanCancelCommand(object parameter) => true;
         private void Save(object parameter)
         {
             _settingsService.Save(Settings);
@@ -46,6 +34,18 @@ namespace FinManage.ViewModels
         private void Cancel(object parameter)
         {
             CloseAction?.Invoke();
+        }
+        public SettingsWindowsViewModel()
+        {
+            Themes = new ObservableCollection<Themes>((Themes[])Enum.GetValues(typeof(Themes)));
+            Currency = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
+            Category = new ObservableCollection<Category>((Category[])Enum.GetValues(typeof(Category)));
+
+            _settingsService = new SettingsService();
+            Settings = _settingsService.Load();
+
+            SaveCommand = new LambdaCommand(Save, CanSaveCommand);
+            CancelCommand = new LambdaCommand(Cancel, CanCancelCommand);
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using FinManage.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.Services
 {
@@ -23,14 +25,19 @@ namespace FinManage.Services
             _options.Converters.Add(new JsonStringEnumConverter());
         }
 
-        internal LimitModel Load()
+        /*internal LimitModel Load()
         {
             if (!File.Exists(json_file_name)) return new LimitModel();
 
             string json = File.ReadAllText(json_file_name);
             return JsonSerializer.Deserialize<LimitModel>(json, _options) ?? new LimitModel();
+        }*/
+        internal Dictionary<Category, decimal> Load()
+        {
+            if (!File.Exists("limits.json")) return new Dictionary<Category, decimal>();
+            var json = File.ReadAllText("limits.json");
+            return JsonSerializer.Deserialize<Dictionary<Category, decimal>>(json, _options) ?? new Dictionary<Category, decimal>();
         }
-
         internal LimitModel Save(LimitModel limitModel)
         {
             string json = JsonSerializer.Serialize(limitModel, _options);
