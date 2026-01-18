@@ -9,31 +9,66 @@ namespace FinManage.Models
     {
         #region PropertyChangedValue
 
-        private decimal AmountMonthlyLimit;
+        private decimal AmountMonthlyLimitCB;
+        private Category _category;
         private Category SelectCategory;
+        private decimal FillAmount;
+        private LimitModel _selectedlimit;
 
         #endregion
         public decimal Monthlylimit
         {
-            get => AmountMonthlyLimit;
+            get => AmountMonthlyLimitCB;
             set
             {
-                if (AmountMonthlyLimit != value) return;
-                AmountMonthlyLimit = value;
+                if (AmountMonthlyLimitCB == value) return;
+                AmountMonthlyLimitCB = value;
                 OnPropertyChanged();
             }
         }
 
-        public Category SelectedCategory
+        public Category Category
+        {
+            get => _category;
+            set
+            {
+                if (_category == value) return;
+                _category = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Category SelectCategoryFromUser
         {
             get => SelectCategory;
             set
             {
-                if (SelectCategory != value) return;
+                if (SelectCategory == value) return;
                 SelectCategory = value;
                 OnPropertyChanged();
             }
         }
 
+        public decimal? FillAmountFromUser
+        {
+            get => FillAmount;
+            set
+            {
+                if (FillAmount == value) return;
+                FillAmount = (decimal)value;
+                OnPropertyChanged();
+            }
+        }
+
+        public LimitModel Selectedlimit
+        {
+            get => _selectedlimit;
+            set
+            {
+                if (_selectedlimit == value) return;
+                _selectedlimit = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }
