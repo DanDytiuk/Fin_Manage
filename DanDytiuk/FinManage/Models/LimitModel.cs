@@ -1,9 +1,6 @@
 ﻿using FinManage.ViewModels.Base;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.Models
@@ -11,29 +8,29 @@ namespace FinManage.Models
     internal class LimitModel : BaseViewModel
     {
         #region PropertyChangedValue
-        private decimal _monthlylimit;
-        private Category _selectedCategory;
-        public Array Categories => Enum.GetValues(typeof(Category));
+
+        private decimal AmountMonthlyLimit;
+        private Category SelectCategory;
+
         #endregion
-        public Dictionary<Category, decimal> Limits {  get; set; } = new Dictionary<Category, decimal>();
         public decimal Monthlylimit
         {
-            get => _monthlylimit;
+            get => AmountMonthlyLimit;
             set
             {
-                if (_monthlylimit != value) return;
-                _monthlylimit = value;
+                if (AmountMonthlyLimit != value) return;
+                AmountMonthlyLimit = value;
                 OnPropertyChanged();
             }
         }
 
         public Category SelectedCategory
         {
-            get => _selectedCategory;
+            get => SelectCategory;
             set
             {
-                if (_selectedCategory != value) return;
-                _selectedCategory = value;
+                if (SelectCategory != value) return;
+                SelectCategory = value;
                 OnPropertyChanged();
             }
         }
