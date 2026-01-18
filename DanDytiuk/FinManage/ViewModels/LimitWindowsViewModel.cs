@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -25,6 +26,8 @@ namespace FinManage.ViewModels
         #endregion
         public ICommand AddLimitCommand { get; }
         public ICommand DeleteLimitCommand { get; }
+        public ICommand CancelCommand { get; }
+        public Action CloseAction { get; set; }
         public Array Category => Enum.GetValues(typeof(Category));
         private void AddLimitCommandExecute(object p)
         {
@@ -45,6 +48,12 @@ namespace FinManage.ViewModels
 
             SavetoFileCommand();
         }
+
+        private void CancelFromAppExecute(object parameter)
+        {
+            CloseAction?.Invoke();
+        }
+
         private void SavetoFileCommand()
         {
             if(!Directory.Exists(Appdata)) Directory.CreateDirectory(Appdata);
@@ -82,11 +91,13 @@ namespace FinManage.ViewModels
         }
         private bool CanAddLimitCommand(object parameter) => true;
         private bool CanDeleteLimitCommand(object parameter) => true;
+        private bool CanCancelCommandExecuted(object parameter) => true;
         public LimitWindowsViewModel()
         {
             AddLimitCommand = new LambdaCommand(AddLimitCommandExecute, CanAddLimitCommand);
             DeleteLimitCommand = new LambdaCommand(DeleteLimitCommandExecute, CanDeleteLimitCommand);
-
+            CancelCommand = new LambdaCommand(CancelFromAppExecute, CanCancelCommandExecuted);
+            
             LoadFromFileCommand();
         }
     }
