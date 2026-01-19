@@ -7,98 +7,195 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Windows.Input;
-using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.ViewModels
 {
     internal class LimitWindowsViewModel : BaseViewModel
     {
-        private readonly string FileName = "limits.json";
-        private static readonly string Appdata = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FinManage");
-        private static readonly string Filepath = Path.Combine(Appdata, "limits.json");
-        private LimitModel LimitModel;
-        #region Заполнение ComboBox
-        public ObservableCollection<Category> Categories { get; }
-        public ObservableCollection<LimitModel> Limits { get; } = new ObservableCollection<LimitModel>();
+        #region Paths
+
+        private static readonly string AppDataPath =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FinManage");
+
+        private static readonly string FilePath =
+            Path.Combine(AppDataPath, "limits.json");
 
         #endregion
+
+        #region Categories (ComboBox)
+
+        public ObservableCollection<string> Categories { get; } =
+            new ObservableCollection<string>
+            {
+                "Food",
+                "Store",
+                "Entertainment",
+                "Online store",
+                "Games",
+                "Public Utilities",
+                "Phone Top Up",
+                "Card Top Up",
+                "Internet And TV",
+                "Security",
+                "Insurance",
+                "E Tickets",
+                "Education",
+                "Transport",
+                "Charity",
+                "Commission",
+                "Project Support"
+            };
+
+        #endregion
+
+        #region Properties (PropertyChanged)
+
+        private string _selectedCategory;
+        public string SelectedCategory
+        {
+            get => _selectedCategory;
+            set => Set(ref _selectedCategory, value);
+        }
+
+        private decimal _amount;
+        public decimal Amount
+        {
+            get => _amount;
+            set => Set(ref _amount, value);
+        }
+
+        private LimitModel _selectedLimit;
+        public LimitModel SelectedLimit
+        {
+            get => _selectedLimit;
+            set => Set(ref _selectedLimit, value);
+        }
+
+        #endregion
+
+        #region Collections
+
+        public ObservableCollection<LimitModel> Limits { get; }
+            = new ObservableCollection<LimitModel>();
+
+        #endregion
+
+        #region Commands
+
         public ICommand AddLimitCommand { get; }
         public ICommand DeleteLimitCommand { get; }
         public ICommand CancelCommand { get; }
+
         public Action CloseAction { get; set; }
-        public Array Category => Enum.GetValues(typeof(Category));
-        private void AddLimitCommandExecute(object p)
-        {
-            if (LimitModel.Monthlylimit <= 0) return;
-            if (Limits.Any(l => l.Category == LimitModel.SelectCategoryFromUser)) return;
-            Limits.Add(new LimitModel
-            {
-                Category = LimitModel.SelectCategoryFromUser,
-                Monthlylimit = (decimal)LimitModel.FillAmountFromUser
-            });
 
-            SavetoFileCommand();
-        } 
-        private void DeleteLimitCommandExecute(object p)
-        {
-            if (LimitModel.FillAmountFromUser == null) return;
-            Limits.Remove(LimitModel.Selectedlimit);
+        #endregion
 
-            SavetoFileCommand();
+        #region Command logic
+        private void ShowError(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Error",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
         }
 
-        private void CancelFromAppExecute(object parameter)
+        private void AddLimit(object _)
+        {
+            if (string.IsNullOrWhiteSpace(SelectedCategory))
+            {
+                ShowError("Please select a category.");
+                return;
+            }
+
+            if (Amount <= 0)
+            {
+                ShowError("Please enter a valid amount.");
+                return;
+            }
+
+            if (Limits.Any(l => l.Category == SelectedCategory))
+            {
+                ShowError("Limit for this category already exists.");
+                return;
+            }
+
+            Limits.Add(new LimitModel
+            {
+                Category = SelectedCategory,
+                MonthlyLimit = Amount
+            });
+
+            SaveToFile();
+        }
+
+        private void DeleteLimit(object _)
+        {
+            if (SelectedLimit == null) return;
+
+            Limits.Remove(SelectedLimit);
+            SaveToFile();
+        }
+
+        private void Cancel(object _)
         {
             CloseAction?.Invoke();
         }
 
-        private void SavetoFileCommand()
+        #endregion
+
+        #region File IO
+
+        private void SaveToFile()
         {
-            if(!Directory.Exists(Appdata)) Directory.CreateDirectory(Appdata);
+            if (!Directory.Exists(AppDataPath))
+                Directory.CreateDirectory(AppDataPath);
 
-            var dict = Limits.ToDictionary(l => l.Category.ToString(), l => l.FillAmountFromUser);
+            var dict = Limits.ToDictionary(
+                l => l.Category,
+                l => l.MonthlyLimit);
 
-            var json = JsonSerializer.Serialize(dict, new JsonSerializerOptions 
-            { 
-                WriteIndented = true,
+            var json = JsonSerializer.Serialize(dict, new JsonSerializerOptions
+            {
+                WriteIndented = true
             });
 
-            File.WriteAllText(Filepath, json);
+            File.WriteAllText(FilePath, json);
         }
-        private void LoadFromFileCommand()
+
+        private void LoadFromFile()
         {
-            if(!File.Exists(Filepath)) return;
+            if (!File.Exists(FilePath)) return;
 
-            var json  = File.ReadAllText(Filepath);
-
+            var json = File.ReadAllText(FilePath);
             var dict = JsonSerializer.Deserialize<Dictionary<string, decimal>>(json);
 
             Limits.Clear();
 
-            foreach ( var item in dict)
+            foreach (var item in dict)
             {
-                if (Enum.TryParse(item.Key, out Category category))
+                Limits.Add(new LimitModel
                 {
-                    Limits.Add(new LimitModel
-                    {
-                        Category = category,
-                        FillAmountFromUser = item.Value
-                    });
-                }
+                    Category = item.Key,
+                    MonthlyLimit = item.Value
+                });
             }
         }
-        private bool CanAddLimitCommand(object parameter) => true;
-        private bool CanDeleteLimitCommand(object parameter) => true;
-        private bool CanCancelCommandExecuted(object parameter) => true;
+
+        #endregion
+
+        #region Constructor
+
         public LimitWindowsViewModel()
         {
-            AddLimitCommand = new LambdaCommand(AddLimitCommandExecute, CanAddLimitCommand);
-            DeleteLimitCommand = new LambdaCommand(DeleteLimitCommandExecute, CanDeleteLimitCommand);
-            CancelCommand = new LambdaCommand(CancelFromAppExecute, CanCancelCommandExecuted);
-            
-            LoadFromFileCommand();
+            AddLimitCommand = new LambdaCommand(AddLimit);
+            DeleteLimitCommand = new LambdaCommand(DeleteLimit);
+            CancelCommand = new LambdaCommand(Cancel);
+
+            LoadFromFile();
         }
+
+        #endregion
     }
 }

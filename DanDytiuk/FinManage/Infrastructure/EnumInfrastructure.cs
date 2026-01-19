@@ -1,4 +1,7 @@
-﻿namespace FinManage.Infrastructure
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace FinManage.Infrastructure
 {
     public class EnumInfrastructure
     {
@@ -42,7 +45,6 @@
 
         public enum Category
         {
-            Unknown,
             Food,
             Store,
             Entertainment,
@@ -59,8 +61,28 @@
             Transport,
             Charity,
             Commission,
-            ProjectSupport,
-            Other
+            ProjectSupport
         }
+        public ObservableCollection<string> Categories { get; } = new ObservableCollection<string> 
+        { 
+            "Food",
+            "Store",
+            "Entertainment",
+            "Online store",
+            "Games",
+            "Public Utilities",
+            "Phone Top Up",
+            "Card Top Up",
+            "Internet And TV",
+            "Security",
+            "Insurance",
+            "E Tickets",
+            "Education",
+            "Transport",
+            "Charity",
+            "Commission",
+            "ProjectSupport"
+        };
     }
 }
+
