@@ -25,13 +25,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
             Header="Category"
-            Binding="{Binding Category}" />
+            Binding="{Binding Category}" 
+            IsReadOnly="True"/>
 
                 <DataGridTextColumn
             Header="Monthly Limit"
             Binding="{Binding MonthlyLimit,
                               Mode=TwoWay,
-                              UpdateSourceTrigger=PropertyChanged}" />
+                              UpdateSourceTrigger=PropertyChanged}"
+            IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
