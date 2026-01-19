@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinManage.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,12 @@ namespace FinManage.View.Windows
         public LimitWindow()
         {
             InitializeComponent();
+            var vm = new LimitWindowsViewModel
+            {
+                CloseAction = Close
+            };
+
+            DataContext = vm;
         }
     }
 }
