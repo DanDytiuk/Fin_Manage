@@ -33,7 +33,7 @@
             <TabItem Header="Фильтры">
                 
             </TabItem>
-            <TabItem></TabItem>
+            <TabItem Header="Конвертер"></TabItem>
         </TabControl>
     </DockPanel>
 </Window>

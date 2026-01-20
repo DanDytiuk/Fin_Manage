@@ -13,7 +13,7 @@ namespace FinManage.ViewModels
 {
     internal class LimitWindowsViewModel : BaseViewModel
     {
-        #region Paths
+        #region Path
 
         private static readonly string AppDataPath =
             Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FinManage");
@@ -23,7 +23,7 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Categories (ComboBox)
+        #region ComboBox
 
         public ObservableCollection<string> Categories { get; } =
             new ObservableCollection<string>
@@ -49,23 +49,24 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Properties (PropertyChanged)
+        #region PropertyChanged
 
         private string _selectedCategory;
+        private decimal _amount;
+        private LimitModel _selectedLimit;
+
         public string SelectedCategory
         {
             get => _selectedCategory;
             set => Set(ref _selectedCategory, value);
         }
-
-        private decimal _amount;
+        
         public decimal Amount
         {
             get => _amount;
             set => Set(ref _amount, value);
         }
-
-        private LimitModel _selectedLimit;
+        
         public LimitModel SelectedLimit
         {
             get => _selectedLimit;
@@ -91,7 +92,7 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Command logic
+        #region Command
         private void ShowError(string message)
         {
             System.Windows.MessageBox.Show(
@@ -145,7 +146,7 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region File IO
+        #region Functions Save, Load, Delete
 
         private void SaveToFile()
         {
@@ -185,8 +186,6 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Constructor
-
         public LimitWindowsViewModel()
         {
             AddLimitCommand = new LambdaCommand(AddLimit);
@@ -195,7 +194,5 @@ namespace FinManage.ViewModels
 
             LoadFromFile();
         }
-
-        #endregion
     }
 }
