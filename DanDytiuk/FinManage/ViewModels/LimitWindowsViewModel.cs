@@ -39,12 +39,13 @@ namespace FinManage.ViewModels
                 "Internet And TV",
                 "Security",
                 "Insurance",
-                "E Tickets",
+                "E-Tickets",
                 "Education",
                 "Transport",
                 "Charity",
                 "Commission",
-                "Project Support"
+                "Project Support",
+                "Other"
             };
 
         #endregion
