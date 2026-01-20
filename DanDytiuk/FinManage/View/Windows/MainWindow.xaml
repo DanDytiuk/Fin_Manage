@@ -22,18 +22,44 @@
         </Menu>
         <TabControl>
             <TabItem Header="Финансовая таблица">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="13*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="1"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Список расходов">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="13*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="1"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Список доходов">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="13*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="1"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Фильтры">
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="11*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid Grid.Column="1"/>
+                </Grid>
             </TabItem>
             <TabItem Header="Конвертер"></TabItem>
+
+            
         </TabControl>
     </DockPanel>
 </Window>
