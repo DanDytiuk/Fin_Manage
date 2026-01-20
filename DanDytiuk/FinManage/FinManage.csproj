@@ -102,12 +102,13 @@
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\LimitModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
-    <Compile Include="Services\LimitService.cs" />
-    <Compile Include="Services\SettingsService.cs" />
     <Compile Include="ViewModels\LimitWindowsViewModel.cs" />
     <Compile Include="ViewModels\SettingsWindowsViewModel.cs" />
     <Compile Include="View\Windows\AboutApp.xaml.cs">
       <DependentUpon>AboutApp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\LimitWindow.xaml.cs">
+      <DependentUpon>LimitWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
@@ -116,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\AboutApp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Windows\LimitWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -191,6 +196,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets')" />

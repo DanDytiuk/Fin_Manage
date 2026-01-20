@@ -15,10 +15,7 @@
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть"></MenuItem>
             </MenuItem>
-            <MenuItem Header="Лимиты">
-                <MenuItem Header="Создать лимиты" Command="{Binding}"></MenuItem>
-                <MenuItem Header="Посмотреть лимиты"></MenuItem>
-            </MenuItem>
+            <MenuItem Header="Лимиты" Command="{Binding OpenLimitsCommand}"></MenuItem>
             <MenuItem Header="Настройки" Command="{Binding OpenSettingsCommand}"></MenuItem>
             <MenuItem Header="О программе"></MenuItem>
             <MenuItem Header="Выход" Command="{Binding CloseAppCommand}"></MenuItem>
