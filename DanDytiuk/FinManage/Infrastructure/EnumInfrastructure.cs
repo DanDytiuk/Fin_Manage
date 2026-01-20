@@ -19,7 +19,6 @@ namespace FinManage.Infrastructure
             MDL,
             NOK,
             PLN,
-            RUB,
             RON,
             BTC,
             TJS,
@@ -63,26 +62,7 @@ namespace FinManage.Infrastructure
             Commission,
             ProjectSupport
         }
-        public ObservableCollection<string> Categories { get; } = new ObservableCollection<string> 
-        { 
-            "Food",
-            "Store",
-            "Entertainment",
-            "Online store",
-            "Games",
-            "Public Utilities",
-            "Phone Top Up",
-            "Card Top Up",
-            "Internet And TV",
-            "Security",
-            "Insurance",
-            "E Tickets",
-            "Education",
-            "Transport",
-            "Charity",
-            "Commission",
-            "ProjectSupport"
-        };
+        
     }
 }
 
