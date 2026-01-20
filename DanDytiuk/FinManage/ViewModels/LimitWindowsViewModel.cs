@@ -25,10 +25,7 @@ namespace FinManage.ViewModels
 
         #endregion
         public ICommand AddLimitCommand { get; }
-        public LimitModel()
-        {
-            
-        }
+        
 
         private void AddLimit()
         {
