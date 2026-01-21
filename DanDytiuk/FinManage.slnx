@@ -1,3 +1,13 @@
 <Solution>
-  <Project Path="FinManage/FinManage.csproj" Id="2f71bb2b-3259-4b1b-913c-0ae6747115c0" />
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="ARM64" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="FinManage/FinManage.csproj" Id="2f71bb2b-3259-4b1b-913c-0ae6747115c0">
+    <Platform Solution="*|ARM64" Project="ARM64" />
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
 </Solution>

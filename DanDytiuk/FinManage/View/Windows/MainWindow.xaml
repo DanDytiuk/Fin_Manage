@@ -11,7 +11,7 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
+        <Menu DockPanel.Dock="Top" Background="Gold">
             <MenuItem Header="Файл">
                 <MenuItem Header="Открыть"></MenuItem>
             </MenuItem>
