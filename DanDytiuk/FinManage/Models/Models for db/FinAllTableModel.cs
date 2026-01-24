@@ -10,7 +10,7 @@ namespace FinManage.Models.Models_for_db
         public TypeOperation OperationType { get; set; }
         public string NameOfAmount { get; set; } = "";
         public decimal Amount { get; set; }
-        public decimal 
+        public TypesOfCurrency Currency { get; set; }
         public DateTime DateInfo { get; set; }
         public string Description { get; set; } = "";
 

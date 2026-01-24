@@ -19,6 +19,7 @@ namespace FinManage.Services
             connectionString = $"Data Source={dbpath}";
 
             InitialiseDatabaseLimits();
+            InitialiseDatabaseMainFin();
         }
 
         private void InitialiseDatabaseLimits()
@@ -58,8 +59,12 @@ namespace FinManage.Services
                     OperationType TEXT Not Null,
                     Name_of_Amount TEXT,
                     Amount REAL Not Null,
-                    
+                    Currency TEXT Not Null,
+                    DateInfo TEXT,
+                    Description TEXT );
                 ";
+
+                command.ExecuteNonQuery();
             }
         }
         public SqliteConnection GetConnection()

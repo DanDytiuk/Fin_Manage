@@ -34,6 +34,7 @@ namespace FinManage.ViewModels
         #region ComboBox
 
         public ObservableCollection<TypesOfCurrency> CurrencyCB {  get; }
+        public ObservableCollection<TypeOperation> OperationCB { get; }
         public ObservableCollection<string> Categories { get; }
         public ObservableCollection<string> CategoriesCB { get; } =
            new ObservableCollection<string>
@@ -65,8 +66,10 @@ namespace FinManage.ViewModels
         private string _category;
         private TypeOperation _typeOperation;
         private string _nameOfAmount;
+        private TypesOfCurrency _typesOfCurrency;
         private decimal _amount;
         private DateTime _dataTime;
+        private string _description;
 
         public string Category
         {
@@ -83,6 +86,11 @@ namespace FinManage.ViewModels
             get => _nameOfAmount;
             set => Set(ref _nameOfAmount, value);
         }
+        public TypesOfCurrency Currency
+        {
+            get => _typesOfCurrency;
+            set => Set(ref _typesOfCurrency, value);
+        }
         public decimal Amount
         {
             get => _amount;
@@ -93,7 +101,11 @@ namespace FinManage.ViewModels
             get => _dataTime;
             set => Set(ref _dataTime, value);
         }
-
+        public string Description
+        {
+            get => _description;
+            set => Set(ref _description, value);
+        }
         #endregion
 
         #region Collections
@@ -143,10 +155,23 @@ namespace FinManage.ViewModels
                 {
                     command.CommandText =
                     @"
-                    Insert Into 
+                    Insert Into MainData (Category, OperationType, Name_of_Amount, Amount, Currency, DateInfo, Description)
+                    Values ($category, $operationtype, $nameofamount, $amount, $currency, $dateinfo, $description);
                     ";
+
+                    command.Parameters.AddWithValue("$category", Category);
+                    command.Parameters.AddWithValue("$operationtype", TypeOperation);
+                    command.Parameters.AddWithValue("$nameofamount", NameOfAmount);
+                    command.Parameters.AddWithValue("$amount", Amount);
+                    command.Parameters.AddWithValue("$currency", Currency);
+                    command.Parameters.AddWithValue("$dateinfo", DataTime);
+                    command.Parameters.AddWithValue("$description", Description);
+
+                    command.ExecuteNonQuery();
                 }
             }
+
+            LoadFromDB();
         }
         private void DeleteFinDatainfo()
         {

@@ -218,7 +218,6 @@
     </ApplicationDefinition>
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\LimitData.cs" />
-    <Compile Include="Data\MainFinDataInfoData.cs" />
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\LimitModel.cs" />
