@@ -1,13 +1,7 @@
-﻿using FinManage.Models;
-using FinManage.Models.Models_for_db;
+﻿using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.Data
 {

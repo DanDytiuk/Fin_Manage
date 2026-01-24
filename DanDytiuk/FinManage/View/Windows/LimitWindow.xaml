@@ -27,12 +27,9 @@
             Header="Category"
             Binding="{Binding Category}" 
             IsReadOnly="True"/>
-
                 <DataGridTextColumn
             Header="Amount"
-            Binding="{Binding Amount,
-                              Mode=TwoWay,
-                              UpdateSourceTrigger=PropertyChanged}"
+            Binding="{Binding Amount,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
             IsReadOnly="True"/>
                 <DataGridTextColumn
             Header="Currency" 
