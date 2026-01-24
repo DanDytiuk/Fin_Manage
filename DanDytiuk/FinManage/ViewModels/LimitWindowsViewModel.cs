@@ -1,33 +1,34 @@
 ﻿using FinManage.Infrastructure.Commands;
 using FinManage.Models;
+using FinManage.Models.Models_for_db;
+using FinManage.Services;
 using FinManage.ViewModels.Base;
+using Microsoft.Data.Sqlite;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Text.Json;
 using System.Windows.Input;
+using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.ViewModels
 {
     internal class LimitWindowsViewModel : BaseViewModel
     {
-        #region Path
+        #region Data
 
-        private static readonly string AppDataPath =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "FinManage");
-
-        private static readonly string FilePath =
-            Path.Combine(AppDataPath, "limits.json");
+        private readonly DataBaseWork _database;
 
         #endregion
 
         #region ComboBox
 
-        public ObservableCollection<string> Categories { get; } =
-            new ObservableCollection<string>
-            {
+        public ObservableCollection<string> Categories { get; }
+            = new ObservableCollection<string>();
+
+        public ObservableCollection<TypesOfCurrency> CurrencyCB { get; }
+
+        public ObservableCollection<string> CategoriesCB { get; } =
+           new ObservableCollection<string>
+           {
                 "Food",
                 "Store",
                 "Entertainment",
@@ -46,7 +47,7 @@ namespace FinManage.ViewModels
                 "Commission",
                 "Project Support",
                 "Other"
-            };
+           };
 
         #endregion
 
@@ -54,32 +55,45 @@ namespace FinManage.ViewModels
 
         private string _selectedCategory;
         private decimal _amount;
-        private LimitModel _selectedLimit;
+        private string _currency;
+        private string _description;
+        private LimitsModel _selectedLimit;
 
         public string SelectedCategory
         {
             get => _selectedCategory;
             set => Set(ref _selectedCategory, value);
         }
-        
+
         public decimal Amount
         {
             get => _amount;
             set => Set(ref _amount, value);
         }
-        
-        public LimitModel SelectedLimit
+
+        public LimitsModel SelectedLimit
         {
             get => _selectedLimit;
             set => Set(ref _selectedLimit, value);
         }
 
+        public string Currency
+        {
+            get => _currency;
+            set => Set(ref _currency, value);
+        }
+
+        public string Description
+        {
+            get => _description;
+            set => Set(ref _description, value);
+        }
         #endregion
 
         #region Collections
 
-        public ObservableCollection<LimitModel> Limits { get; }
-            = new ObservableCollection<LimitModel>();
+        public ObservableCollection<LimitsModel> Limits { get; }
+            = new ObservableCollection<LimitsModel>();
 
         #endregion
 
@@ -93,7 +107,8 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Command
+        #region Helpers
+
         private void ShowError(string message)
         {
             System.Windows.MessageBox.Show(
@@ -102,6 +117,10 @@ namespace FinManage.ViewModels
                 System.Windows.MessageBoxButton.OK,
                 System.Windows.MessageBoxImage.Warning);
         }
+
+        #endregion
+
+        #region Commands Logic
 
         private void AddLimit(object _)
         {
@@ -117,27 +136,50 @@ namespace FinManage.ViewModels
                 return;
             }
 
-            if (Limits.Any(l => l.Category == SelectedCategory))
+            using (var connection = _database.GetConnection())
             {
-                ShowError("Limit for this category already exists.");
-                return;
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    @"
+                    INSERT INTO Limits (Category, Amount, Currency, Description)
+                    VALUES ($category, $amount, $currency, $description);
+                    ";
+
+                    command.Parameters.AddWithValue("$category", SelectedCategory);
+                    command.Parameters.AddWithValue("$amount", Amount);
+                    command.Parameters.AddWithValue("$currency", Currency ?? "");
+                    command.Parameters.AddWithValue("$description", Description ?? "");
+
+                    command.ExecuteNonQuery();
+                }
             }
 
-            Limits.Add(new LimitModel
-            {
-                Category = SelectedCategory,
-                MonthlyLimit = Amount
-            });
-
-            SaveToFile();
+            LoadFromDatabase();
         }
 
         private void DeleteLimit(object _)
         {
-            if (SelectedLimit == null) return;
+            if (SelectedLimit == null)
+                return;
+
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    "DELETE FROM Limits WHERE Id = $id";
+
+                    command.Parameters.AddWithValue("$id", SelectedLimit.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
 
             Limits.Remove(SelectedLimit);
-            SaveToFile();
         }
 
         private void Cancel(object _)
@@ -147,53 +189,62 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Functions Save, Load, Delete
+        #region Database Load
 
-        private void SaveToFile()
+        private void LoadFromDatabase()
         {
-            if (!Directory.Exists(AppDataPath))
-                Directory.CreateDirectory(AppDataPath);
-
-            var dict = Limits.ToDictionary(
-                l => l.Category,
-                l => l.MonthlyLimit);
-
-            var json = JsonSerializer.Serialize(dict, new JsonSerializerOptions
-            {
-                WriteIndented = true
-            });
-
-            File.WriteAllText(FilePath, json);
-        }
-
-        private void LoadFromFile()
-        {
-            if (!File.Exists(FilePath)) return;
-
-            var json = File.ReadAllText(FilePath);
-            var dict = JsonSerializer.Deserialize<Dictionary<string, decimal>>(json);
-
             Limits.Clear();
+            Categories.Clear();
 
-            foreach (var item in dict)
+            using (var connection = _database.GetConnection())
             {
-                Limits.Add(new LimitModel
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
                 {
-                    Category = item.Key,
-                    MonthlyLimit = item.Value
-                });
+                    command.CommandText =
+                    "SELECT Id, Category, Amount, Currency, Description FROM Limits;";
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var limit = new LimitsModel
+                            {
+                                Id = reader.GetInt32(0),
+                                Category = reader.GetString(1),
+                                Amount = reader.GetDecimal(2),
+                                Currency = reader.GetString(3),
+                                Description = reader.IsDBNull(4) ? null : reader.GetString(4)
+                            };
+
+                            Limits.Add(limit);
+
+                            if (!Categories.Contains(limit.Category))
+                                Categories.Add(limit.Category);
+                        }
+                    }
+                }
             }
         }
 
         #endregion
 
+        #region Constructor
+
         public LimitWindowsViewModel()
         {
+            _database = new DataBaseWork();
+            CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
+
+
             AddLimitCommand = new LambdaCommand(AddLimit);
             DeleteLimitCommand = new LambdaCommand(DeleteLimit);
             CancelCommand = new LambdaCommand(Cancel);
 
-            LoadFromFile();
+            LoadFromDatabase();
         }
+
+        #endregion
     }
 }

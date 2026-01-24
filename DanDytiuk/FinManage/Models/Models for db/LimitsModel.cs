@@ -11,5 +11,7 @@ namespace FinManage.Models.Models_for_db
         public int Id { get; set; }
         public string Category { get; set; }
         public decimal Amount { get; set; }
+        public string Currency { get; set; }
+        public string Description { get; set; } = "";
     }
 }

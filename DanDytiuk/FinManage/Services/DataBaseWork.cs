@@ -4,7 +4,7 @@ using System.IO;
 
 namespace FinManage.Services
 {
-    internal class DataBaseWork
+    public class DataBaseWork
     {
         private readonly string connectionString;
 
@@ -14,7 +14,7 @@ namespace FinManage.Services
             
             if(!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
-            var dbpath = Path.Combine(folder, "Finmange.db");
+            var dbpath = Path.Combine(folder, "Finmanage.db");
 
             connectionString = $"Data Source={dbpath}";
 
@@ -31,9 +31,11 @@ namespace FinManage.Services
                 command.CommandText =
                 @"
                 CREATE TABLE IF NOT EXISTS Limits (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                Category TEXT NOT NULL,
-                Amount REAL NOT NULL
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Category TEXT NOT NULL,
+                    Amount REAL NOT NULL,
+                    Currency TEXT NOT NULL,
+                    Description TEXT
                 );
                 ";
 

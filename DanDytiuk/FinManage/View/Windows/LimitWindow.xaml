@@ -29,19 +29,33 @@
             IsReadOnly="True"/>
 
                 <DataGridTextColumn
-            Header="Monthly Limit"
-            Binding="{Binding MonthlyLimit,
+            Header="Amount"
+            Binding="{Binding Amount,
                               Mode=TwoWay,
                               UpdateSourceTrigger=PropertyChanged}"
+            IsReadOnly="True"/>
+                <DataGridTextColumn
+            Header="Currency" 
+            Binding="{Binding Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            IsReadOnly="True"/>
+                <DataGridTextColumn
+            Header="Description"        
+            Binding="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
 
-        <ComboBox HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.511,0.56" ItemsSource="{Binding Categories}" SelectedItem="{Binding SelectedCategory}" Margin="0,50,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Center" Width="120" RenderTransformOrigin="0.511,0.56" ItemsSource="{Binding CategoriesCB}" SelectedItem="{Binding SelectedCategory}" Margin="0,50,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Center" Margin="0,20,0,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top"/>
 
         <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Center"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,120,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.506,0.082"/>
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Currency" VerticalAlignment="Top" Margin="109,169,0,0" ></TextBlock>
+        <ComboBox Margin="74,10,74,0" Grid.Row="1" VerticalAlignment="Top" ItemsSource="{Binding CurrencyCB}" SelectedItem="{Binding Currency, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock HorizontalAlignment="Center" Margin="0,56,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Center" Margin="0,93,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>
