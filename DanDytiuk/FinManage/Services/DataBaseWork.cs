@@ -18,10 +18,10 @@ namespace FinManage.Services
 
             connectionString = $"Data Source={dbpath}";
 
-            InitialiseDatabase();
+            InitialiseDatabaseLimits();
         }
 
-        private void InitialiseDatabase()
+        private void InitialiseDatabaseLimits()
         {
             using (var connection = new SqliteConnection(connectionString)) 
             { 
@@ -40,6 +40,26 @@ namespace FinManage.Services
                 ";
 
                 command.ExecuteNonQuery();
+            }
+        }
+
+        private void InitialiseDatabaseMainFin()
+        {
+            using (var connection = new SqliteConnection(connectionString))
+            {
+                connection.Open(); 
+
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                Create Table if not Exists MainData (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Category TEXT Not Null,
+                    OperationType TEXT Not Null,
+                    Name_of_Amount TEXT,
+                    Amount REAL Not Null,
+                    
+                ";
             }
         }
         public SqliteConnection GetConnection()

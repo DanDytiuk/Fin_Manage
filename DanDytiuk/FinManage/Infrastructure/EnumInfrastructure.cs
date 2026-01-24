@@ -38,6 +38,7 @@ namespace FinManage.Infrastructure
 
         public enum TypeOperation
         {
+            Unknown,
             Income,
             Expenses
         }

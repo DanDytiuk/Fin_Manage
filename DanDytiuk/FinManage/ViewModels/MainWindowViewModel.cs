@@ -1,4 +1,5 @@
 ﻿using FinManage.Infrastructure.Commands;
+using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
@@ -67,15 +68,93 @@ namespace FinManage.ViewModels
         private decimal _amount;
         private DateTime _dataTime;
 
+        public string Category
+        {
+            get => _category;
+            set => Set(ref _category, value);
+        }
+        public TypeOperation TypeOperation
+        {
+            get => _typeOperation;
+            set => Set(ref _typeOperation, value);
+        }
+        public string NameOfAmount
+        {
+            get => _nameOfAmount;
+            set => Set(ref _nameOfAmount, value);
+        }
+        public decimal Amount
+        {
+            get => _amount;
+            set => Set(ref _amount, value);
+        }
+        public DateTime DataTime
+        {
+            get => _dataTime;
+            set => Set(ref _dataTime, value);
+        }
+
         #endregion
+
+        #region Collections
+
+        public ObservableCollection<FinAllTableModel> MainFinAllTableColection { get; } 
+            = new ObservableCollection<FinAllTableModel>();
+
+        #endregion
+
+        #region Helpers
+
+        private void ShowError(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Error",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        #endregion
+
+        #region Main functions
         private void AddFinDataInfo()
         {
+            if (string.IsNullOrWhiteSpace(Category))
+            {
+                ShowError("Please select a category.");
+            }
 
+            if(Amount <= 0)
+            {
+                ShowError("Please enter a valid amount.");
+                return;
+            }
+
+            if(TypeOperation == TypeOperation.Unknown)
+            {
+                ShowError("Please select a valid type operation.");
+            }
+
+            using(var connection = _database.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    @"
+                    Insert Into 
+                    ";
+                }
+            }
         }
         private void DeleteFinDatainfo()
         {
 
         }
+        #endregion
+
+        #region DataBase Functions
         private void LoadFromDB() 
         {
 
@@ -88,6 +167,8 @@ namespace FinManage.ViewModels
         {
 
         }
+        #endregion
+
         #endregion
 
         #region MenuBar
@@ -116,11 +197,14 @@ namespace FinManage.ViewModels
         private bool CanOpenLimitsCommandExecute(object p) => true;
 
         #endregion
+
         public MainWindowViewModel() 
         {
+            #region MenuBar
             CloseAppCommand = new LambdaCommand(CloseAppCommandExecute, CanCloseAppCommandExecute);
             OpenSettingsCommand = new LambdaCommand(OpenSettingsCommandExecute, CanOpenSettingsCommandExecute);
             OpenLimitsCommand = new LambdaCommand(OpenLimitsCommandExecute, CanOpenLimitsCommandExecute);
+            #endregion
         }
 
     }
