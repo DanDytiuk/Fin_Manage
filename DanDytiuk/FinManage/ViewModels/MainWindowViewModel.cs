@@ -5,6 +5,7 @@ using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Windows;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
@@ -63,13 +64,17 @@ namespace FinManage.ViewModels
 
         #region Property Changed
 
+        public DateTime MinDate { get; } = new DateTime(2020, 1, 1);
+        public DateTime MaxDate { get; } = new DateTime(2099, 12, 31);
+
         private string _category;
         private TypeOperation _typeOperation;
         private string _nameOfAmount;
         private TypesOfCurrency _typesOfCurrency;
         private decimal _amount;
-        private DateTime _dataTime;
+        private DateTime? _dataTime = DateTime.Today;
         private string _description;
+        private FinAllTableModel _selectedFinManage;
 
         public string Category
         {
@@ -96,7 +101,7 @@ namespace FinManage.ViewModels
             get => _amount;
             set => Set(ref _amount, value);
         }
-        public DateTime DataTime
+        public DateTime? DataTime
         {
             get => _dataTime;
             set => Set(ref _dataTime, value);
@@ -106,6 +111,12 @@ namespace FinManage.ViewModels
             get => _description;
             set => Set(ref _description, value);
         }
+        public FinAllTableModel SelectedFinManage
+        {
+            get => _selectedFinManage;
+            set => Set(ref _selectedFinManage, value);
+        }
+
         #endregion
 
         #region Collections
@@ -129,7 +140,7 @@ namespace FinManage.ViewModels
         #endregion
 
         #region Main functions
-        private void AddFinDataInfo()
+        private void AddFinDataInfo(object p)
         {
             if (string.IsNullOrWhiteSpace(Category))
             {
@@ -161,11 +172,11 @@ namespace FinManage.ViewModels
 
                     command.Parameters.AddWithValue("$category", Category);
                     command.Parameters.AddWithValue("$operationtype", TypeOperation);
-                    command.Parameters.AddWithValue("$nameofamount", NameOfAmount);
+                    command.Parameters.AddWithValue("$nameofamount", NameOfAmount ?? "");
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency);
                     command.Parameters.AddWithValue("$dateinfo", DataTime);
-                    command.Parameters.AddWithValue("$description", Description);
+                    command.Parameters.AddWithValue("$description", Description ?? "");
 
                     command.ExecuteNonQuery();
                 }
@@ -173,25 +184,65 @@ namespace FinManage.ViewModels
 
             LoadFromDB();
         }
-        private void DeleteFinDatainfo()
+        private void DeleteFinDatainfo(object p)
         {
+            if (SelectedFinManage == null)  return;
 
+            using (var connection = _database.GetConnection()) 
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    "Delete From MainData Where Id = $id";
+
+                    command.Parameters.AddWithValue("$id", SelectedFinManage.Id);
+                    command.ExecuteNonQuery();
+                }
+            }
+
+            MainFinAllTableColection.Remove(SelectedFinManage);
         }
         #endregion
 
         #region DataBase Functions
-        private void LoadFromDB() 
+        private void LoadFromDB()
         {
+            MainFinAllTableColection.Clear();
 
-        }
-        private void SaveToDB()
-        {
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
 
-        }
-        private void DeleteFromDB()
-        {
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText = "Select Id, Category, OperationType, Name_of_Amount, Amount, Currency, DateInfo, Description From MainData;";
 
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var maindata = new FinAllTableModel
+                            {
+                                Id = reader.GetInt32(0),
+                                Category = reader.GetString(1),
+                                OperationType = reader.GetString(2),
+                                NameOfAmount = reader.IsDBNull(3) ? null : reader.GetString(3),
+                                Amount = reader.GetInt32(4),
+                                Currency = reader.GetString(5),
+                                DateInfo = reader.GetDateTime(6),
+                                Description = reader.IsDBNull(7) ? null : reader.GetString(7)
+                            };
+
+                            MainFinAllTableColection.Add(maindata);
+
+                        }
+                    }
+                }
+            }
         }
+        
         #endregion
 
         #endregion
@@ -229,6 +280,19 @@ namespace FinManage.ViewModels
             CloseAppCommand = new LambdaCommand(CloseAppCommandExecute, CanCloseAppCommandExecute);
             OpenSettingsCommand = new LambdaCommand(OpenSettingsCommandExecute, CanOpenSettingsCommandExecute);
             OpenLimitsCommand = new LambdaCommand(OpenLimitsCommandExecute, CanOpenLimitsCommandExecute);
+            #endregion
+
+            #region FinManageData
+
+            _database = new DataBaseWork();
+
+            CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
+            OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
+
+            AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
+            DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);
+
+            LoadFromDB();
             #endregion
         }
 

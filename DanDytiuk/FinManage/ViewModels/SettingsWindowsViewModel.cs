@@ -50,7 +50,6 @@ namespace FinManage.ViewModels
             SaveSettings(Settings);
             CloseAction?.Invoke();
         }
-
         private void CancelFromAppExecute(object parameter)
         {
             CloseAction?.Invoke();

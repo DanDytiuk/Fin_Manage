@@ -27,7 +27,67 @@
                         <ColumnDefinition Width="3*"></ColumnDefinition>
                         <ColumnDefinition Width="13*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="1"/>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="Currency" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="9,193,0,0" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="9,240,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Type of operation" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Name of amount" VerticalAlignment="Top"/>
+
+                    <ComboBox HorizontalAlignment="Left" Margin="160,9,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CategoriesCB}" SelectedItem="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="160,45,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding OperationCB}" SelectedItem="{Binding TypeOperation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="160,80,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CurrencyCB}" SelectedItem="{Binding Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=''}"/>
+
+                    <TextBox HorizontalAlignment="Left" Margin="160,147,0,0" TextWrapping="Wrap" Text="{Binding NameOfAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='null'}" VerticalAlignment="Top" Width="120" />
+                    <TextBox HorizontalAlignment="Left" Margin="160,188,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="160,235,0,0" TextWrapping="Wrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='null'}" VerticalAlignment="Top" Width="120"/>
+
+                    <DatePicker HorizontalAlignment="Center" Margin="0,281,0,0" VerticalAlignment="Top" Height="21" Width="280" SelectedDate="{Binding DataTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding MinDate, Mode=OneWay}" DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"/>
+
+                    <Button Content="Save Info" HorizontalAlignment="Center" Margin="0,326,0,0" VerticalAlignment="Top" Width="280" Command="{Binding AddFinDataInfoCommand}"/>
+                    <Button Content="Delete Info" HorizontalAlignment="Center" VerticalAlignment="Top" Width="280" Margin="0,372,0,0" Command="{Binding DeleteFinDataInfoCommand}"/>
+                    <Button Content="Change Info" HorizontalAlignment="Center" Margin="0,415,0,0" VerticalAlignment="Top" Width="280"/>
+
+                    <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding MainFinAllTableColection}" SelectedItem="{Binding SelectedFinManage, Mode=TwoWay}">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn
+                                Header="ID"
+                                Binding="{Binding Id}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Category"
+                                Binding="{Binding Category}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Operation Type"
+                                Binding="{Binding OperationType}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Name of Amount"
+                                Binding="{Binding NameOfAmount}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Amount"
+                                Binding="{Binding Amount}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Currency"
+                                Binding="{Binding Currency}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Date"
+                                Binding="{Binding DateInfo}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="Description"
+                                Binding="{Binding Description}"
+                                IsReadOnly="True"/>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Список расходов">
@@ -59,7 +119,7 @@
             </TabItem>
             <TabItem Header="Конвертер"></TabItem>
 
-            
+
         </TabControl>
     </DockPanel>
 </Window>
