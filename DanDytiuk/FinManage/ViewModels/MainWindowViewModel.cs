@@ -6,6 +6,7 @@ using FinManage.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
@@ -34,7 +35,7 @@ namespace FinManage.ViewModels
 
         #region ComboBox
 
-        public ObservableCollection<TypesOfCurrency> CurrencyCB {  get; }
+        public Array CurrencyCB => Enum.GetValues(typeof(TypesOfCurrency));
         public ObservableCollection<TypeOperation> OperationCB { get; }
         public ObservableCollection<string> Categories { get; }
         public ObservableCollection<string> CategoriesCB { get; } =
@@ -70,7 +71,7 @@ namespace FinManage.ViewModels
         private string _category;
         private TypeOperation _typeOperation;
         private string _nameOfAmount;
-        private TypesOfCurrency _typesOfCurrency;
+        private string _typesOfCurrency;
         private decimal _amount;
         private DateTime? _dataTime = DateTime.Today;
         private string _description;
@@ -91,7 +92,7 @@ namespace FinManage.ViewModels
             get => _nameOfAmount;
             set => Set(ref _nameOfAmount, value);
         }
-        public TypesOfCurrency Currency
+        public string Currency
         {
             get => _typesOfCurrency;
             set => Set(ref _typesOfCurrency, value);
@@ -170,9 +171,9 @@ namespace FinManage.ViewModels
                     Values ($category, $operationtype, $nameofamount, $amount, $currency, $dateinfo, $description);
                     ";
 
-                    command.Parameters.AddWithValue("$category", Category);
-                    command.Parameters.AddWithValue("$operationtype", TypeOperation);
-                    command.Parameters.AddWithValue("$nameofamount", NameOfAmount ?? "");
+                    command.Parameters.AddWithValue("$category", Category.ToString());
+                    command.Parameters.AddWithValue("$operationtype", TypeOperation.ToString());
+                    command.Parameters.AddWithValue("$nameofamount", NameOfAmount);
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency);
                     command.Parameters.AddWithValue("$dateinfo", DataTime);
@@ -198,11 +199,14 @@ namespace FinManage.ViewModels
                     "Delete From MainData Where Id = $id";
 
                     command.Parameters.AddWithValue("$id", SelectedFinManage.Id);
+
                     command.ExecuteNonQuery();
                 }
             }
 
             MainFinAllTableColection.Remove(SelectedFinManage);
+
+            LoadFromDB();
         }
         #endregion
 
@@ -224,7 +228,7 @@ namespace FinManage.ViewModels
                         while (reader.Read())
                         {
                             var maindata = new FinAllTableModel
-                            {
+                            {   
                                 Id = reader.GetInt32(0),
                                 Category = reader.GetString(1),
                                 OperationType = reader.GetString(2),
@@ -286,7 +290,7 @@ namespace FinManage.ViewModels
 
             _database = new DataBaseWork();
 
-            CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
+            //CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);

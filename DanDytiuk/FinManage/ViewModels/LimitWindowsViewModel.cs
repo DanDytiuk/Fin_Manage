@@ -6,6 +6,7 @@ using FinManage.ViewModels.Base;
 using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -136,6 +137,12 @@ namespace FinManage.ViewModels
                 return;
             }
 
+            if (Limits.Any(l => l.Category == SelectedCategory))
+            {
+                ShowError($"Limit for this categoty - {SelectedCategory} already exists!");
+                return;
+            }
+
             using (var connection = _database.GetConnection())
             {
                 connection.Open();
@@ -180,6 +187,8 @@ namespace FinManage.ViewModels
             }
 
             Limits.Remove(SelectedLimit);
+
+
         }
 
         private void Cancel(object _)
