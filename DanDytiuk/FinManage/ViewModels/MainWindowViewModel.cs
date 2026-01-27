@@ -7,6 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Globalization;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
@@ -76,6 +77,7 @@ namespace FinManage.ViewModels
         private DateTime? _dataTime = DateTime.Today;
         private string _description;
         private FinAllTableModel _selectedFinManage;
+        private string _statusApp;
 
         public string Category
         {
@@ -117,7 +119,11 @@ namespace FinManage.ViewModels
             get => _selectedFinManage;
             set => Set(ref _selectedFinManage, value);
         }
-
+        public string StatusApp
+        {
+            get => _statusApp;
+            set => Set(ref _statusApp, value);
+        }
         #endregion
 
         #region Collections
@@ -136,6 +142,13 @@ namespace FinManage.ViewModels
                 "Error",
                 System.Windows.MessageBoxButton.OK,
                 System.Windows.MessageBoxImage.Warning);
+        }
+
+        private async Task ShowMessage(string message, int delayMS = 3000)
+        {
+            StatusApp = message;
+            await Task.Delay(delayMS);
+            StatusApp = string.Empty;
         }
 
         #endregion
@@ -184,6 +197,8 @@ namespace FinManage.ViewModels
             }
 
             LoadFromDB();
+
+            ShowMessage("Данные успешно сохранены и загружены!");
         }
         private void DeleteFinDatainfo(object p)
         {
@@ -207,6 +222,8 @@ namespace FinManage.ViewModels
             MainFinAllTableColection.Remove(SelectedFinManage);
 
             LoadFromDB();
+
+            ShowMessage("Удаление данных прошло успешно!");
         }
         #endregion
 
@@ -241,6 +258,7 @@ namespace FinManage.ViewModels
 
                             MainFinAllTableColection.Add(maindata);
 
+                            ShowMessage("Данные загружены успешно!");
                         }
                     }
                 }
