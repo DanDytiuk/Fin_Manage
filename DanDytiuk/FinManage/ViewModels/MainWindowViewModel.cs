@@ -78,7 +78,6 @@ namespace FinManage.ViewModels
         private string _description;
         private FinAllTableModel _selectedFinManage;
         private string _statusApp;
-
         public string Category
         {
             get => _category;
@@ -197,8 +196,6 @@ namespace FinManage.ViewModels
             }
 
             LoadFromDB();
-
-            ShowMessage("Данные успешно сохранены и загружены!");
         }
         private void DeleteFinDatainfo(object p)
         {
@@ -222,8 +219,6 @@ namespace FinManage.ViewModels
             MainFinAllTableColection.Remove(SelectedFinManage);
 
             LoadFromDB();
-
-            ShowMessage("Удаление данных прошло успешно!");
         }
         #endregion
 
@@ -257,8 +252,6 @@ namespace FinManage.ViewModels
                             };
 
                             MainFinAllTableColection.Add(maindata);
-
-                            ShowMessage("Данные загружены успешно!");
                         }
                     }
                 }
