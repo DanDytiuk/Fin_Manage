@@ -225,6 +225,7 @@
     <Compile Include="Models\Models for db\FinAllTableModel.cs" />
     <Compile Include="Models\Models for db\LimitsModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />
+    <Compile Include="Models\StatisticsModel.cs" />
     <Compile Include="Services\DataBaseWork.cs" />
     <Compile Include="ViewModels\AboutAppWindowViewModel.cs" />
     <Compile Include="ViewModels\LimitWindowsViewModel.cs" />

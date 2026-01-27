@@ -25,6 +25,15 @@ namespace FinManage.ViewModels
         public ObservableCollection<Themes> Themes { get; }
         public ObservableCollection<TypesOfCurrency> Currency { get; }
         public ObservableCollection<Category> Category { get; }
+
+        public ObservableCollection<string> LanguagesCB { get; } = new ObservableCollection<string>
+        {
+            "English",
+            "Українська",
+            "Русский",
+            "Español",
+            "Français"
+        };
         #endregion
 
         public ICommand SaveCommand { get; }

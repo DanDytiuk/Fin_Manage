@@ -28,7 +28,6 @@
                         <ColumnDefinition Width="13*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
 
-
                     <TextBlock HorizontalAlignment="Left" Margin="10,14,0,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="Currency" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="9,193,0,0" TextWrapping="Wrap" Text="Amount" VerticalAlignment="Top"/>
@@ -88,7 +87,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Список расходов">
+            <TabItem Header="Анализ расходов">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"></ColumnDefinition>
@@ -97,7 +96,7 @@
                     <DataGrid Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Список доходов">
+            <TabItem Header="Детальный анализ расходов">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"></ColumnDefinition>

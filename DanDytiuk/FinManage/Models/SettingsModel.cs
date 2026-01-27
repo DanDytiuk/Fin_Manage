@@ -9,35 +9,31 @@ namespace FinManage.Models
         #region PropertyChangedValue
         private Themes _theme;
         private TypesOfCurrency _currency;
+        private string _language;
         #endregion
         #region ItemsSettings
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Themes Theme
         {
             get => _theme;
-            set
-            {
-                if(value == _theme) return;
-                _theme = value;
-                OnPropertyChanged();
-            }
+            set => Set(ref _theme, value);
         }
         public TypesOfCurrency Currency
         {
             get => _currency;
-            set
-            {
-                if(value == _currency) return;
-                _currency = value;
-                OnPropertyChanged();
-            }
+            set => Set(ref _currency, value);
         }
-        
+        public string Language 
+        {
+            get => _language;
+            set => Set(ref _language, value);
+        }
         #endregion
         public SettingsModel()
         {
             Theme = Themes.Light;
             Currency = TypesOfCurrency.USD;
+            Language = "English";
         }
         
     }
