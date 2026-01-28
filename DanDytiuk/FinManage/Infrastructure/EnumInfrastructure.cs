@@ -61,7 +61,8 @@ namespace FinManage.Infrastructure
             Transport,
             Charity,
             Commission,
-            ProjectSupport
+            ProjectSupport,
+            Other
         }
         
     }
