@@ -1,5 +1,6 @@
 ﻿using FinManage.Infrastructure.Commands;
 using FinManage.Models.Models_for_db;
+using FinManage.Properties;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
@@ -9,6 +10,8 @@ using System.Data;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -31,7 +34,7 @@ namespace FinManage.ViewModels
         #region Data
 
         private readonly DataBaseWork _database;
-
+        
         #endregion
 
         #region ComboBox
@@ -69,6 +72,7 @@ namespace FinManage.ViewModels
         public DateTime MinDate { get; } = new DateTime(2020, 1, 1);
         public DateTime MaxDate { get; } = new DateTime(2099, 12, 31);
 
+
         private string _category;
         private TypeOperation _typeOperation;
         private string _nameOfAmount;
@@ -77,7 +81,6 @@ namespace FinManage.ViewModels
         private DateTime? _dataTime = DateTime.Today;
         private string _description;
         private FinAllTableModel _selectedFinManage;
-        private string _statusApp;
         public string Category
         {
             get => _category;
@@ -118,11 +121,7 @@ namespace FinManage.ViewModels
             get => _selectedFinManage;
             set => Set(ref _selectedFinManage, value);
         }
-        public string StatusApp
-        {
-            get => _statusApp;
-            set => Set(ref _statusApp, value);
-        }
+        
         #endregion
 
         #region Collections
@@ -143,11 +142,31 @@ namespace FinManage.ViewModels
                 System.Windows.MessageBoxImage.Warning);
         }
 
-        private async Task ShowMessage(string message, int delayMS = 3000)
+        private void ShowMessage(string message)
         {
-            StatusApp = message;
-            await Task.Delay(delayMS);
-            StatusApp = string.Empty;
+            System.Windows.MessageBox.Show(
+                message,
+                "Info",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Information);
+        }
+
+        private void ShowAttention(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Attention",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowLearn(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Welcome",
+                System.Windows.MessageBoxButton.OKCancel,
+                System.Windows.MessageBoxImage.Question);
         }
 
         #endregion
@@ -300,7 +319,6 @@ namespace FinManage.ViewModels
             #region FinManageData
 
             _database = new DataBaseWork();
-
             //CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
 

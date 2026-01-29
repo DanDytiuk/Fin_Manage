@@ -40,7 +40,7 @@
                     <ComboBox HorizontalAlignment="Left" Margin="160,80,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CurrencyCB, Mode=OneWay}" SelectedItem="{Binding Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='-'}"/>
 
                     <TextBox HorizontalAlignment="Left" Margin="160,147,0,0" TextWrapping="NoWrap" Text="{Binding NameOfAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120" />
-                    <TextBox HorizontalAlignment="Left" Margin="160,188,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}" VerticalAlignment="Top" Width="120"/>
+                    <TextBox HorizontalAlignment="Left" Margin="160,188,0,0" TextWrapping="Wrap" Text="{Binding Amount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='0'}"  VerticalAlignment="Top" Width="120"/>
                     <TextBox HorizontalAlignment="Left" Margin="160,235,0,0" TextWrapping="NoWrap" Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="120"/>
 
                     <DatePicker HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Height="25" Width="280" SelectedDate="{Binding DataTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding MinDate, Mode=OneWay}" DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"/>
