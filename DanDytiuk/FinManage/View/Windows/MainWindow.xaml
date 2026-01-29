@@ -88,13 +88,6 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Анализ расходов">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
-                        <ColumnDefinition Width="13*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="1"/>
-                </Grid>
             </TabItem>
             <TabItem Header="Детальный анализ расходов">
                 <Grid>
