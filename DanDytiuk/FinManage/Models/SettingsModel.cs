@@ -10,6 +10,7 @@ namespace FinManage.Models
         private Themes _theme;
         private TypesOfCurrency _currency;
         private string _language;
+        public static SettingsModel Current { get; set; }
         #endregion
         #region ItemsSettings
         [JsonConverter(typeof(JsonStringEnumConverter))]
