@@ -7,12 +7,22 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
+using System.ComponentModel;
 using static FinManage.Infrastructure.EnumInfrastructure;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace FinManage.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
+        #region Analysis
+
+
+
+        #endregion
+
+
         #region FinDataGrid
 
         #region Commands Unit
