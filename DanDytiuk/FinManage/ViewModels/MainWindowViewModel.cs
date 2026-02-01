@@ -1,17 +1,11 @@
 ﻿using FinManage.Infrastructure.Commands;
 using FinManage.Models.Models_for_db;
-using FinManage.Properties;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Globalization;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -264,7 +258,7 @@ namespace FinManage.ViewModels
                                 Category = reader.GetString(1),
                                 OperationType = reader.GetString(2),
                                 NameOfAmount = reader.IsDBNull(3) ? null : reader.GetString(3),
-                                Amount = reader.GetInt32(4),
+                                Amount = reader.GetDecimal(4),
                                 Currency = reader.GetString(5),
                                 DateInfo = reader.GetDateTime(6),
                                 Description = reader.IsDBNull(7) ? null : reader.GetString(7)
