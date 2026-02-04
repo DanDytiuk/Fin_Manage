@@ -12,6 +12,7 @@ namespace FinManage.Models
         private string _language;
         public static SettingsModel Current { get; set; }
         #endregion
+
         #region ItemsSettings
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public Themes Theme

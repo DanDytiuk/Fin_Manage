@@ -7,10 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Input;
-using System.ComponentModel;
 using static FinManage.Infrastructure.EnumInfrastructure;
-using LiveCharts;
-using LiveCharts.Wpf;
 
 namespace FinManage.ViewModels
 {
@@ -21,7 +18,6 @@ namespace FinManage.ViewModels
 
 
         #endregion
-
 
         #region FinDataGrid
 
@@ -323,7 +319,6 @@ namespace FinManage.ViewModels
             #region FinManageData
 
             _database = new DataBaseWork();
-            //CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);

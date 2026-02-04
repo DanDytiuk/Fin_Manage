@@ -49,9 +49,8 @@
                     <Button Content="Delete Info" HorizontalAlignment="Center" VerticalAlignment="Top" Width="280" Margin="0,320,0,0" Command="{Binding DeleteFinDataInfoCommand}"/>
                     <Button Content="Change Info" HorizontalAlignment="Center" VerticalAlignment="Top" Width="280" Margin="0,362,0,0"/>
 
-                    <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding MainFinAllTableColection}" SelectedItem="{Binding SelectedFinManage, Mode=TwoWay}">
+                    <DataGrid Grid.Column="2" AutoGenerateColumns="False" ItemsSource="{Binding MainFinAllTableColection}" SelectedItem="{Binding SelectedFinManage, Mode=TwoWay}" Grid.RowSpan="2">
                         <DataGrid.Columns>
-
                             <DataGridTextColumn
                                 Header="Category"
                                 Binding="{Binding Category}"
