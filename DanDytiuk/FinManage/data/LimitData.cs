@@ -42,41 +42,7 @@ namespace FinManage.Data
             }
         }
 
-        public List<LimitsModel> GetAll()
-        {
-            var list = new List<LimitsModel>();
-
-            using (var connection = _dataBaseWork.GetConnection())
-            {
-                connection.Open();
-
-                using (var cmd = connection.CreateCommand())
-                {
-                    cmd.CommandText =
-                    @"
-                    SELECT l.Id, c.Name, l.Amount
-                    FROM Limits l
-                    JOIN Categories c ON l.CategoryId = c.Id
-                    ";
-
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            list.Add(new LimitsModel
-                            {
-                                Id = reader.GetInt32(0),
-                                Category = reader.GetString(1),
-                                Amount = reader.GetDecimal(2)
-                            });
-                        }
-                    }
-                }
-            }
-            return list;
-        }
-
-        public void Delete(int limitId)
+        /*public void Delete(int limitId)
         {
             using (var connection = _dataBaseWork.GetConnection())
             {
@@ -89,6 +55,6 @@ namespace FinManage.Data
                     command.ExecuteNonQuery();
                 }
             }
-        }
+        }*/
     }
 }

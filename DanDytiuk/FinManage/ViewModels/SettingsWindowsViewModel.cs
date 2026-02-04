@@ -57,7 +57,6 @@ namespace FinManage.ViewModels
         private void SaveFromAppExecute(object parameter)
         {
             SaveSettings(Settings);
-            SettingsModel.Current = Settings;
             CloseAction?.Invoke();
         }
         private void CancelFromAppExecute(object parameter)
@@ -81,7 +80,6 @@ namespace FinManage.ViewModels
             Options.Converters.Add(new JsonStringEnumConverter());
 
             Settings = LoadSettings();
-            SettingsModel.Current = Settings;
 
             SaveCommand = new LambdaCommand(SaveFromAppExecute, CanSaveCommandExecuted);
             CancelCommand = new LambdaCommand(CancelFromAppExecute, CanCancelCommandExecuted);

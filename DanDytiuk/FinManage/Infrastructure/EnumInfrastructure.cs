@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-
-namespace FinManage.Infrastructure
+﻿namespace FinManage.Infrastructure
 {
     public class EnumInfrastructure
     {

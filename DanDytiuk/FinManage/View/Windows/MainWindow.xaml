@@ -35,7 +35,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="10,50,0,0" TextWrapping="Wrap" Text="Type of operation" VerticalAlignment="Top"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,152,0,0" TextWrapping="Wrap" Text="Name of amount" VerticalAlignment="Top"/>
 
-                    <ComboBox HorizontalAlignment="Left" Margin="160,9,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CategoriesCB, Mode=OneWay}" SelectedItem="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox x:Name="CategoryComboBox" HorizontalAlignment="Left" Margin="160,9,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CategoriesCB, Mode=OneWay}" SelectedItem="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox HorizontalAlignment="Left" Margin="160,45,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding OperationCB, Mode=OneWay}" SelectedItem="{Binding TypeOperation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox HorizontalAlignment="Left" Margin="160,80,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CurrencyCB, Mode=OneWay}" SelectedItem="{Binding Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue='-'}"/>
 
@@ -73,7 +73,7 @@
                                 IsReadOnly="True"/>
                             <DataGridTextColumn
                                 Header="Date"
-                                Binding="{Binding DateInfo}"
+                                Binding="{Binding DateInfo, StringFormat=dd.MM.yyyy}"
                                 IsReadOnly="True"
                                 Width="100"/>
                             <DataGridTextColumn
@@ -87,6 +87,9 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Анализ расходов">
+                <Grid>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Детальный анализ расходов">
                 <Grid>

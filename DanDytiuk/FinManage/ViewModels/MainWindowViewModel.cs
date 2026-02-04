@@ -169,6 +169,16 @@ namespace FinManage.ViewModels
                 System.Windows.MessageBoxImage.Question);
         }
 
+        private void CleanComboBox()
+        {
+            Category = null;
+            TypeOperation = TypeOperation.Unknown;
+            NameOfAmount = string.Empty;
+            Amount = 0;
+            Description = string.Empty;
+            DataTime = DateTime.Today;
+        }
+
         #endregion
 
         #region Main functions
@@ -215,6 +225,8 @@ namespace FinManage.ViewModels
             }
 
             LoadFromDB();
+
+            CleanComboBox();    
         }
         private void DeleteFinDatainfo(object p)
         {
