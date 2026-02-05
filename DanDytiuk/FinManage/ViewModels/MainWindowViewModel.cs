@@ -261,6 +261,56 @@ namespace FinManage.ViewModels
 
         #endregion
 
+        #region Helpers
+
+        private void ShowError(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Error",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowMessage(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Info",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Information);
+        }
+
+        private void ShowAttention(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Attention",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowLearn(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Welcome",
+                System.Windows.MessageBoxButton.OKCancel,
+                System.Windows.MessageBoxImage.Question);
+        }
+
+        private void CleanComboBox()
+        {
+            Category = null;
+            TypeOperation = TypeOperation.Unknown;
+            NameOfAmount = string.Empty;
+            Amount = 0;
+            Description = string.Empty;
+            DataTime = DateTime.Today;
+        }
+
+        #endregion
+
         #region Main functions
         private void AddFinDataInfo(object p)
         {
