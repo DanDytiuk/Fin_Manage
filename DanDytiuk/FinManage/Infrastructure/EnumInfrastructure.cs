@@ -1,4 +1,7 @@
-﻿namespace FinManage.Infrastructure
+﻿using System;
+using System.Collections.Generic;
+
+namespace FinManage.Infrastructure
 {
     public class EnumInfrastructure
     {
@@ -36,8 +39,8 @@
         public enum TypeOperation
         {
             Unknown,
-            Income,
-            Expenses
+            Expenses,
+            Income
         }
 
         public enum Category
@@ -62,6 +65,21 @@
             Other
         }
         
+        public enum Months
+        {
+            January,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December
+        }
     }
 }
 

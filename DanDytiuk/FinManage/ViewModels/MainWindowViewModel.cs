@@ -1,10 +1,14 @@
 ﻿using FinManage.Infrastructure.Commands;
+using FinManage.Models;
 using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
+using Microsoft.Xaml.Behaviors.Media;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
@@ -13,9 +17,141 @@ namespace FinManage.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
+        #region Data
+
+        private readonly DataBaseWork _database;
+        
+        #endregion
+
+        #region Helpers
+
+        private void ShowError(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Error",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowMessage(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Info",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Information);
+        }
+
+        private void ShowAttention(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Attention",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowLearn(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Welcome",
+                System.Windows.MessageBoxButton.OKCancel,
+                System.Windows.MessageBoxImage.Question);
+        }
+
+        private void CleanComboBox()
+        {
+            Category = null;
+            TypeOperation = TypeOperation.Unknown;
+            NameOfAmount = string.Empty;
+            Amount = 0;
+            Description = string.Empty;
+            DataTime = DateTime.Today;
+        }
+
+        #endregion
+
         #region Analysis
 
+        #region Commands Unit
 
+        public ICommand GoInfoCommandExecute { get; }
+        public ICommand RefreshInfoCommandExecute { get; }
+        private bool CanRefreshInfoCommandExecuted(object p) => true;
+        private bool CanGoInfoCommandExecuted(object p) => true;
+
+        #endregion
+
+        #region ComboBox
+
+        public Array MonthCB => Enum.GetValues(typeof(Months));
+
+        public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int> (Enumerable.Range(2025, 20));
+        #endregion
+
+        #region Property Changed
+
+        private string _categoryAnalyse;
+
+        private decimal _minValueCategoryAnalyse;
+        private decimal _maxValueCategoryAnalyse;
+        private decimal _avgValueCategoryAnalyse;
+        private decimal _totalValueCategoryAnalyse;
+
+        private string _selectedYearCB;
+        private string _selectedMonthCB;
+
+        public string CategoryAnalyse
+        {
+            get => _categoryAnalyse;
+            set => Set(ref  _categoryAnalyse, value);
+        }
+        public decimal MinValueCategoryAnalyse
+        {
+            get => _minValueCategoryAnalyse;
+            set => Set(ref _minValueCategoryAnalyse, value);
+        }
+        public decimal MaxValueCategoryAnalyse
+        {
+            get => _maxValueCategoryAnalyse;
+            set => Set(ref _maxValueCategoryAnalyse, value);
+        }
+        public decimal AvgValueCategoryAnalyse
+        {
+            get => _avgValueCategoryAnalyse;
+            set => Set(ref _avgValueCategoryAnalyse, value);
+        }
+        public decimal TotalValueCategoryAnalyse
+        {
+            get => _totalValueCategoryAnalyse;
+            set => Set(ref _totalValueCategoryAnalyse, value);
+        }
+        public string SelectedYearCB
+        {
+            get => _selectedYearCB;
+            set => Set(ref _selectedYearCB, value);
+        }
+        public string SelectedMonthCB
+        {
+            get => _selectedMonthCB;
+            set => Set(ref _selectedMonthCB, value);
+        }
+
+        #endregion
+
+        #region  Collections
+
+        public ObservableCollection<StatisticsModel> StatisticsList { get; } = new ObservableCollection<StatisticsModel>();
+
+        #endregion
+
+        #region Main functions
+
+
+
+        #endregion
 
         #endregion
 
@@ -29,12 +165,6 @@ namespace FinManage.ViewModels
         public ICommand DeleteFromDBCommand { get; }
         private bool CanAddFinDataInfoCommandExecute(object p) => true;
         private bool CanDeleteDataInfoCommandExecute(object p) => true;
-        #endregion
-
-        #region Data
-
-        private readonly DataBaseWork _database;
-        
         #endregion
 
         #region ComboBox
@@ -131,106 +261,47 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Helpers
-
-        private void ShowError(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Error",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowMessage(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Info",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Information);
-        }
-
-        private void ShowAttention(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Attention",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowLearn(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Welcome",
-                System.Windows.MessageBoxButton.OKCancel,
-                System.Windows.MessageBoxImage.Question);
-        }
-
-        private void CleanComboBox()
-        {
-            Category = null;
-            TypeOperation = TypeOperation.Unknown;
-            NameOfAmount = string.Empty;
-            Amount = 0;
-            Description = string.Empty;
-            DataTime = DateTime.Today;
-        }
-
-        #endregion
-
         #region Main functions
         private void AddFinDataInfo(object p)
         {
-            if (string.IsNullOrWhiteSpace(Category))
+            if (string.IsNullOrWhiteSpace(Category) | Amount <= 0 | TypeOperation == TypeOperation.Unknown)
             {
-                ShowError("Please select a category.");
+                ShowError("Please select a category, valid amount or type operation.");
             }
-
-            if(Amount <= 0)
+            else 
             {
-                ShowError("Please enter a valid amount.");
-                return;
-            }
-
-            if(TypeOperation == TypeOperation.Unknown)
-            {
-                ShowError("Please select a valid type operation.");
-            }
-
-            using(var connection = _database.GetConnection())
-            {
-                connection.Open();
-
-                using (var command = connection.CreateCommand())
+                using (var connection = _database.GetConnection())
                 {
-                    command.CommandText =
-                    @"
+                    connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText =
+                        @"
                     Insert Into MainData (Category, OperationType, Name_of_Amount, Amount, Currency, DateInfo, Description)
                     Values ($category, $operationtype, $nameofamount, $amount, $currency, $dateinfo, $description);
                     ";
 
-                    command.Parameters.AddWithValue("$category", Category.ToString());
-                    command.Parameters.AddWithValue("$operationtype", TypeOperation.ToString());
-                    command.Parameters.AddWithValue("$nameofamount", NameOfAmount);
-                    command.Parameters.AddWithValue("$amount", Amount);
-                    command.Parameters.AddWithValue("$currency", Currency);
-                    command.Parameters.AddWithValue("$dateinfo", DataTime);
-                    command.Parameters.AddWithValue("$description", Description ?? "");
+                        command.Parameters.AddWithValue("$category", Category.ToString());
+                        command.Parameters.AddWithValue("$operationtype", TypeOperation.ToString());
+                        command.Parameters.AddWithValue("$nameofamount", NameOfAmount);
+                        command.Parameters.AddWithValue("$amount", Amount);
+                        command.Parameters.AddWithValue("$currency", Currency);
+                        command.Parameters.AddWithValue("$dateinfo", DataTime);
+                        command.Parameters.AddWithValue("$description", Description ?? "");
 
-                    command.ExecuteNonQuery();
+                        command.ExecuteNonQuery();
+                    }
                 }
+
+                LoadFromDB();
+
+                CleanComboBox();
             }
-
-            LoadFromDB();
-
-            CleanComboBox();    
         }
         private void DeleteFinDatainfo(object p)
         {
-            if (SelectedFinManage == null)  return;
+            if (SelectedFinManage == null) { ShowAttention("Please a select string for delete!"); return; }
 
             using (var connection = _database.GetConnection()) 
             {
@@ -338,7 +409,12 @@ namespace FinManage.ViewModels
 
             LoadFromDB();
             #endregion
-        }
 
+            #region Analysis
+
+
+
+            #endregion 
+        }
     }
 }
