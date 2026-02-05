@@ -3,6 +3,7 @@ using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
+using Microsoft.Xaml.Behaviors.Media;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
@@ -13,9 +14,120 @@ namespace FinManage.ViewModels
 {
     internal class MainWindowViewModel : BaseViewModel
     {
+        #region Data
+
+        private readonly DataBaseWork _database;
+        
+        #endregion
+
+        #region Helpers
+
+        private void ShowError(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Error",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowMessage(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Info",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Information);
+        }
+
+        private void ShowAttention(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Attention",
+                System.Windows.MessageBoxButton.OK,
+                System.Windows.MessageBoxImage.Warning);
+        }
+
+        private void ShowLearn(string message)
+        {
+            System.Windows.MessageBox.Show(
+                message,
+                "Welcome",
+                System.Windows.MessageBoxButton.OKCancel,
+                System.Windows.MessageBoxImage.Question);
+        }
+
+        private void CleanComboBox()
+        {
+            Category = null;
+            TypeOperation = TypeOperation.Unknown;
+            NameOfAmount = string.Empty;
+            Amount = 0;
+            Description = string.Empty;
+            DataTime = DateTime.Today;
+        }
+
+        #endregion
+
         #region Analysis
 
+        #region Commands Unit
 
+        public ICommand RefreshInfoCommandExecute { get; }
+        private bool CanRefreshInfoCommandExecuted(object p) => true;
+
+        #endregion
+
+        #region Property Changed
+
+        private string _categoryAnalyse;
+
+        private decimal _minValueCategoryAnalyse;
+        private decimal _maxValueCategoryAnalyse;
+        private decimal _avgValueCategoryAnalyse;
+        private decimal _totalValueCategoryAnalyse;
+
+        private string _selectedYearCB;
+        private string _selectedMonthCB;
+
+        public string CategoryAnalyse
+        {
+            get => _categoryAnalyse;
+            set => Set(ref  _categoryAnalyse, value);
+        }
+        public decimal MinValueCategoryAnalyse
+        {
+            get => _minValueCategoryAnalyse;
+            set => Set(ref _minValueCategoryAnalyse, value);
+        }
+        public decimal MaxValueCategoryAnalyse
+        {
+            get => _maxValueCategoryAnalyse;
+            set => Set(ref _maxValueCategoryAnalyse, value);
+        }
+        public decimal AvgValueCategoryAnalyse
+        {
+            get => _avgValueCategoryAnalyse;
+            set => Set(ref _avgValueCategoryAnalyse, value);
+        }
+        public decimal TotalValueCategoryAnalyse
+        {
+            get => _totalValueCategoryAnalyse;
+            set => Set(ref _totalValueCategoryAnalyse, value);
+        }
+        public string SelectedYearCB
+        {
+            get => _selectedYearCB;
+            set => Set(ref _selectedYearCB, value);
+        }
+        public string SelectedMonthCB
+        {
+            get => _selectedMonthCB;
+            set => Set(ref _selectedMonthCB, value);
+        }
+
+        #endregion
 
         #endregion
 
@@ -29,12 +141,6 @@ namespace FinManage.ViewModels
         public ICommand DeleteFromDBCommand { get; }
         private bool CanAddFinDataInfoCommandExecute(object p) => true;
         private bool CanDeleteDataInfoCommandExecute(object p) => true;
-        #endregion
-
-        #region Data
-
-        private readonly DataBaseWork _database;
-        
         #endregion
 
         #region ComboBox
@@ -128,56 +234,6 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<FinAllTableModel> MainFinAllTableColection { get; } 
             = new ObservableCollection<FinAllTableModel>();
-
-        #endregion
-
-        #region Helpers
-
-        private void ShowError(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Error",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowMessage(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Info",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Information);
-        }
-
-        private void ShowAttention(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Attention",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowLearn(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Welcome",
-                System.Windows.MessageBoxButton.OKCancel,
-                System.Windows.MessageBoxImage.Question);
-        }
-
-        private void CleanComboBox()
-        {
-            Category = null;
-            TypeOperation = TypeOperation.Unknown;
-            NameOfAmount = string.Empty;
-            Amount = 0;
-            Description = string.Empty;
-            DataTime = DateTime.Today;
-        }
 
         #endregion
 
@@ -338,7 +394,12 @@ namespace FinManage.ViewModels
 
             LoadFromDB();
             #endregion
-        }
 
+            #region Analysis
+
+
+
+            #endregion 
+        }
     }
 }
