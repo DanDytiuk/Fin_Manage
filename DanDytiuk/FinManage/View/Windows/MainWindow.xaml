@@ -96,7 +96,9 @@
                     <ComboBox HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding MonthCB, Mode=OneWay}" SelectedItem="{Binding SelectedMonthCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox HorizontalAlignment="Left" Margin="221,50,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding YearsCB, Mode=OneWay}" SelectedItem="{Binding SelectedYearCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-
+                    <DataGrid>
+                        
+                    </DataGrid>
                 </Grid>
             </TabItem>
             <TabItem Header="Детальный анализ расходов">

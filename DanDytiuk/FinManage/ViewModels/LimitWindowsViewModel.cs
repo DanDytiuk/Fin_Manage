@@ -187,14 +187,13 @@ namespace FinManage.ViewModels
             }
 
             Limits.Remove(SelectedLimit);
-
-
         }
 
         private void Cancel(object _)
         {
             CloseAction?.Invoke();
         }
+
 
         #endregion
 
@@ -245,7 +244,6 @@ namespace FinManage.ViewModels
         {
             _database = new DataBaseWork();
             CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
-
 
             AddLimitCommand = new LambdaCommand(AddLimit);
             DeleteLimitCommand = new LambdaCommand(DeleteLimit);

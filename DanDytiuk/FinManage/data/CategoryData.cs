@@ -36,33 +36,5 @@ namespace FinManage.Data
                 }
             }
         }
-
-        public List<CategoryModel> GetAll()
-        {
-            var list = new List<CategoryModel>();
-
-            using (var connection = _dataBaseWork.GetConnection()) 
-            {
-                connection.Open();
-
-                using (var command = connection.CreateCommand()) 
-                {
-                    command.CommandText = "SELECT Id, Name FROM Categories";
-
-                    using (var reader = command.ExecuteReader()) 
-                    {
-                        while (reader.Read())
-                        {
-                            list.Add(new CategoryModel
-                            {
-                                Id = reader.GetInt32(0),
-                                Name = reader.GetString(1)
-                            });
-                        }
-                    }
-                }
-            }
-            return list;
-        }
     }
 }

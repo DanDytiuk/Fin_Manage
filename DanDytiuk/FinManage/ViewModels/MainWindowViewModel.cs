@@ -4,6 +4,7 @@ using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
+using Microsoft.Data.Sqlite;
 using Microsoft.Xaml.Behaviors.Media;
 using System;
 using System.Collections.Generic;
@@ -142,13 +143,101 @@ namespace FinManage.ViewModels
         #endregion
 
         #region  Collections
-
-        public ObservableCollection<StatisticsModel> StatisticsList { get; } = new ObservableCollection<StatisticsModel>();
+        public ObservableCollection<StatisticsModel> StatisticsList { get; set; } = new ObservableCollection<StatisticsModel>();
 
         #endregion
 
         #region Main functions
 
+
+
+        #endregion
+
+        #region Database functions
+
+        private void LoadAnalytics()
+        {
+            // 1. Все категории из кода
+            var allCategories = CategoriesCB;
+
+            // 2. Траты
+            var expenseStats = new Dictionary<string, StatisticsModel>();
+
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                    @"SELECT Category,
+                    MIN(Amount),
+                    AVG(Amount),
+                    MAX(Amount),
+                    SUM(Amount)
+                FROM MainData
+                GROUP BY Category";
+                
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var cat = reader.GetString(0);
+
+                            expenseStats[cat] = new StatisticsModel
+                            {
+                                Category = cat,
+                                MinAmount = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1),
+                                AvgAmount = reader.IsDBNull(2) ? 0 : reader.GetDecimal(2),
+                                MaxAmount = reader.IsDBNull(3) ? 0 : reader.GetDecimal(3),
+                                TotalAmount = reader.IsDBNull(4) ? 0 : reader.GetDecimal(4)
+                            };
+                        }
+                    }   
+                }
+            }
+
+            // 3. Лимиты
+            var limits = new Dictionary<string, double>();
+
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand()){ 
+                    
+                    command.CommandText = @"Select Category, LimitValue From Limits";
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            
+                            limits[reader.GetString(0)] = reader.GetDouble(1);
+                    }
+                }
+            }
+
+            // 4. Финальная сборка (МАГИЯ ✨)
+            StatisticsList = new ObservableCollection<StatisticsModel>();
+
+            foreach (var cat in allCategories)
+            {
+                expenseStats.TryGetValue(cat, out var stat);
+                limits.TryGetValue(cat, out var limit);
+
+                StatisticsList.Add(new StatisticsModel
+                {
+                    Category = cat,
+                    MinAmount = stat?.MinAmount ?? 0,
+                    AvgAmount = stat?.AvgAmount ?? 0,
+                    MaxAmount = stat?.MaxAmount ?? 0,
+                    TotalAmount = stat?.TotalAmount ?? 0,
+                    Limit = (decimal)limit
+                });
+            }
+
+            OnPropertyChanged(nameof(Categories));
+        }
 
 
         #endregion
@@ -258,56 +347,6 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<FinAllTableModel> MainFinAllTableColection { get; } 
             = new ObservableCollection<FinAllTableModel>();
-
-        #endregion
-
-        #region Helpers
-
-        private void ShowError(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Error",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowMessage(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Info",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Information);
-        }
-
-        private void ShowAttention(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Attention",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowLearn(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Welcome",
-                System.Windows.MessageBoxButton.OKCancel,
-                System.Windows.MessageBoxImage.Question);
-        }
-
-        private void CleanComboBox()
-        {
-            Category = null;
-            TypeOperation = TypeOperation.Unknown;
-            NameOfAmount = string.Empty;
-            Amount = 0;
-            Description = string.Empty;
-            DataTime = DateTime.Today;
-        }
 
         #endregion
 
@@ -462,7 +501,7 @@ namespace FinManage.ViewModels
 
             #region Analysis
 
-
+            
 
             #endregion 
         }

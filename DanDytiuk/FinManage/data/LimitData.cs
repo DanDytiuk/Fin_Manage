@@ -41,20 +41,5 @@ namespace FinManage.Data
                 }
             }
         }
-
-        /*public void Delete(int limitId)
-        {
-            using (var connection = _dataBaseWork.GetConnection())
-            {
-                connection.Open();
-
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "DELETE FROM Limits WHERE Id = $id";
-                    command.Parameters.AddWithValue("$id", limitId);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }*/
     }
 }
