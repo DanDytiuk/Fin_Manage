@@ -54,13 +54,16 @@ namespace FinManage.ViewModels
 
         #region PropertyChanged
 
+        public DateTime MinDate { get; } = new DateTime(2020, 1, 1);
+        public DateTime MaxDate { get; } = new DateTime(2099, 12, 31);
+
         private string _selectedCategory;
         private decimal _amount;
         private string _currency;
         private string _description;
         private LimitsModel _selectedLimit;
-        private DateTime _startDate;
-        private DateTime _endDate;
+        private DateTime _startDate = DateTime.Now;
+        private DateTime _endDate = DateTime.Now;
 
         public string SelectedCategory
         {
@@ -136,7 +139,7 @@ namespace FinManage.ViewModels
 
         #region Commands Logic
 
-        private void AddLimit(object _)
+        private void AddLimit(object p)
         {
             if (string.IsNullOrWhiteSpace(SelectedCategory))
             {
@@ -150,9 +153,9 @@ namespace FinManage.ViewModels
                 return;
             }
 
-            if (Limits.Any(l => l.Category == SelectedCategory))
+            if (Limits.Any(l => l.Category == SelectedCategory && l.Currency == Currency))
             {
-                ShowError($"Limit for this categoty - {SelectedCategory} already exists!");
+                ShowError($"Limit for this category - {SelectedCategory} already exists!");
                 return;
             }
 
@@ -164,14 +167,16 @@ namespace FinManage.ViewModels
                 {
                     command.CommandText =
                     @"
-                    INSERT INTO Limits (Category, Amount, Currency, Description)
-                    VALUES ($category, $amount, $currency, $description);
+                    INSERT INTO Limits (Category, Amount, Currency, Description, StartDate, EndDate)
+                    VALUES ($category, $amount, $currency, $description, $startdate, $enddate);
                     ";
 
                     command.Parameters.AddWithValue("$category", SelectedCategory);
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency ?? "");
                     command.Parameters.AddWithValue("$description", Description ?? "");
+                    command.Parameters.AddWithValue("$startdate", StartDate);
+                    command.Parameters.AddWithValue("$enddate", EndDate);
 
                     command.ExecuteNonQuery();
                 }
@@ -180,7 +185,7 @@ namespace FinManage.ViewModels
             LoadFromDatabase();
         }
 
-        private void DeleteLimit(object _)
+        private void DeleteLimit(object p)
         {
             if (SelectedLimit == null)
                 return;
@@ -202,11 +207,10 @@ namespace FinManage.ViewModels
             Limits.Remove(SelectedLimit);
         }
 
-        private void Cancel(object _)
+        private void Cancel(object p)
         {
             CloseAction?.Invoke();
         }
-
 
         #endregion
 
@@ -224,7 +228,7 @@ namespace FinManage.ViewModels
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText =
-                    "SELECT Id, Category, Amount, Currency, Description FROM Limits;";
+                    "SELECT Id, Category, Amount, Currency, Description, StartDate, EndDate FROM Limits;";
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -236,7 +240,9 @@ namespace FinManage.ViewModels
                                 Category = reader.GetString(1),
                                 Amount = reader.GetDecimal(2),
                                 Currency = reader.GetString(3),
-                                Description = reader.IsDBNull(4) ? null : reader.GetString(4)
+                                Description = reader.IsDBNull(4) ? null : reader.GetString(4),
+                                StartDate = reader.GetDateTime(5),
+                                EndDate = reader.GetDateTime(6)
                             };
 
                             Limits.Add(limit);
