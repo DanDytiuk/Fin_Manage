@@ -4,8 +4,6 @@ using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
-using Microsoft.Data.Sqlite;
-using Microsoft.Xaml.Behaviors.Media;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -70,6 +68,11 @@ namespace FinManage.ViewModels
             Amount = 0;
             Description = string.Empty;
             DataTime = DateTime.Today;
+        }
+
+        private void CleanComboBoxAnalyse()
+        {
+
         }
 
         #endregion
@@ -157,10 +160,8 @@ namespace FinManage.ViewModels
 
         private void LoadAnalytics()
         {
-            // 1. Все категории из кода
             var allCategories = CategoriesCB;
 
-            // 2. Траты
             var expenseStats = new Dictionary<string, StatisticsModel>();
 
             using (var connection = _database.GetConnection())
@@ -197,7 +198,6 @@ namespace FinManage.ViewModels
                 }
             }
 
-            // 3. Лимиты
             var limits = new Dictionary<string, double>();
 
             using (var connection = _database.GetConnection())
@@ -217,7 +217,6 @@ namespace FinManage.ViewModels
                 }
             }
 
-            // 4. Финальная сборка (МАГИЯ ✨)
             StatisticsList = new ObservableCollection<StatisticsModel>();
 
             foreach (var cat in allCategories)

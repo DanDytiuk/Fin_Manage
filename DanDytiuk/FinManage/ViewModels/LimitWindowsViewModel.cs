@@ -59,6 +59,8 @@ namespace FinManage.ViewModels
         private string _currency;
         private string _description;
         private LimitsModel _selectedLimit;
+        private DateTime _startDate;
+        private DateTime _endDate;
 
         public string SelectedCategory
         {
@@ -89,6 +91,17 @@ namespace FinManage.ViewModels
             get => _description;
             set => Set(ref _description, value);
         }
+        public DateTime StartDate
+        {
+            get => _startDate;
+            set => Set(ref _startDate, value);
+        }
+        public DateTime EndDate
+        {
+            get => _endDate;
+            set => Set(ref _endDate,value);
+        }
+
         #endregion
 
         #region Collections

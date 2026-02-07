@@ -7,10 +7,11 @@ namespace FinManage.Models
     internal class SettingsModel : BaseViewModel
     {
         #region PropertyChangedValue
+
         private Themes _theme;
         private TypesOfCurrency _currency;
         private string _language;
-        public static SettingsModel Current { get; set; }
+
         #endregion
 
         #region ItemsSettings

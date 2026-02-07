@@ -92,16 +92,25 @@
                         <ColumnDefinition Width="4*"></ColumnDefinition>
                         <ColumnDefinition Width="13*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    
+
+                    <TextBlock HorizontalAlignment="Left" Margin="30,25,0,0" TextWrapping="Wrap" Text="Month of year" VerticalAlignment="Top"/>
+
+                    <TextBox/>
+
+                    <Button/>
+                    <Button/>
+
                     <ComboBox HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding MonthCB, Mode=OneWay}" SelectedItem="{Binding SelectedMonthCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     <ComboBox HorizontalAlignment="Left" Margin="221,50,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding YearsCB, Mode=OneWay}" SelectedItem="{Binding SelectedYearCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
 
                     <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding StatisticsList, Mode=OneWay}">
                         <DataGrid.Columns>
                             <DataGridTextColumn 
                                 Header="Name of limit"
                                 IsReadOnly="True"
-                                Binding="{Binding Category}"/>
+                                Binding="{Binding Category}"
+                                Width="130"/>
                             <DataGridTextColumn 
                                 Header="Minimal amount"
                                 IsReadOnly="True"
@@ -124,6 +133,8 @@
                                 Binding="{Binding Limit}"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <TextBlock HorizontalAlignment="Left" Margin="270,25,0,0" TextWrapping="Wrap" Text="Year" VerticalAlignment="Top"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="10,150,0,0" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Детальный анализ расходов">
