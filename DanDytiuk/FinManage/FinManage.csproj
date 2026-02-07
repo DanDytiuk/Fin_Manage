@@ -227,7 +227,6 @@
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\LimitModel.cs" />
-    <Compile Include="Models\Models for db\CategoryModel.cs" />
     <Compile Include="Models\Models for db\FinAllTableModel.cs" />
     <Compile Include="Models\Models for db\LimitsModel.cs" />
     <Compile Include="Models\SettingsModel.cs" />

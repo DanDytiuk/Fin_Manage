@@ -97,17 +97,18 @@ namespace FinManage.ViewModels
 
         #region Property Changed
 
-        private string _categoryAnalyse;
+        /*private string _categoryAnalyse;
 
         private decimal _minValueCategoryAnalyse;
         private decimal _maxValueCategoryAnalyse;
         private decimal _avgValueCategoryAnalyse;
-        private decimal _totalValueCategoryAnalyse;
+        private decimal _totalValueCategoryAnalyse;*/
 
         private string _selectedYearCB;
         private string _selectedMonthCB;
+        private string _selectedCurrency;
 
-        public string CategoryAnalyse
+        /*public string CategoryAnalyse
         {
             get => _categoryAnalyse;
             set => Set(ref  _categoryAnalyse, value);
@@ -131,7 +132,7 @@ namespace FinManage.ViewModels
         {
             get => _totalValueCategoryAnalyse;
             set => Set(ref _totalValueCategoryAnalyse, value);
-        }
+        }/*/
         public string SelectedYearCB
         {
             get => _selectedYearCB;
@@ -142,10 +143,15 @@ namespace FinManage.ViewModels
             get => _selectedMonthCB;
             set => Set(ref _selectedMonthCB, value);
         }
-
+        public string SelectedCurrency
+        {
+            get => _selectedCurrency;   
+            set => Set(ref _selectedCurrency, value);
+        }
+        
         #endregion
 
-        #region  Collections
+        #region Collections
         public ObservableCollection<StatisticsModel> StatisticsList { get; set; } = new ObservableCollection<StatisticsModel>();
 
         #endregion
@@ -176,8 +182,11 @@ namespace FinManage.ViewModels
                     AVG(Amount),
                     MAX(Amount),
                     SUM(Amount)
-                FROM MainData
-                GROUP BY Category";
+                From MainData
+                Where Currency = $currency
+                Group By Category";
+
+                    command.Parameters.AddWithValue("$currency", SelectedCurrency);
                 
                     using (var reader = command.ExecuteReader())
                     {

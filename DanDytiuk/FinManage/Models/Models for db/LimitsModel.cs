@@ -15,5 +15,6 @@ namespace FinManage.Models.Models_for_db
         public string Description { get; set; } = "";
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+
     }
 }
