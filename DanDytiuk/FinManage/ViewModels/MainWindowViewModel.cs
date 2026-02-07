@@ -206,7 +206,7 @@ namespace FinManage.ViewModels
 
                 using (var command = connection.CreateCommand()){ 
                     
-                    command.CommandText = @"Select Category, LimitValue From Limits";
+                    command.CommandText = @"Select Category, Amount From Limits";
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -501,7 +501,7 @@ namespace FinManage.ViewModels
 
             #region Analysis
 
-            
+            LoadAnalytics();
 
             #endregion 
         }
