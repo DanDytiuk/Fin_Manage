@@ -127,6 +127,10 @@
                                 Header="Amount of limit"
                                 IsReadOnly="True"
                                 Binding="{Binding Limit}"/>
+                            <DataGridTextColumn
+                                Header="Currency"
+                                IsReadOnly="True"
+                                Binding="{Binding Curency}"/>
                         </DataGrid.Columns>
                     </DataGrid>
 

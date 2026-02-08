@@ -3,7 +3,7 @@
     internal class StatisticsModel
     {
         public string Category { get; set; }
-        public string SelectedCurrency { get; set; }
+        public string Currency { get; set; }
 
         public decimal MinAmount { get; set; } 
         public decimal AvgAmount { get; set; }

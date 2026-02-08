@@ -183,10 +183,9 @@ namespace FinManage.ViewModels
                     MAX(Amount),
                     SUM(Amount)
                 From MainData
-                Where Currency = $currency
                 Group By Category";
 
-                    command.Parameters.AddWithValue("$currency", SelectedCurrency);
+                    //command.Parameters.AddWithValue("$currency", SelectedCurrency);
                 
                     using (var reader = command.ExecuteReader())
                     {
@@ -247,8 +246,23 @@ namespace FinManage.ViewModels
             OnPropertyChanged(nameof(Categories));
         }
 
+        private Dictionary<string, StatisticsModel> LoadStatistics()
+        {
+            var result = new Dictionary<string, StatisticsModel>();
 
-        #endregion
+            using (var connection = _database.GetConnection()) 
+            {
+                connection.Open();
+                
+                using (var command = connection.CreateCommand())
+                {
+                     
+                }
+
+            }
+        }
+        
+        #endregion 
 
         #endregion
 
