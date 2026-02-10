@@ -138,7 +138,7 @@
                     <TextBlock HorizontalAlignment="Left" Margin="24,113,0,0" TextWrapping="Wrap" Text="Currency for filter" VerticalAlignment="Top"/>
 
                     <ComboBox HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="120" ItemsSource="{Binding CurrencyCB, Mode=OneWay}" SelectedItem="{Binding SelectedCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    <Button Content="Go" HorizontalAlignment="Left" Margin="188,99,0,0" VerticalAlignment="Top" Width="153" />
+                    <Button Content="Go" HorizontalAlignment="Left" Margin="188,99,0,0" VerticalAlignment="Top" Width="153" Command="{Binding GoInfoCommand}"/>
 
 
                 </Grid>
