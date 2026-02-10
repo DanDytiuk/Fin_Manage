@@ -81,10 +81,12 @@ namespace FinManage.ViewModels
 
         #region Commands Unit
 
-        public ICommand GoInfoCommandExecute { get; }
-        public ICommand RefreshInfoCommandExecute { get; }
-        private bool CanRefreshInfoCommandExecuted(object p) => true;
-        private bool CanGoInfoCommandExecuted(object p) => true;
+        public ICommand GoInfoCommand { get; }
+        public ICommand RefreshInfoCommand { get; } 
+        public ICommand CleanCBCommand { get; }
+        private bool CanRefreshInfoCommandExecute(object p) => true;
+        private bool CanGoInfoCommandExecute(object p) => true;
+        private bool CanCleanCBCommandExecute(object p) => true;
 
         #endregion
 
@@ -93,6 +95,23 @@ namespace FinManage.ViewModels
         public Array MonthCB => Enum.GetValues(typeof(Months));
 
         public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int> (Enumerable.Range(2025, 20));
+
+        /*var months = new Dictionary<string, int>
+        {
+            ["January"] = 1,
+            ["February"] = 2,
+            ["March"] = 3,
+            ["April"] = 4,
+            ["May"] = 5,
+            ["June"] = 6,
+            ["July"] = 7,
+            ["August"] = 8,
+            ["September"] = 9,
+            ["October"] = 10,
+            ["November"] = 11,
+            ["December"] = 12
+        };*/
+
         #endregion
 
         #region Property Changed
@@ -164,7 +183,7 @@ namespace FinManage.ViewModels
 
         #region Database functions
 
-        private void LoadAnalytics()
+        /*private void LoadAnalytics()
         {
             var allCategories = CategoriesCB;
 
@@ -244,7 +263,7 @@ namespace FinManage.ViewModels
             }
 
             OnPropertyChanged(nameof(Categories));
-        }
+        }*/
 
         private Dictionary<string, StatisticsModel> LoadStatistics()
         {
@@ -256,13 +275,114 @@ namespace FinManage.ViewModels
                 
                 using (var command = connection.CreateCommand())
                 {
-                     
-                }
+                    command.CommandText =
+                    @"SELECT Category,
+                     IFNULL(MIN(Amount),0),
+                     IFNULL(AVG(Amount),0),
+                     IFNULL(MAX(Amount),0),
+                     IFNULL(SUM(Amount),0)
+                FROM MainData
+                WHERE Currency = @currency
+                    AND strftime('%m', DateInfo) = @month
+                    AND strftime('%Y', DateInfo) = @year
+                GROUP BY Category";
 
-            }
+                    command.Parameters.AddWithValue("@currency", SelectedCurrency);
+                    command.Parameters.AddWithValue("@month", SelectedMonthCB.ToString());
+                    command.Parameters.AddWithValue("@year", SelectedYearCB.ToString());
+
+                    using (var reader = command.ExecuteReader())
+                    {
+
+                        while(reader.Read())
+                        {
+                            var category = reader.GetString(0);
+
+                            result[category] = new StatisticsModel
+                            {
+                                Category = category,
+                                MinAmount = reader.GetDecimal(1),
+                                AvgAmount = reader.GetDecimal(2),
+                                MaxAmount = reader.GetDecimal(3),
+                                TotalAmount = reader.GetDecimal(4)
+                            };
+                        }
+                    }
+                }
+            }  
+
+            return result;   
         }
-        
-        #endregion 
+
+        private Dictionary<string, decimal> LoadLimits()
+        {
+            var limits = new Dictionary<string, decimal>();
+
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        @"SELECT Category, IFNULL(Amount,0)
+                  FROM Limits
+                  WHERE Currency = $currency";
+
+                    command.Parameters.AddWithValue("$currency", SelectedCurrency);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            limits[reader.GetString(0)] = reader.GetDecimal(1);
+                    }
+                }
+            }
+
+            return limits;
+        }
+
+        private ObservableCollection<StatisticsModel> BuildStatisticsList(
+        IEnumerable<string> categories,
+        Dictionary<string, StatisticsModel> expenses,
+        Dictionary<string, decimal> limits)
+        {
+            var list = new ObservableCollection<StatisticsModel>();
+
+            foreach (var category in categories)
+            {
+                expenses.TryGetValue(category, out var stat);
+                limits.TryGetValue(category, out var limit);
+
+                list.Add(new StatisticsModel
+                {
+                    Category = category,
+                    MinAmount = stat?.MinAmount ?? 0,
+                    AvgAmount = stat?.AvgAmount ?? 0,
+                    MaxAmount = stat?.MaxAmount ?? 0,
+                    TotalAmount = stat?.TotalAmount ?? 0,
+                    Limit = limit
+                });
+            }
+
+            return list;
+        }
+
+        private void GoLoadAnalytics(object p)
+        {
+            var expenseStats = LoadStatistics();
+            var limits = LoadLimits();
+
+            StatisticsList = BuildStatisticsList(
+                CategoriesCB,
+                expenseStats,
+                limits);
+
+            OnPropertyChanged(nameof(StatisticsList));
+        }
+
+
+        #endregion
 
         #endregion
 
@@ -517,13 +637,16 @@ namespace FinManage.ViewModels
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
             DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);
+            
 
             LoadFromDB();
             #endregion
 
             #region Analysis
 
-            LoadAnalytics();
+            GoInfoCommand = new LambdaCommand(GoLoadAnalytics, CanGoInfoCommandExecute);
+
+            //GoLoadAnalytics();
 
             #endregion 
         }
