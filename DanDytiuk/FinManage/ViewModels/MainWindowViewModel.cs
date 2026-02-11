@@ -96,21 +96,23 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int> (Enumerable.Range(2025, 20));
 
-        /*var months = new Dictionary<string, int>
-        {
-            ["January"] = 1,
-            ["February"] = 2,
-            ["March"] = 3,
-            ["April"] = 4,
-            ["May"] = 5,
-            ["June"] = 6,
-            ["July"] = 7,
-            ["August"] = 8,
-            ["September"] = 9,
-            ["October"] = 10,
-            ["November"] = 11,
-            ["December"] = 12
-        };*/
+        public ObservableCollection<StatisticsModel> Months { get; } =
+            new ObservableCollection<StatisticsModel>
+            {
+                new StatisticsModel { ValueMonth = 1, NameMonth = "January" },
+                new StatisticsModel { ValueMonth = 2, NameMonth = "February" },
+                new StatisticsModel { ValueMonth = 3, NameMonth = "March" },
+                new StatisticsModel { ValueMonth = 4, NameMonth = "April" },
+                new StatisticsModel { ValueMonth = 5, NameMonth = "May" },
+                new StatisticsModel { ValueMonth = 6, NameMonth = "June" },
+                new StatisticsModel { ValueMonth = 7, NameMonth = "July" },
+                new StatisticsModel { ValueMonth = 8, NameMonth = "August" },
+                new StatisticsModel { ValueMonth = 9, NameMonth = "September" },
+                new StatisticsModel { ValueMonth = 10, NameMonth = "October" },
+                new StatisticsModel { ValueMonth = 11, NameMonth = "November" },
+                new StatisticsModel { ValueMonth = 12, NameMonth = "December" }
+            };
+
 
         #endregion
 
@@ -124,7 +126,7 @@ namespace FinManage.ViewModels
         private decimal _totalValueCategoryAnalyse;*/
 
         private string _selectedYearCB;
-        private string _selectedMonthCB;
+        private StatisticsModel _selectedMonthCB;
         private string _selectedCurrency;
 
         /*public string CategoryAnalyse
@@ -157,7 +159,7 @@ namespace FinManage.ViewModels
             get => _selectedYearCB;
             set => Set(ref _selectedYearCB, value);
         }
-        public string SelectedMonthCB
+        public StatisticsModel SelectedMonthCB
         {
             get => _selectedMonthCB;
             set => Set(ref _selectedMonthCB, value);
@@ -288,7 +290,7 @@ namespace FinManage.ViewModels
                 GROUP BY Category";
 
                     command.Parameters.AddWithValue("@currency", SelectedCurrency);
-                    command.Parameters.AddWithValue("@month", SelectedMonthCB.ToString());
+                    command.Parameters.AddWithValue("@month", SelectedMonthCB.ValueMonth.ToString("D2"));
                     command.Parameters.AddWithValue("@year", SelectedYearCB.ToString());
 
                     using (var reader = command.ExecuteReader())

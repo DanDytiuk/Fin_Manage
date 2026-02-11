@@ -11,6 +11,10 @@
         public decimal TotalAmount { get; set; }
 
         public decimal Limit {  get; set; }
+
+        public int ValueMonth { get; set; }
+        public string NameMonth { get; set; }
+
         
     }
 }
