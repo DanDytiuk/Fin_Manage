@@ -46,7 +46,7 @@
 
                     <DatePicker HorizontalAlignment="Left" Margin="160,117,0,0" VerticalAlignment="Top" Height="25" Width="120" SelectedDate="{Binding DataTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding MinDate, Mode=OneWay}" DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"/>
 
-                    <Button Content="Save Info" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" Width="280" Command="{Binding AddFinDataInfoCommand}" Height="32"/>
+                    <Button Content="Save Info" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" Width="280" Command="{Binding AddFinDataInfoCommand}" Height="32" IsDefault="True"/>
                     <Button Content="Delete Info" HorizontalAlignment="Center" VerticalAlignment="Top" Width="280" Margin="0,320,0,0" Command="{Binding DeleteFinDataInfoCommand}" Height="32"/>
                     <Button Content="Change Info" HorizontalAlignment="Center" VerticalAlignment="Top" Width="280" Margin="0,362,0,0" Height="32"/>
 
@@ -159,7 +159,7 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Детальный анализ расходов">
+            <TabItem Header="Анализ доходов">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"></ColumnDefinition>
