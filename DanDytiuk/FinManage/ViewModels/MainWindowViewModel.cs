@@ -113,47 +113,14 @@ namespace FinManage.ViewModels
                 new StatisticsModel { ValueMonth = 12, NameMonth = "December" }
             };
 
-
         #endregion
 
         #region Property Changed
-
-        /*private string _categoryAnalyse;
-
-        private decimal _minValueCategoryAnalyse;
-        private decimal _maxValueCategoryAnalyse;
-        private decimal _avgValueCategoryAnalyse;
-        private decimal _totalValueCategoryAnalyse;*/
 
         private string _selectedYearCB;
         private StatisticsModel _selectedMonthCB;
         private string _selectedCurrency;
 
-        /*public string CategoryAnalyse
-        {
-            get => _categoryAnalyse;
-            set => Set(ref  _categoryAnalyse, value);
-        }
-        public decimal MinValueCategoryAnalyse
-        {
-            get => _minValueCategoryAnalyse;
-            set => Set(ref _minValueCategoryAnalyse, value);
-        }
-        public decimal MaxValueCategoryAnalyse
-        {
-            get => _maxValueCategoryAnalyse;
-            set => Set(ref _maxValueCategoryAnalyse, value);
-        }
-        public decimal AvgValueCategoryAnalyse
-        {
-            get => _avgValueCategoryAnalyse;
-            set => Set(ref _avgValueCategoryAnalyse, value);
-        }
-        public decimal TotalValueCategoryAnalyse
-        {
-            get => _totalValueCategoryAnalyse;
-            set => Set(ref _totalValueCategoryAnalyse, value);
-        }/*/
         public string SelectedYearCB
         {
             get => _selectedYearCB;
@@ -175,149 +142,102 @@ namespace FinManage.ViewModels
         #region Collections
         public ObservableCollection<StatisticsModel> StatisticsList { get; set; } = new ObservableCollection<StatisticsModel>();
 
+        public ObservableCollection<StatisticsModel> ValueList { get; set; } = new ObservableCollection<StatisticsModel>();
+
         #endregion
 
         #region Main functions
 
+        private void GoLoadAnalytics(object p)
+        {
+            var expenseStats = LoadStatistics();
+            var limits = LoadLimits();
 
+            StatisticsList = BuildStatisticsList(
+                CategoriesCB,
+                expenseStats,
+                limits);
 
+            OnPropertyChanged(nameof(StatisticsList));
+
+            ValueList = BuildValuelist();
+
+            OnPropertyChanged(nameof(ValueList));
+        }
+        
+        private void CleanCBAnalytics(object p)
+        {
+            SelectedYearCB = null;
+            SelectedMonthCB = null;
+            SelectedCurrency = null;
+        }
         #endregion
 
         #region Database functions
 
-        /*private void LoadAnalytics()
-        {
-            var allCategories = CategoriesCB;
-
-            var expenseStats = new Dictionary<string, StatisticsModel>();
-
-            using (var connection = _database.GetConnection())
-            {
-                connection.Open();
-
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText =
-                    @"SELECT Category,
-                    MIN(Amount),
-                    AVG(Amount),
-                    MAX(Amount),
-                    SUM(Amount)
-                From MainData
-                Group By Category";
-
-                    //command.Parameters.AddWithValue("$currency", SelectedCurrency);
-                
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            var cat = reader.GetString(0);
-
-                            expenseStats[cat] = new StatisticsModel
-                            {
-                                Category = cat,
-                                MinAmount = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1),
-                                AvgAmount = reader.IsDBNull(2) ? 0 : reader.GetDecimal(2),
-                                MaxAmount = reader.IsDBNull(3) ? 0 : reader.GetDecimal(3),
-                                TotalAmount = reader.IsDBNull(4) ? 0 : reader.GetDecimal(4)
-                            };
-                        }
-                    }   
-                }
-            }
-
-            var limits = new Dictionary<string, double>();
-
-            using (var connection = _database.GetConnection())
-            {
-                connection.Open();
-
-                using (var command = connection.CreateCommand()){ 
-                    
-                    command.CommandText = @"Select Category, Amount From Limits";
-
-                    using (var reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                            
-                            limits[reader.GetString(0)] = reader.GetDouble(1);
-                    }
-                }
-            }
-
-            StatisticsList = new ObservableCollection<StatisticsModel>();
-
-            foreach (var cat in allCategories)
-            {
-                expenseStats.TryGetValue(cat, out var stat);
-                limits.TryGetValue(cat, out var limit);
-
-                StatisticsList.Add(new StatisticsModel
-                {
-                    Category = cat,
-                    MinAmount = stat?.MinAmount ?? 0,
-                    AvgAmount = stat?.AvgAmount ?? 0,
-                    MaxAmount = stat?.MaxAmount ?? 0,
-                    TotalAmount = stat?.TotalAmount ?? 0,
-                    Limit = (decimal)limit
-                });
-            }
-
-            OnPropertyChanged(nameof(Categories));
-        }*/
-
         private Dictionary<string, StatisticsModel> LoadStatistics()
         {
-            var result = new Dictionary<string, StatisticsModel>();
-
-            using (var connection = _database.GetConnection()) 
+            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null) 
             {
-                connection.Open();
-                
-                using (var command = connection.CreateCommand())
+                ShowError("Please select a month, year or type currency.");
+                return new Dictionary<string, StatisticsModel>();
+            }
+            else 
+            {
+                var result = new Dictionary<string, StatisticsModel>();
+
+                using (var connection = _database.GetConnection()) 
                 {
-                    command.CommandText =
-                    @"SELECT Category,
-                     IFNULL(MIN(Amount),0),
-                     IFNULL(AVG(Amount),0),
-                     IFNULL(MAX(Amount),0),
-                     IFNULL(SUM(Amount),0)
-                FROM MainData
-                WHERE Currency = @currency
-                    AND strftime('%m', DateInfo) = @month
-                    AND strftime('%Y', DateInfo) = @year
-                GROUP BY Category";
-
-                    command.Parameters.AddWithValue("@currency", SelectedCurrency);
-                    command.Parameters.AddWithValue("@month", SelectedMonthCB.ValueMonth.ToString("D2"));
-                    command.Parameters.AddWithValue("@year", SelectedYearCB.ToString());
-
-                    using (var reader = command.ExecuteReader())
+                    connection.Open();
+                
+                    using (var command = connection.CreateCommand())
                     {
+                        command.CommandText =
+                        @"SELECT Category,
+                        IFNULL(MIN(Amount),0),
+                        IFNULL(AVG(Amount),0),
+                        IFNULL(MAX(Amount),0),
+                        IFNULL(SUM(Amount),0)
+                    FROM MainData
+                    WHERE Currency = @currency
+                        AND strftime('%m', DateInfo) = @month
+                        AND strftime('%Y', DateInfo) = @year
+                    GROUP BY Category";
 
-                        while(reader.Read())
+                        command.Parameters.AddWithValue("@currency", SelectedCurrency);
+                        command.Parameters.AddWithValue("@month", SelectedMonthCB.ValueMonth.ToString("D2"));
+                        command.Parameters.AddWithValue("@year", SelectedYearCB.ToString());
+
+                        using (var reader = command.ExecuteReader())
                         {
-                            var category = reader.GetString(0);
 
-                            result[category] = new StatisticsModel
+                            while(reader.Read())
                             {
-                                Category = category,
-                                MinAmount = reader.GetDecimal(1),
-                                AvgAmount = reader.GetDecimal(2),
-                                MaxAmount = reader.GetDecimal(3),
-                                TotalAmount = reader.GetDecimal(4)
-                            };
+                                var category = reader.GetString(0);
+
+                                result[category] = new StatisticsModel
+                                {
+                                    Category = category,
+                                    MinAmount = reader.GetDecimal(1),
+                                    AvgAmount = reader.GetDecimal(2),
+                                    MaxAmount = reader.GetDecimal(3),
+                                    TotalAmount = reader.GetDecimal(4)
+                                };
+                            }
                         }
                     }
-                }
-            }  
-
-            return result;   
+                }  
+                return result;  
+            }
         }
 
         private Dictionary<string, decimal> LoadLimits()
         {
+            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
+            {
+                return new Dictionary<string, decimal>(); 
+            }
+
             var limits = new Dictionary<string, decimal>();
 
             using (var connection = _database.GetConnection())
@@ -370,19 +290,26 @@ namespace FinManage.ViewModels
             return list;
         }
 
-        private void GoLoadAnalytics(object p)
+        private ObservableCollection<StatisticsModel> BuildValuelist()
         {
-            var expenseStats = LoadStatistics();
-            var limits = LoadLimits();
+            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
+            {
+                return new ObservableCollection<StatisticsModel>();
+            }
 
-            StatisticsList = BuildStatisticsList(
-                CategoriesCB,
-                expenseStats,
-                limits);
+            var list = new ObservableCollection<StatisticsModel>
+            {
+                new StatisticsModel
+                {
+                    SelectedCurrency = SelectedCurrency,
+                    SelectedMonth = SelectedMonthCB.ValueMonth.ToString(),
+                    SelectedYear = SelectedYearCB
+                }
+            };
 
-            OnPropertyChanged(nameof(StatisticsList));
+            return list;
         }
-
+        
 
         #endregion
 
@@ -640,15 +567,14 @@ namespace FinManage.ViewModels
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
             DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);
             
-
             LoadFromDB();
             #endregion
 
             #region Analysis
 
             GoInfoCommand = new LambdaCommand(GoLoadAnalytics, CanGoInfoCommandExecute);
-
-            //GoLoadAnalytics();
+            CleanCBCommand = new LambdaCommand(CleanCBAnalytics, CanCleanCBCommandExecute);
+            RefreshInfoCommand = new LambdaCommand(GoLoadAnalytics, CanRefreshInfoCommandExecute);
 
             #endregion 
         }

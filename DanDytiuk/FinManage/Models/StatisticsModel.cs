@@ -15,6 +15,10 @@
         public int ValueMonth { get; set; }
         public string NameMonth { get; set; }
 
+        public string SelectedCurrency { get; set; }
+        public string SelectedMonth { get; set; }
+        public string SelectedYear { get; set; }
+
         
     }
 }
