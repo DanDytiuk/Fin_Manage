@@ -5,6 +5,8 @@ using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
 using System;
+using System.ComponentModel;
+using System.Windows.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -551,6 +553,109 @@ namespace FinManage.ViewModels
 
         #endregion
 
+        #region Filter
+
+        #region Commands Unit
+
+
+
+        #endregion
+
+        #region ComboBox
+
+
+
+        #endregion
+
+        #region Property Changed
+
+        private string _filterCategory;
+        private decimal? _filterAmountFrom;
+        private decimal? _filterAmountTo;
+        private DateTime? _filterDateFrom;
+        private DateTime? _filterDateTo;
+        private string _filterShopName;
+        private string _filterOperationType;
+        private string _filterCurrency;
+        private string _filterDescription;
+
+        public string FilterCategory
+        {
+            get => _filterCategory;
+            set => Set(ref _filterCategory, value);
+        }
+
+        public decimal? FilterAmountFrom
+        {
+            get => _filterAmountFrom ?? (decimal?)null;
+            set => Set(ref _filterAmountFrom, value);
+        }
+
+        public decimal? FilterAmountTo
+        {
+            get => (_filterAmountTo ?? (decimal?)null);
+            set => Set(ref _filterAmountTo, value);
+        }
+
+        public DateTime? FilterDateFrom
+        {
+            get => _filterDateFrom ?? (DateTime?)null;
+            set => Set(ref _filterDateFrom, value);
+        }
+
+        public DateTime? FilterDateTo
+        {
+            get => _filterDateTo ?? (DateTime?)null;
+            set => Set(ref _filterDateTo, value);
+        }
+
+        public string FilterShopName
+        {
+            get => _filterShopName;
+            set => Set(ref _filterShopName, value);
+        }
+
+        public string FilterOperationType
+        {
+            get => _filterOperationType;
+            set => Set(ref _filterOperationType, value);
+        }
+
+        public string FilterCurrency
+        {
+            get => _filterCurrency;
+            set => Set(ref _filterCurrency, value);
+        }
+
+
+        #endregion
+
+        #region Collections
+
+        private ICollectionView _filterFinCollection;
+
+        public ICollectionView FilterFinCollection
+        {
+            get => _filterFinCollection;
+            set => Set(ref  _filterFinCollection, value);
+        }
+
+        #endregion
+
+        #region Main functions
+
+
+
+        #endregion
+
+        #region DataBase Functions
+
+
+
+        #endregion
+
+        #endregion
+
         public MainWindowViewModel() 
         {
             #region MenuBar
@@ -576,7 +681,13 @@ namespace FinManage.ViewModels
             CleanCBCommand = new LambdaCommand(CleanCBAnalytics, CanCleanCBCommandExecute);
             RefreshInfoCommand = new LambdaCommand(GoLoadAnalytics, CanRefreshInfoCommandExecute);
 
-            #endregion 
+            #endregion
+
+            #region Filter
+
+
+
+            #endregion
         }
     }
 }
