@@ -5,10 +5,9 @@ using FinManage.Services;
 using FinManage.View.Windows;
 using FinManage.ViewModels.Base;
 using System;
-using System.ComponentModel;
-using System.Windows.Data;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -21,7 +20,7 @@ namespace FinManage.ViewModels
         #region Data
 
         private readonly DataBaseWork _database;
-        
+
         #endregion
 
         #region Helpers
@@ -84,7 +83,7 @@ namespace FinManage.ViewModels
         #region Commands Unit
 
         public ICommand GoInfoCommand { get; }
-        public ICommand RefreshInfoCommand { get; } 
+        public ICommand RefreshInfoCommand { get; }
         public ICommand CleanCBCommand { get; }
         private bool CanRefreshInfoCommandExecute(object p) => true;
         private bool CanGoInfoCommandExecute(object p) => true;
@@ -96,7 +95,7 @@ namespace FinManage.ViewModels
 
         public Array MonthCB => Enum.GetValues(typeof(Months));
 
-        public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int> (Enumerable.Range(2025, 20));
+        public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int>(Enumerable.Range(2025, 20));
 
         public ObservableCollection<StatisticsModel> Months { get; } =
             new ObservableCollection<StatisticsModel>
@@ -135,10 +134,10 @@ namespace FinManage.ViewModels
         }
         public string SelectedCurrency
         {
-            get => _selectedCurrency;   
+            get => _selectedCurrency;
             set => Set(ref _selectedCurrency, value);
         }
-        
+
         #endregion
 
         #region Collections
@@ -166,7 +165,7 @@ namespace FinManage.ViewModels
 
             OnPropertyChanged(nameof(ValueList));
         }
-        
+
         private void CleanCBAnalytics(object p)
         {
             SelectedYearCB = null;
@@ -179,19 +178,19 @@ namespace FinManage.ViewModels
 
         private Dictionary<string, StatisticsModel> LoadStatistics()
         {
-            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null) 
+            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
             {
                 ShowError("Please select a month, year or type currency.");
                 return new Dictionary<string, StatisticsModel>();
             }
-            else 
+            else
             {
                 var result = new Dictionary<string, StatisticsModel>();
 
-                using (var connection = _database.GetConnection()) 
+                using (var connection = _database.GetConnection())
                 {
                     connection.Open();
-                
+
                     using (var command = connection.CreateCommand())
                     {
                         command.CommandText =
@@ -213,7 +212,7 @@ namespace FinManage.ViewModels
                         using (var reader = command.ExecuteReader())
                         {
 
-                            while(reader.Read())
+                            while (reader.Read())
                             {
                                 var category = reader.GetString(0);
 
@@ -228,8 +227,8 @@ namespace FinManage.ViewModels
                             }
                         }
                     }
-                }  
-                return result;  
+                }
+                return result;
             }
         }
 
@@ -237,7 +236,7 @@ namespace FinManage.ViewModels
         {
             if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
             {
-                return new Dictionary<string, decimal>(); 
+                return new Dictionary<string, decimal>();
             }
 
             var limits = new Dictionary<string, decimal>();
@@ -311,7 +310,7 @@ namespace FinManage.ViewModels
 
             return list;
         }
-        
+
 
         #endregion
 
@@ -413,12 +412,12 @@ namespace FinManage.ViewModels
             get => _selectedFinManage;
             set => Set(ref _selectedFinManage, value);
         }
-        
+
         #endregion
 
         #region Collections
 
-        public ObservableCollection<FinAllTableModel> MainFinAllTableColection { get; } 
+        public ObservableCollection<FinAllTableModel> MainFinAllTableColection { get; }
             = new ObservableCollection<FinAllTableModel>();
 
         #endregion
@@ -430,7 +429,7 @@ namespace FinManage.ViewModels
             {
                 ShowError("Please select a category, valid amount or type operation.");
             }
-            else 
+            else
             {
                 using (var connection = _database.GetConnection())
                 {
@@ -465,7 +464,7 @@ namespace FinManage.ViewModels
         {
             if (SelectedFinManage == null) { ShowAttention("Please a select string for delete!"); return; }
 
-            using (var connection = _database.GetConnection()) 
+            using (var connection = _database.GetConnection())
             {
                 connection.Open();
 
@@ -504,7 +503,7 @@ namespace FinManage.ViewModels
                         while (reader.Read())
                         {
                             var maindata = new FinAllTableModel
-                            {   
+                            {
                                 Id = reader.GetInt32(0),
                                 Category = reader.GetString(1),
                                 OperationType = reader.GetString(2),
@@ -521,7 +520,7 @@ namespace FinManage.ViewModels
                 }
             }
         }
-        
+
         #endregion
 
         #endregion
@@ -530,13 +529,13 @@ namespace FinManage.ViewModels
         public ICommand CloseAppCommand { get; }
         public ICommand OpenSettingsCommand { get; }
         public ICommand OpenLimitsCommand { get; }
-        
+
         private void CloseAppCommandExecute(object p)
         {
             Application.Current.Shutdown();
         }
 
-        private void OpenSettingsCommandExecute(object p) 
+        private void OpenSettingsCommandExecute(object p)
         {
             var window = new SettingsWindow();
             window.ShowDialog();
@@ -627,7 +626,11 @@ namespace FinManage.ViewModels
             set => Set(ref _filterCurrency, value);
         }
 
-
+        public string FilterDescription
+        {
+            get => _filterDescription;
+            set => Set(ref _filterDescription, value);
+        }
         #endregion
 
         #region Collections
@@ -637,7 +640,7 @@ namespace FinManage.ViewModels
         public ICollectionView FilterFinCollection
         {
             get => _filterFinCollection;
-            set => Set(ref  _filterFinCollection, value);
+            set => Set(ref _filterFinCollection, value);
         }
 
         #endregion
@@ -656,7 +659,7 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        public MainWindowViewModel() 
+        public MainWindowViewModel()
         {
             #region MenuBar
             CloseAppCommand = new LambdaCommand(CloseAppCommandExecute, CanCloseAppCommandExecute);
@@ -671,7 +674,7 @@ namespace FinManage.ViewModels
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
             DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);
-            
+
             LoadFromDB();
             #endregion
 
