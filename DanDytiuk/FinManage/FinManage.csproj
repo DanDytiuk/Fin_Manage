@@ -219,31 +219,6 @@
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\LimitData.cs" />
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
-    <Compile Include="Languages\Resources.es.Designer.cs">
-      <DependentUpon>Resources.es.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Languages\Resources.fr.Designer.cs">
-      <DependentUpon>Resources.fr.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Languages\Resources.en.Designer.cs">
-      <DependentUpon>Resources.en.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Languages\Resources.ru.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.ru.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Languages\Resources.uk.Designer.cs">
-      <DependentUpon>Resources.uk.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\LimitModel.cs" />
     <Compile Include="Models\Models for db\FinAllTableModel.cs" />
