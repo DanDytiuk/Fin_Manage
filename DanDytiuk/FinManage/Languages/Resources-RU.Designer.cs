@@ -178,6 +178,7 @@ namespace FinManage.Languages {
         }
         
         /// <summary>
+<<<<<<< HEAD
         ///   Ищет локализованную строку, похожую на Финансовая таблица.
         /// </summary>
         public static string FinTableFinManage {
@@ -187,6 +188,8 @@ namespace FinManage.Languages {
         }
         
         /// <summary>
+=======
+>>>>>>> fb0e37827c3d831f15c1b53518f83e303e0d1959
         ///   Ищет локализованную строку, похожую на Название места.
         /// </summary>
         public static string NameOfAmountDataGridFinManage {

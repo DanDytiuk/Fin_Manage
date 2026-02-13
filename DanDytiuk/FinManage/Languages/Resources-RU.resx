@@ -156,9 +156,12 @@
   <data name="DescriptionDataGridFinManage" xml:space="preserve">
     <value>Описание </value>
   </data>
+<<<<<<< HEAD
   <data name="FinTableFinManage" xml:space="preserve">
     <value>Финансовая таблица</value>
   </data>
+=======
+>>>>>>> fb0e37827c3d831f15c1b53518f83e303e0d1959
   <data name="NameOfAmountDataGridFinManage" xml:space="preserve">
     <value>Название места</value>
   </data>
