@@ -59,5 +59,491 @@ namespace FinManage.Languages {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AboutProgramFinManage {
+            get {
+                return ResourceManager.GetString("AboutProgramFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AmountDataGridFinManage {
+            get {
+                return ResourceManager.GetString("AmountDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AmountFinManage {
+            get {
+                return ResourceManager.GetString("AmountFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AmountOfLimitAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("AmountOfLimitAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AnalyseExpensesDataGridFinManage {
+            get {
+                return ResourceManager.GetString("AnalyseExpensesDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AnalyseIncomeDataGridFinManage {
+            get {
+                return ResourceManager.GetString("AnalyseIncomeDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AverageAmountAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("AverageAmountAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string AverageAmountDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("AverageAmountDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CategoryAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("CategoryAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CategoryDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("CategoryDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CategoryDataGridFinManage {
+            get {
+                return ResourceManager.GetString("CategoryDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CategoryFinManage {
+            get {
+                return ResourceManager.GetString("CategoryFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string ChangeInfoFinManage {
+            get {
+                return ResourceManager.GetString("ChangeInfoFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CleanAnalyseFinManage {
+            get {
+                return ResourceManager.GetString("CleanAnalyseFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CleanAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("CleanAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string ConverterDataGridFinManage {
+            get {
+                return ResourceManager.GetString("ConverterDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CurrencyAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CurrencyDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CurrencyDataGridFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CurrencyFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CurrencyForAnalyseFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyForAnalyseFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string CurrencyForAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyForAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string DateDataGridFinManage {
+            get {
+                return ResourceManager.GetString("DateDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string DateOperationFinManage {
+            get {
+                return ResourceManager.GetString("DateOperationFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string DeleteInfoFinManage {
+            get {
+                return ResourceManager.GetString("DeleteInfoFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string DescriptionDataGridFinManage {
+            get {
+                return ResourceManager.GetString("DescriptionDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string DescriptionFinManage {
+            get {
+                return ResourceManager.GetString("DescriptionFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string ExitFromFinManage {
+            get {
+                return ResourceManager.GetString("ExitFromFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string FiltersDataGridFinManage {
+            get {
+                return ResourceManager.GetString("FiltersDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string FinTableDataGridFinManage {
+            get {
+                return ResourceManager.GetString("FinTableDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string GoAnalyseFinManage {
+            get {
+                return ResourceManager.GetString("GoAnalyseFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string GoAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("GoAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string LimitsMenuBarFinManage {
+            get {
+                return ResourceManager.GetString("LimitsMenuBarFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MaximumAmountAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("MaximumAmountAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MaximumAmountDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("MaximumAmountDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MinimalAmountAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("MinimalAmountAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MinimalAmountDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("MinimalAmountDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MonthAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("MonthAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MonthDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("MonthDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MonthOfYearAnalyseFinManage {
+            get {
+                return ResourceManager.GetString("MonthOfYearAnalyseFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string MonthOfYearAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("MonthOfYearAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string NameOfAmountDataGridFinManage {
+            get {
+                return ResourceManager.GetString("NameOfAmountDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string NameOfAmountFinManage {
+            get {
+                return ResourceManager.GetString("NameOfAmountFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string OperationTypeDataGridFinManage {
+            get {
+                return ResourceManager.GetString("OperationTypeDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string RefreshAnalyseFinManage {
+            get {
+                return ResourceManager.GetString("RefreshAnalyseFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string RefreshAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("RefreshAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string SaveNewInfoFinManage {
+            get {
+                return ResourceManager.GetString("SaveNewInfoFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string SettingsMenuBarFinManage {
+            get {
+                return ResourceManager.GetString("SettingsMenuBarFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string TotalAmountAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("TotalAmountAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string TypeOperationFinManage {
+            get {
+                return ResourceManager.GetString("TypeOperationFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string YearAnalyseDataGridFinManage {
+            get {
+                return ResourceManager.GetString("YearAnalyseDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string YearAnalyseFinManage {
+            get {
+                return ResourceManager.GetString("YearAnalyseFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string YearAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("YearAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на .
+        /// </summary>
+        public static string YearDataGridAnalyseIncomeFinManage {
+            get {
+                return ResourceManager.GetString("YearDataGridAnalyseIncomeFinManage", resourceCulture);
+            }
+        }
     }
 }
