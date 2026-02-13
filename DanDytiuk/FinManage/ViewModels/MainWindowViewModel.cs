@@ -78,7 +78,7 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Analysis
+        #region AnalyseExpenses
 
         #region Commands Unit
 
@@ -142,7 +142,6 @@ namespace FinManage.ViewModels
 
         #region Collections
         public ObservableCollection<StatisticsModel> StatisticsList { get; set; } = new ObservableCollection<StatisticsModel>();
-
         public ObservableCollection<StatisticsModel> ValueList { get; set; } = new ObservableCollection<StatisticsModel>();
 
         #endregion
@@ -321,9 +320,7 @@ namespace FinManage.ViewModels
         #region Commands Unit
         public ICommand AddFinDataInfoCommand { get; }
         public ICommand DeleteFinDataInfoCommand { get; }
-        public ICommand LoadFromDBCommand { get; }
-        public ICommand SaveToDBCommand { get; }
-        public ICommand DeleteFromDBCommand { get; }
+        
         private bool CanAddFinDataInfoCommandExecute(object p) => true;
         private bool CanDeleteDataInfoCommandExecute(object p) => true;
         #endregion
@@ -556,13 +553,40 @@ namespace FinManage.ViewModels
 
         #region Commands Unit
 
+        public ICommand FilterCommand { get; }
+        public ICommand FilterCleanValueCommand { get; }
 
+        private bool CanFilterCommandExecute (object p) => true;
+        private bool CanFilterCleanValueCommandExecute(object p) => true;
 
         #endregion
 
         #region ComboBox
 
-
+        public Array CurrencyCBFilter => Enum.GetValues(typeof(TypesOfCurrency));
+        public ObservableCollection<TypeOperation> OperationCBFilter { get; }
+        public ObservableCollection<string> CategoriesCBFilter { get; } =
+          new ObservableCollection<string>
+          {
+                "Food",
+                "Store",
+                "Entertainment",
+                "Online store",
+                "Games",
+                "Public Utilities",
+                "Phone Top Up",
+                "Card Top Up",
+                "Internet And TV",
+                "Security",
+                "Insurance",
+                "E-Tickets",
+                "Education",
+                "Transport",
+                "Charity",
+                "Commission",
+                "Project Support",
+                "Other"
+          };
 
         #endregion
 
