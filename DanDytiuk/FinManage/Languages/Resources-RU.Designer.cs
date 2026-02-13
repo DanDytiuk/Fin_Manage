@@ -22,7 +22,7 @@ namespace FinManage.Languages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "18.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources_RU {
+    public class Resources_RU {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace FinManage.Languages {
         ///   Возвращает кэшированный экземпляр ResourceManager, использованный этим классом.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FinManage.Languages.Resources-RU", typeof(Resources_RU).Assembly);
@@ -51,12 +51,165 @@ namespace FinManage.Languages {
         ///   обращений к ресурсу с помощью этого класса ресурса со строгой типизацией.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Добавить информацию.
+        /// </summary>
+        public static string AddInfoToFinManageButton {
+            get {
+                return ResourceManager.GetString("AddInfoToFinManageButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Значение .
+        /// </summary>
+        public static string AmountAddFinManage {
+            get {
+                return ResourceManager.GetString("AmountAddFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Значение.
+        /// </summary>
+        public static string AmountDataGridFinManage {
+            get {
+                return ResourceManager.GetString("AmountDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Категория.
+        /// </summary>
+        public static string CategoryAddInfoToFinManage {
+            get {
+                return ResourceManager.GetString("CategoryAddInfoToFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Категория.
+        /// </summary>
+        public static string CategoryDataGridFinManage {
+            get {
+                return ResourceManager.GetString("CategoryDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Изменить информацию.
+        /// </summary>
+        public static string ChangeInfoFromFinManage {
+            get {
+                return ResourceManager.GetString("ChangeInfoFromFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Валюта .
+        /// </summary>
+        public static string CurrencyAddInFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyAddInFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Валюта.
+        /// </summary>
+        public static string CurrencyDataGridFinManage {
+            get {
+                return ResourceManager.GetString("CurrencyDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата операции.
+        /// </summary>
+        public static string DateDataGridFinManage {
+            get {
+                return ResourceManager.GetString("DateDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Дата операции.
+        /// </summary>
+        public static string DateOperationAddInFinManage {
+            get {
+                return ResourceManager.GetString("DateOperationAddInFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Удалить информацию.
+        /// </summary>
+        public static string DeleteInfoFromFinManage {
+            get {
+                return ResourceManager.GetString("DeleteInfoFromFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Описание.
+        /// </summary>
+        public static string DescriptionAddFinManage {
+            get {
+                return ResourceManager.GetString("DescriptionAddFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Описание .
+        /// </summary>
+        public static string DescriptionDataGridFinManage {
+            get {
+                return ResourceManager.GetString("DescriptionDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Название места.
+        /// </summary>
+        public static string NameOfAmountDataGridFinManage {
+            get {
+                return ResourceManager.GetString("NameOfAmountDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Название места.
+        /// </summary>
+        public static string NameOfStoreAddFinManage {
+            get {
+                return ResourceManager.GetString("NameOfStoreAddFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип операции.
+        /// </summary>
+        public static string OperationTypeDataGridFinManage {
+            get {
+                return ResourceManager.GetString("OperationTypeDataGridFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Тип операции.
+        /// </summary>
+        public static string TypeOperationInfoFinManage {
+            get {
+                return ResourceManager.GetString("TypeOperationInfoFinManage", resourceCulture);
             }
         }
     }
