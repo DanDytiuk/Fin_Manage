@@ -353,6 +353,9 @@ namespace FinManage.ViewModels
                 "Other"
            };
 
+        public ObservableCollection<CategoryModel> IncomeCategories { get; }
+        public ObservableCollection<CategoryModel> ExpensesCategories { get; }
+
         #endregion
 
         #region Property Changed
@@ -377,8 +380,21 @@ namespace FinManage.ViewModels
         public TypeOperation TypeOperation
         {
             get => _typeOperation;
-            set => Set(ref _typeOperation, value);
+            set 
+            { 
+                Set(ref _typeOperation, value);
+
+                OnPropertyChanged(nameof(IsIncomeVisible));
+                OnPropertyChanged(nameof(IsExpenseVisible));
+            }
         }
+
+        public bool IsIncomeVisible =>
+            TypeOperation == TypeOperation.Income;
+
+        public bool IsExpenseVisible =>
+            TypeOperation == TypeOperation.Expenses;
+
         public string NameOfAmount
         {
             get => _nameOfAmount;
@@ -695,6 +711,14 @@ namespace FinManage.ViewModels
 
             _database = new DataBaseWork();
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
+
+            IncomeCategories = new ObservableCollection<CategoryModel>
+            {
+                new CategoryModel{ ResourceKey = "Salary" },
+                new CategoryModel{ ResourceKey = "Gift" },
+            };
+
+
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
             DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);

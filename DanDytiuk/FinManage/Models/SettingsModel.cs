@@ -36,7 +36,7 @@ namespace FinManage.Models
         {
             Theme = Themes.Light;
             Currency = TypesOfCurrency.USD;
-            Language = "English";
+            Language = "en";
         }
         
     }

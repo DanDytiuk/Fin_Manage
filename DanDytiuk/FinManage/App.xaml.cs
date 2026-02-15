@@ -1,4 +1,5 @@
-﻿using SQLitePCL;
+﻿using FinManage.ViewModels;
+using SQLitePCL;
 using System.Windows;
 
 namespace FinManage
@@ -11,6 +12,10 @@ namespace FinManage
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            var mainSettings = new SettingsWindowsViewModel();
+
+            var settings = mainSettings.Settings;
 
             Batteries.Init();
         }

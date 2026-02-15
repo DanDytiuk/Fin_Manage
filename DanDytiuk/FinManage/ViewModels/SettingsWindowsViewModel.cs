@@ -1,9 +1,11 @@
 ﻿using FinManage.Infrastructure.Commands;
 using FinManage.Models;
+using FinManage.Services;
 using FinManage.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Windows.Input;
@@ -21,19 +23,28 @@ namespace FinManage.ViewModels
         };
         public SettingsModel Settings { get; }
 
+        private LanguageModel _selectedLanguage;
+        public LanguageModel SelectedLanguage
+        {
+            get => _selectedLanguage;
+            set => Set(ref _selectedLanguage,value);
+        }
+
         #region Заполнение ComboBox
+
         public ObservableCollection<Themes> Themes { get; }
         public ObservableCollection<TypesOfCurrency> Currency { get; }
         public ObservableCollection<Category> Category { get; }
 
-        public ObservableCollection<string> LanguagesCB { get; } = new ObservableCollection<string>
+        public ObservableCollection<LanguageModel> LanguagesCB { get; } = new ObservableCollection<LanguageModel>
         {
-            "English",
-            "Українська",
-            "Русский",
-            "Español",
-            "Français"
+            new LanguageModel { DisplayName = "English", LanguageCode = "en" },
+            new LanguageModel { DisplayName = "Українська", LanguageCode = "uk"},
+            new LanguageModel { DisplayName = "Русский", LanguageCode = "ru"},
+            new LanguageModel { DisplayName = "Espanol", LanguageCode = "es"},
+            new LanguageModel { DisplayName = "Francais", LanguageCode = "fr"}
         };
+
         #endregion
 
         public ICommand SaveCommand { get; }
@@ -56,7 +67,10 @@ namespace FinManage.ViewModels
         }
         private void SaveFromAppExecute(object parameter)
         {
+            Settings.Language = SelectedLanguage.LanguageCode;
             SaveSettings(Settings);
+
+            LocalizationHelper.Instance.ChangeLang(Settings.Language);
             CloseAction?.Invoke();
         }
         private void CancelFromAppExecute(object parameter)
@@ -80,6 +94,8 @@ namespace FinManage.ViewModels
             Options.Converters.Add(new JsonStringEnumConverter());
 
             Settings = LoadSettings();
+
+            SelectedLanguage = LanguagesCB.FirstOrDefault(l => l.LanguageCode == Settings.Language) ?? LanguagesCB.First();
 
             SaveCommand = new LambdaCommand(SaveFromAppExecute, CanSaveCommandExecuted);
             CancelCommand = new LambdaCommand(CancelFromAppExecute, CanCancelCommandExecuted);
