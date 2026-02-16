@@ -219,6 +219,11 @@
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\LimitData.cs" />
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
+    <Compile Include="Languages\Resources.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.en.resx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\LanguageModel.cs" />

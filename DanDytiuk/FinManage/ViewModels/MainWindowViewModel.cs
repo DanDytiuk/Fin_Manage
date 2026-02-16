@@ -714,11 +714,14 @@ namespace FinManage.ViewModels
 
             IncomeCategories = new ObservableCollection<CategoryModel>
             {
-                new CategoryModel{ ResourceKey = "Salary" },
-                new CategoryModel{ ResourceKey = "Gift" },
+                new CategoryModel { ResourceKey = "Salary" },
+                new CategoryModel { ResourceKey = "Gift" },
             };
 
-
+            ExpensesCategories = new ObservableCollection<CategoryModel> 
+            { 
+                new CategoryModel { ResourceKey = "" },
+            };
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
             DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);

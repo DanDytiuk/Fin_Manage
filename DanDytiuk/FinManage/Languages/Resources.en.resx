@@ -216,19 +216,19 @@
   <data name="SettingsMenuBar" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="TypeOperationFinManage" xml:space="preserve">
+  <data name="TypeOperation" xml:space="preserve">
     <value>Operation type</value>
   </data>
-  <data name="YearAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="YearAnalyseDataGrid" xml:space="preserve">
     <value>Year</value>
   </data>
-  <data name="YearAnalyseFinManage" xml:space="preserve">
+  <data name="YearAnalyse" xml:space="preserve">
     <value>Year</value>
   </data>
   <data name="AmountOfLimitAnalyseDataGrid" xml:space="preserve">
     <value>Amount of limit</value>
   </data>
-  <data name="YearAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="YearAnalyseIncome" xml:space="preserve">
     <value>Year</value>
   </data>
   <data name="CurrencyForAnalyseIncome" xml:space="preserve">
@@ -249,7 +249,7 @@
   <data name="MonthDataGridAnalyseIncome" xml:space="preserve">
     <value>Month </value>
   </data>
-  <data name="YearDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="YearDataGridAnalyseIncome" xml:space="preserve">
     <value>Year</value>
   </data>
   <data name="CurrencyDataGridAnalyseIncome" xml:space="preserve">
@@ -270,7 +270,7 @@
   <data name="CategoryFilter" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="TypeOperationFilterFinManage" xml:space="preserve">
+  <data name="TypeOperationFilter" xml:space="preserve">
     <value>Operation type</value>
   </data>
   <data name="CurrencyFilter" xml:space="preserve">
@@ -279,7 +279,7 @@
   <data name="FromDateOperationFilter" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="ToDateOperationFilterFinManage" xml:space="preserve">
+  <data name="ToDateOperationFilter" xml:space="preserve">
     <value>To</value>
   </data>
   <data name="NameOfAmountFilter" xml:space="preserve">
@@ -315,7 +315,7 @@
   <data name="FromAmountFilter" xml:space="preserve">
     <value>From</value>
   </data>
-  <data name="ToAmountFilterFinManage" xml:space="preserve">
+  <data name="ToAmountFilter" xml:space="preserve">
     <value>To</value>
   </data>
   <data name="FilterButtonFIlterPage" xml:space="preserve">
