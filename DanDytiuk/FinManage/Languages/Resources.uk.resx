@@ -117,106 +117,103 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AmountDataGridFinManage" xml:space="preserve">
+  <data name="AmountDataGrid" xml:space="preserve">
     <value>Значення</value>
   </data>
-  <data name="AnalyseExpensesDataGridFinManage" xml:space="preserve">
+  <data name="AnalyseExpensesDataGrid" xml:space="preserve">
     <value>Аналіз витрат</value>
   </data>
-  <data name="AnalyseIncomeDataGridFinManage" xml:space="preserve">
+  <data name="AnalyseIncomeDataGrid" xml:space="preserve">
     <value>Аналіз доходів</value>
   </data>
-  <data name="AverageAmountAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="AverageAmountAnalyseDataGrid" xml:space="preserve">
     <value>Середнє значення</value>
   </data>
-  <data name="CategoryAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="CategoryAnalyseDataGrid" xml:space="preserve">
     <value>Категорія</value>
   </data>
-  <data name="CategoryDataGridFinManage" xml:space="preserve">
+  <data name="CategoryDataGrid" xml:space="preserve">
     <value>Категорія</value>
   </data>
-  <data name="CategoryFinManage" xml:space="preserve">
+  <data name="Select Category" xml:space="preserve">
     <value>Категорія</value>
   </data>
-  <data name="ChangeInfoFinManage" xml:space="preserve">
+  <data name="ChangeInfo" xml:space="preserve">
     <value>Змінити дані</value>
   </data>
-  <data name="CleanAnalyseFinManage" xml:space="preserve">
+  <data name="CleanAnalyse" xml:space="preserve">
     <value>Очистити форму</value>
   </data>
-  <data name="ConverterDataGridFinManage" xml:space="preserve">
+  <data name="ConverterDataGrid" xml:space="preserve">
     <value>Конвертер валют</value>
   </data>
-  <data name="CurrencyAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="CurrencyAnalyseDataGrid" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="CurrencyDataGridFinManage" xml:space="preserve">
+  <data name="CurrencyDataGrid" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="CurrencyFinManage" xml:space="preserve">
+  <data name="CurrencyForAnalyse" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="CurrencyForAnalyseFinManage" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="DateOperationFinManage" xml:space="preserve">
+  <data name="DateOperationMainPage" xml:space="preserve">
     <value>Дата транзакції</value>
   </data>
-  <data name="DeleteInfoFinManage" xml:space="preserve">
+  <data name="DeleteInfoMainPage" xml:space="preserve">
     <value>Видалити дані</value>
   </data>
-  <data name="DescriptionDataGridFinManage" xml:space="preserve">
+  <data name="DescriptionDataGrid" xml:space="preserve">
     <value>Опис</value>
   </data>
-  <data name="DescriptionFinManage" xml:space="preserve">
+  <data name="DescriptionMainPage" xml:space="preserve">
     <value>Опис</value>
   </data>
   <data name="ExitFromFinManage" xml:space="preserve">
     <value>Вихід</value>
   </data>
-  <data name="FiltersDataGridFinManage" xml:space="preserve">
+  <data name="FiltersDataGridTabControl" xml:space="preserve">
     <value>Фільтри</value>
   </data>
-  <data name="FinTableDataGridFinManage" xml:space="preserve">
+  <data name="FinTableDataGridTabControl" xml:space="preserve">
     <value>Фінансова таблиця</value>
   </data>
-  <data name="GoAnalyseFinManage" xml:space="preserve">
+  <data name="GoAnalyse" xml:space="preserve">
     <value>Аналіз</value>
   </data>
-  <data name="LimitsMenuBarFinManage" xml:space="preserve">
+  <data name="LimitsMenuBar" xml:space="preserve">
     <value>Ліміти</value>
   </data>
-  <data name="MaximumAmountAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="MaximumAmountAnalyseDataGrid" xml:space="preserve">
     <value>Максимальне значення</value>
   </data>
-  <data name="MinimalAmountAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="MinimalAmountAnalyseDataGrid" xml:space="preserve">
     <value>Мінімальне значення</value>
   </data>
-  <data name="MonthAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="MonthAnalyseDataGrid" xml:space="preserve">
     <value>Місяць</value>
   </data>
-  <data name="MonthOfYearAnalyseFinManage" xml:space="preserve">
+  <data name="MonthOfYearAnalyse" xml:space="preserve">
     <value>Місяць</value>
   </data>
-  <data name="MonthOfYearAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="MonthOfYearAnalyseIncome" xml:space="preserve">
     <value>Місяць</value>
   </data>
-  <data name="NameOfAmountDataGridFinManage" xml:space="preserve">
+  <data name="NameOfAmountDataGrid" xml:space="preserve">
     <value>Місце дії</value>
   </data>
-  <data name="NameOfAmountFinManage" xml:space="preserve">
+  <data name="NameOfAmountMainPage" xml:space="preserve">
     <value>Місце дії</value>
   </data>
-  <data name="OperationTypeDataGridFinManage" xml:space="preserve">
+  <data name="OperationTypeDataGrid" xml:space="preserve">
     <value>Тип операції</value>
   </data>
-  <data name="RefreshAnalyseFinManage" xml:space="preserve">
+  <data name="RefreshAnalyse" xml:space="preserve">
     <value>Оновити</value>
   </data>
-  <data name="SaveNewInfoFinManage" xml:space="preserve">
+  <data name="SaveNewInfo" xml:space="preserve">
     <value>Зберегти</value>
   </data>
-  <data name="SettingsMenuBarFinManage" xml:space="preserve">
+  <data name="SettingsMenuBar" xml:space="preserve">
     <value>Налаштування</value>
   </data>
   <data name="TypeOperationFinManage" xml:space="preserve">
@@ -228,103 +225,106 @@
   <data name="YearAnalyseFinManage" xml:space="preserve">
     <value>Рік</value>
   </data>
-  <data name="AmountOfLimitAnalyseDataGridFinManage" xml:space="preserve">
+  <data name="AmountOfLimitAnalyseDataGrid" xml:space="preserve">
     <value>Значення ліміту</value>
   </data>
   <data name="YearAnalyseIncomeFinManage" xml:space="preserve">
     <value>Рік</value>
   </data>
-  <data name="CurrencyForAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="CurrencyForAnalyseIncome" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="GoAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="GoAnalyseIncome" xml:space="preserve">
     <value>Аналіз</value>
   </data>
-  <data name="DateDataGridFinManage" xml:space="preserve">
+  <data name="DateDataGrid" xml:space="preserve">
     <value>Дата транзакції</value>
   </data>
-  <data name="CleanAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="CleanAnalyseIncome" xml:space="preserve">
     <value>Очистити форму</value>
   </data>
-  <data name="RefreshAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="RefreshAnalyseIncome" xml:space="preserve">
     <value>Оновити</value>
   </data>
-  <data name="MonthDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="MonthDataGridAnalyseIncome" xml:space="preserve">
     <value>Місяць</value>
   </data>
   <data name="YearDataGridAnalyseIncomeFinManage" xml:space="preserve">
     <value>Рік</value>
   </data>
-  <data name="CurrencyDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="CurrencyDataGridAnalyseIncome" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="CategoryDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="CategoryDataGridAnalyseIncome" xml:space="preserve">
     <value>Категорія</value>
   </data>
-  <data name="MinimalAmountDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="MinimalAmountDataGridAnalyseIncome" xml:space="preserve">
     <value>Мінімальне значення</value>
   </data>
-  <data name="AverageAmountDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="AverageAmountDataGridAnalyseIncome" xml:space="preserve">
     <value>Середнє значення</value>
   </data>
-  <data name="MaximumAmountDataGridAnalyseIncomeFinManage" xml:space="preserve">
+  <data name="MaximumAmountDataGridAnalyseIncome" xml:space="preserve">
     <value>Максимальне значення</value>
   </data>
-  <data name="CategoryFilterFinManage" xml:space="preserve">
+  <data name="CategoryFilter" xml:space="preserve">
     <value>Категорія</value>
   </data>
   <data name="TypeOperationFilterFinManage" xml:space="preserve">
     <value>Тип операції</value>
   </data>
-  <data name="CurrencyFilterFinManage" xml:space="preserve">
+  <data name="CurrencyFilter" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="FromDateOperationFilterFinManage" xml:space="preserve">
+  <data name="FromDateOperationFilter" xml:space="preserve">
     <value>З</value>
   </data>
   <data name="ToDateOperationFilterFinManage" xml:space="preserve">
     <value>До</value>
   </data>
-  <data name="NameOfAmountFilterFinManage" xml:space="preserve">
+  <data name="NameOfAmountFilter" xml:space="preserve">
     <value>Місце дії</value>
   </data>
-  <data name="DescriptionFilterFinManage" xml:space="preserve">
+  <data name="DescriptionFilter" xml:space="preserve">
     <value>Опис</value>
   </data>
-  <data name="CategoryDataGridFilterFinManage" xml:space="preserve">
+  <data name="CategoryDataGridFilter" xml:space="preserve">
     <value>Категорія</value>
   </data>
-  <data name="OperationTypeDataGridFilterFinManage" xml:space="preserve">
+  <data name="OperationTypeDataGridFilter" xml:space="preserve">
     <value>Тип операції</value>
   </data>
-  <data name="NameOfAmountDataGridFilterFinManage" xml:space="preserve">
+  <data name="NameOfAmountDataGridFilter" xml:space="preserve">
     <value>Місце дії</value>
   </data>
-  <data name="AmountDataGridFilterFinManage" xml:space="preserve">
+  <data name="AmountDataGridFilter" xml:space="preserve">
     <value>Значення</value>
   </data>
-  <data name="CurrencyDataGridFilterFinManage" xml:space="preserve">
+  <data name="CurrencyDataGridFilter" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="DateDataGridFilterFinManage" xml:space="preserve">
+  <data name="DateDataGridFilter" xml:space="preserve">
     <value>Дата транзакції</value>
   </data>
-  <data name="DescriptionDataGridFilterFinManage" xml:space="preserve">
+  <data name="DescriptionDataGridFilter" xml:space="preserve">
     <value>Опис</value>
   </data>
-  <data name="AmountFinManage" xml:space="preserve">
+  <data name="AmountMainPage" xml:space="preserve">
     <value>Значення</value>
   </data>
-  <data name="FromAmountFilterFinManage" xml:space="preserve">
+  <data name="FromAmountFilter" xml:space="preserve">
     <value>З</value>
   </data>
   <data name="ToAmountFilterFinManage" xml:space="preserve">
     <value>До</value>
   </data>
-  <data name="FilterButtonFIlterFinManage" xml:space="preserve">
+  <data name="FilterButtonFIlterPage" xml:space="preserve">
     <value>Фільтр</value>
   </data>
-  <data name="AboutProgramMenuBarFinManage" xml:space="preserve">
+  <data name="AboutProgramMenuBar" xml:space="preserve">
     <value>Про програму</value>
+  </data>
+  <data name="CurrencyFinManage" xml:space="preserve">
+    <value>Валюта</value>
   </data>
 </root>
