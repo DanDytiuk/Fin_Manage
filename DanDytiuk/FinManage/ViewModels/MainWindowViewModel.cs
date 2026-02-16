@@ -372,6 +372,14 @@ namespace FinManage.ViewModels
         private DateTime? _dataTime = DateTime.Today;
         private string _description;
         private FinAllTableModel _selectedFinManage;
+        private bool _isSecondComboBoxVisible;
+
+        public bool IsSecondComboBoxVisible
+        {
+            get => _isSecondComboBoxVisible;
+            set => Set(ref _isSecondComboBoxVisible, value);
+        }
+
         public string Category
         {
             get => _category;
@@ -708,6 +716,9 @@ namespace FinManage.ViewModels
             #endregion
 
             #region FinManageData
+
+            MessageBox.Show(LocalizationHelper.Instance["Salary"]);
+
 
             _database = new DataBaseWork();
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));

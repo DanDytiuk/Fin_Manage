@@ -15,6 +15,7 @@
 
             <lochelp:LocalizationHelper x:Key="Loc"/>
             <lochelp:EnumLocalizationHelper x:Key="EnumLoc"/>
+            <lochelp:VisibilityConverter x:Key="VisibleConvert"/>
 
         </ResourceDictionary>
     </Application.Resources>

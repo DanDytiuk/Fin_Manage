@@ -235,6 +235,7 @@
     <Compile Include="Services\DataBaseWork.cs" />
     <Compile Include="Services\EnumLocalizationHelper.cs" />
     <Compile Include="Services\LocalizationHelper.cs" />
+    <Compile Include="Services\VisibilityConverter.cs" />
     <Compile Include="ViewModels\AboutAppWindowViewModel.cs" />
     <Compile Include="ViewModels\LimitWindowsViewModel.cs" />
     <Compile Include="ViewModels\SettingsWindowsViewModel.cs" />

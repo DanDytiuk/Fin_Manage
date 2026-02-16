@@ -249,9 +249,6 @@
   <data name="MonthDataGridAnalyseIncome" xml:space="preserve">
     <value>Mes</value>
   </data>
-  <data name="YearDataGridAnalyseIncome" xml:space="preserve">
-    <value>Año</value>
-  </data>
   <data name="CurrencyDataGridAnalyseIncome" xml:space="preserve">
     <value>Moneda</value>
   </data>
@@ -326,5 +323,8 @@
   </data>
   <data name="CurrencyFinManage" xml:space="preserve">
     <value>Moneda</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salario</value>
   </data>
 </root>

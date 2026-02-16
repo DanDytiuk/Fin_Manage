@@ -249,9 +249,6 @@
   <data name="MonthDataGridAnalyseIncome" xml:space="preserve">
     <value>Місяць</value>
   </data>
-  <data name="YearDataGridAnalyseIncome" xml:space="preserve">
-    <value>Рік</value>
-  </data>
   <data name="CurrencyDataGridAnalyseIncome" xml:space="preserve">
     <value>Валюта</value>
   </data>
@@ -326,5 +323,8 @@
   </data>
   <data name="CurrencyFinManage" xml:space="preserve">
     <value>Валюта</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Зарплатня</value>
   </data>
 </root>
