@@ -716,11 +716,37 @@ namespace FinManage.ViewModels
             {
                 new CategoryModel { ResourceKey = "Salary" },
                 new CategoryModel { ResourceKey = "Gift" },
+                new CategoryModel { ResourceKey = "Vacation pay" },
+                new CategoryModel { ResourceKey = "Cashback" },
+                new CategoryModel { ResourceKey = "Income from the sale of shares" },
+                new CategoryModel { ResourceKey = "Interest on deposits" },
+                new CategoryModel { ResourceKey = "Government benefits" },
+                new CategoryModel { ResourceKey = "Pension" },
+                new CategoryModel { ResourceKey = "Scholarship" },
+                new CategoryModel { ResourceKey = "Child support" },
+                new CategoryModel { ResourceKey = "Debt collection" },
+                new CategoryModel { ResourceKey = "Insurance payments" },
+                new CategoryModel { ResourceKey = "Lottery/contest winnings" }
             };
 
             ExpensesCategories = new ObservableCollection<CategoryModel> 
             { 
-                new CategoryModel { ResourceKey = "" },
+                new CategoryModel { ResourceKey = "Food" },
+                new CategoryModel { ResourceKey = "Store" },
+                new CategoryModel { ResourceKey = "Entertainment" },
+                new CategoryModel { ResourceKey = "Online store" },
+                new CategoryModel { ResourceKey = "Games" },
+                new CategoryModel { ResourceKey = "Public utilities" },
+                new CategoryModel { ResourceKey = "Phone top up" },
+                new CategoryModel { ResourceKey = "Internet and TV" },
+                new CategoryModel { ResourceKey = "Security" },
+                new CategoryModel { ResourceKey = "Insurance" },
+                new CategoryModel { ResourceKey = "E-tickets" },
+                new CategoryModel { ResourceKey = "Education" },
+                new CategoryModel { ResourceKey = "Transport" },
+                new CategoryModel { ResourceKey = "Charity" },
+                new CategoryModel { ResourceKey = "Project support" },
+                new CategoryModel { ResourceKey = "Other" }
             };
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
