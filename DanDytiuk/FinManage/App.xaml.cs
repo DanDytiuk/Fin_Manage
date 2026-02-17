@@ -1,5 +1,9 @@
-﻿using FinManage.ViewModels;
+﻿using FinManage.Models;
+using FinManage.Services;
+using FinManage.ViewModels;
 using SQLitePCL;
+using System.IO;
+using System.Text.Json;
 using System.Windows;
 
 namespace FinManage
@@ -13,9 +17,17 @@ namespace FinManage
         {
             base.OnStartup(e);
 
-            var mainSettings = new SettingsWindowsViewModel();
+            //var mainSettings = new SettingsWindowsViewModel();
 
-            var settings = mainSettings.Settings;
+            //var settings = mainSettings.Settings;
+
+            if (File.Exists("settings.json"))
+            {
+                var json = File.ReadAllText("settings.json");
+                var settings = JsonSerializer.Deserialize<SettingsModel>(json);
+
+                LocalizationHelper.Instance.ChangeLang(settings.Language);
+            }
 
             Batteries.Init();
         }

@@ -10,15 +10,59 @@
         Title="Settings FinManage" Height="200" Width="500">
     <Grid Background="SpringGreen" Margin="0,0,0,-61">
 
-        <Button Content="Save" HorizontalAlignment="Left" Margin="93,97,0,0" VerticalAlignment="Top" Width="100" Command="{Binding SaveCommand}"/>
-        <Button Content="Cancel" HorizontalAlignment="Left" Margin="245,97,0,0" VerticalAlignment="Top" Width="100" Command="{Binding CancelCommand}"/>
+        <Button Content="Save" 
+                HorizontalAlignment="Left" 
+                Margin="93,97,0,0" 
+                VerticalAlignment="Top" 
+                Width="100" 
+                Command="{Binding SaveCommand}"/>
+        
+        <Button Content="Cancel" 
+                HorizontalAlignment="Left" 
+                Margin="245,97,0,0" 
+                VerticalAlignment="Top" 
+                Width="100" 
+                Command="{Binding CancelCommand}"/>
 
-        <TextBlock HorizontalAlignment="Left" Margin="196,10,0,0" TextWrapping="Wrap" Text="Currency" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="45,10,0,0" TextWrapping="Wrap" Text="Theme" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="352,10,0,0" TextWrapping="Wrap" Text="Language" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="196,10,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Currency" 
+                   VerticalAlignment="Top"/>
+        
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="45,10,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Theme" 
+                   VerticalAlignment="Top"/>
+        
+        <TextBlock HorizontalAlignment="Left" 
+                   Margin="352,10,0,0" 
+                   TextWrapping="Wrap" 
+                   Text="Language" 
+                   VerticalAlignment="Top"/>
 
-        <ComboBox x:Name="Themes" HorizontalAlignment="Left" Margin="20,31,0,0" VerticalAlignment="Top" Width="85" ItemsSource="{Binding Themes}" SelectedItem="{Binding Settings.Theme, Mode=TwoWay}"/>
-        <ComboBox x:Name="Currency" HorizontalAlignment="Left" Margin="177,31,0,0" VerticalAlignment="Top" Width="85" ItemsSource="{Binding Currency}" SelectedItem="{Binding Settings.Currency, Mode=TwoWay}"/>
-        <ComboBox x:Name="lang" HorizontalAlignment="Left" Width="85" Margin="335,31,0,0" VerticalAlignment="Top" ItemsSource="{Binding LanguagesCB}" SelectedItem="{Binding Settings.Language, Mode=TwoWay}"/>
+        <ComboBox HorizontalAlignment="Left" 
+                  Margin="20,31,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="85" 
+                  ItemsSource="{Binding Themes}" 
+                  SelectedItem="{Binding Settings.Theme, Mode=TwoWay}"/>
+        
+        <ComboBox HorizontalAlignment="Left" 
+                  Margin="177,31,0,0" 
+                  VerticalAlignment="Top" 
+                  Width="85" 
+                  ItemsSource="{Binding Currency}" 
+                  SelectedItem="{Binding Settings.Currency, Mode=TwoWay}"/>
+        
+        <ComboBox HorizontalAlignment="Left" 
+                  Width="85" 
+                  Margin="335,31,0,0" 
+                  VerticalAlignment="Top" 
+                  ItemsSource="{Binding LanguagesCB}" 
+                  SelectedItem="{Binding Settings.Language, Mode=TwoWay}"
+                  DisplayMemberPath="DisplayName"/>
+    
     </Grid>
 </Window>

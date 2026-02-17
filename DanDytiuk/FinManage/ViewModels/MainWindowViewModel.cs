@@ -717,9 +717,6 @@ namespace FinManage.ViewModels
 
             #region FinManageData
 
-            MessageBox.Show(LocalizationHelper.Instance["Salary"]);
-
-
             _database = new DataBaseWork();
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
 
@@ -727,17 +724,17 @@ namespace FinManage.ViewModels
             {
                 new CategoryModel { ResourceKey = "Salary" },
                 new CategoryModel { ResourceKey = "Gift" },
-                new CategoryModel { ResourceKey = "Vacation pay" },
+                new CategoryModel { ResourceKey = "Vacation_pay" },
                 new CategoryModel { ResourceKey = "Cashback" },
-                new CategoryModel { ResourceKey = "Income from the sale of shares" },
-                new CategoryModel { ResourceKey = "Interest on deposits" },
-                new CategoryModel { ResourceKey = "Government benefits" },
+                new CategoryModel { ResourceKey = "Income_from_the_sale_of_shares" },
+                new CategoryModel { ResourceKey = "Interest_on_deposits" },
+                new CategoryModel { ResourceKey = "Government_benefits" },
                 new CategoryModel { ResourceKey = "Pension" },
                 new CategoryModel { ResourceKey = "Scholarship" },
-                new CategoryModel { ResourceKey = "Child support" },
-                new CategoryModel { ResourceKey = "Debt collection" },
-                new CategoryModel { ResourceKey = "Insurance payments" },
-                new CategoryModel { ResourceKey = "Lottery/contest winnings" }
+                new CategoryModel { ResourceKey = "Child_support" },
+                new CategoryModel { ResourceKey = "Debt_collection" },
+                new CategoryModel { ResourceKey = "Insurance_payments" },
+                new CategoryModel { ResourceKey = "Lottery_or_contest_winnings" }
             };
 
             ExpensesCategories = new ObservableCollection<CategoryModel> 
@@ -745,19 +742,28 @@ namespace FinManage.ViewModels
                 new CategoryModel { ResourceKey = "Food" },
                 new CategoryModel { ResourceKey = "Store" },
                 new CategoryModel { ResourceKey = "Entertainment" },
-                new CategoryModel { ResourceKey = "Online store" },
+                new CategoryModel { ResourceKey = "Online_store" },
                 new CategoryModel { ResourceKey = "Games" },
-                new CategoryModel { ResourceKey = "Public utilities" },
-                new CategoryModel { ResourceKey = "Phone top up" },
-                new CategoryModel { ResourceKey = "Internet and TV" },
+                new CategoryModel { ResourceKey = "Public_utilities" },
+                new CategoryModel { ResourceKey = "Phone_top_up" },
+                new CategoryModel { ResourceKey = "Internet_and_TV" },
                 new CategoryModel { ResourceKey = "Security" },
                 new CategoryModel { ResourceKey = "Insurance" },
-                new CategoryModel { ResourceKey = "E-tickets" },
+                new CategoryModel { ResourceKey = "E_tickets" },
                 new CategoryModel { ResourceKey = "Education" },
                 new CategoryModel { ResourceKey = "Transport" },
                 new CategoryModel { ResourceKey = "Charity" },
-                new CategoryModel { ResourceKey = "Project support" },
+                new CategoryModel { ResourceKey = "Project_support" },
                 new CategoryModel { ResourceKey = "Other" }
+            };
+
+            LocalizationHelper.Instance.PropertyChanged += (s, e) =>
+            {
+                foreach (var cat in IncomeCategories)
+                    cat.Refresh();
+
+                foreach (var cat in ExpensesCategories)
+                    cat.Refresh();
             };
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);

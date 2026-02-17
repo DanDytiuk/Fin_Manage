@@ -117,7 +117,91 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Gift" xml:space="preserve">
+    <value>Gift</value>
+  </data>
+  <data name="Government_benefits" xml:space="preserve">
+    <value>Government benefits</value>
+  </data>
+  <data name="Income_from_the_sale_of_shares" xml:space="preserve">
+    <value>Income from the sale of shares</value>
+  </data>
   <data name="Salary" xml:space="preserve">
     <value>Salary</value>
+  </data>
+  <data name="Vacation_pay" xml:space="preserve">
+    <value>Vacation pay</value>
+  </data>
+  <data name="Interest_on_deposits" xml:space="preserve">
+    <value>Interest on deposits</value>
+  </data>
+  <data name="Pension" xml:space="preserve">
+    <value>Pension</value>
+  </data>
+  <data name="Scholarship" xml:space="preserve">
+    <value>Scholarship</value>
+  </data>
+  <data name="Child_support" xml:space="preserve">
+    <value>Child support</value>
+  </data>
+  <data name="Debt_collection" xml:space="preserve">
+    <value>Debt collection</value>
+  </data>
+  <data name="Insurance_payments" xml:space="preserve">
+    <value>Insurance payments</value>
+  </data>
+  <data name="Lottery_or_contest_winnings" xml:space="preserve">
+    <value>Lottery/contest winnings</value>
+  </data>
+  <data name="Food" xml:space="preserve">
+    <value>Food</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>Store</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Entertainment</value>
+  </data>
+  <data name="Online_store" xml:space="preserve">
+    <value>Online store</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="Public_utilities" xml:space="preserve">
+    <value>Public utilities</value>
+  </data>
+  <data name="Phone_top_up" xml:space="preserve">
+    <value>Phone top up</value>
+  </data>
+  <data name="Internet_and_TV" xml:space="preserve">
+    <value>Internet and TV</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Insurance</value>
+  </data>
+  <data name="E_tickets" xml:space="preserve">
+    <value>E-tickets</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>Transport</value>
+  </data>
+  <data name="Charity" xml:space="preserve">
+    <value>Charity</value>
+  </data>
+  <data name="Project_support" xml:space="preserve">
+    <value>Project support</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Cashback" xml:space="preserve">
+    <value>Cashback</value>
   </data>
 </root>

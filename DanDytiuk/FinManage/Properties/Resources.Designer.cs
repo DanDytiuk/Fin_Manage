@@ -61,11 +61,263 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Cashback.
+        /// </summary>
+        public static string Cashback {
+            get {
+                return ResourceManager.GetString("Cashback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Charity.
+        /// </summary>
+        public static string Charity {
+            get {
+                return ResourceManager.GetString("Charity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Child support.
+        /// </summary>
+        public static string Child_support {
+            get {
+                return ResourceManager.GetString("Child_support", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Debt collection.
+        /// </summary>
+        public static string Debt_collection {
+            get {
+                return ResourceManager.GetString("Debt_collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на E-tickets.
+        /// </summary>
+        public static string E_tickets {
+            get {
+                return ResourceManager.GetString("E_tickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Education.
+        /// </summary>
+        public static string Education {
+            get {
+                return ResourceManager.GetString("Education", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Entertainment.
+        /// </summary>
+        public static string Entertainment {
+            get {
+                return ResourceManager.GetString("Entertainment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Food.
+        /// </summary>
+        public static string Food {
+            get {
+                return ResourceManager.GetString("Food", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Games.
+        /// </summary>
+        public static string Games {
+            get {
+                return ResourceManager.GetString("Games", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Gift.
+        /// </summary>
+        public static string Gift {
+            get {
+                return ResourceManager.GetString("Gift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Government benefits.
+        /// </summary>
+        public static string Government_benefits {
+            get {
+                return ResourceManager.GetString("Government_benefits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Income from the sale of shares.
+        /// </summary>
+        public static string Income_from_the_sale_of_shares {
+            get {
+                return ResourceManager.GetString("Income_from_the_sale_of_shares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Insurance.
+        /// </summary>
+        public static string Insurance {
+            get {
+                return ResourceManager.GetString("Insurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Insurance payments.
+        /// </summary>
+        public static string Insurance_payments {
+            get {
+                return ResourceManager.GetString("Insurance_payments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Interest on deposits.
+        /// </summary>
+        public static string Interest_on_deposits {
+            get {
+                return ResourceManager.GetString("Interest_on_deposits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Internet and TV.
+        /// </summary>
+        public static string Internet_and_TV {
+            get {
+                return ResourceManager.GetString("Internet_and_TV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Lottery/contest winnings.
+        /// </summary>
+        public static string Lottery_or_contest_winnings {
+            get {
+                return ResourceManager.GetString("Lottery_or_contest_winnings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Online store.
+        /// </summary>
+        public static string Online_store {
+            get {
+                return ResourceManager.GetString("Online_store", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Other.
+        /// </summary>
+        public static string Other {
+            get {
+                return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Pension.
+        /// </summary>
+        public static string Pension {
+            get {
+                return ResourceManager.GetString("Pension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Phone top up.
+        /// </summary>
+        public static string Phone_top_up {
+            get {
+                return ResourceManager.GetString("Phone_top_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Project support.
+        /// </summary>
+        public static string Project_support {
+            get {
+                return ResourceManager.GetString("Project_support", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Public utilities.
+        /// </summary>
+        public static string Public_utilities {
+            get {
+                return ResourceManager.GetString("Public_utilities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Salary.
         /// </summary>
         public static string Salary {
             get {
                 return ResourceManager.GetString("Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Scholarship.
+        /// </summary>
+        public static string Scholarship {
+            get {
+                return ResourceManager.GetString("Scholarship", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Security.
+        /// </summary>
+        public static string Security {
+            get {
+                return ResourceManager.GetString("Security", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Store.
+        /// </summary>
+        public static string Store {
+            get {
+                return ResourceManager.GetString("Store", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Transport.
+        /// </summary>
+        public static string Transport {
+            get {
+                return ResourceManager.GetString("Transport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Vacation pay.
+        /// </summary>
+        public static string Vacation_pay {
+            get {
+                return ResourceManager.GetString("Vacation_pay", resourceCulture);
             }
         }
     }
