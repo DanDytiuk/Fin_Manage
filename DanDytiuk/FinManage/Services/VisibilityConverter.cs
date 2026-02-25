@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using static FinManage.Infrastructure.EnumInfrastructure;
 
 namespace FinManage.Services
 {
@@ -9,16 +10,20 @@ namespace FinManage.Services
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is bool b) { return b ? Visibility.Collapsed : Visibility.Visible; }
-            
-            return Visibility.Visible;
+            if (value is TypeOperation currentType && parameter is string parameterString)
+            {
+                if (Enum.TryParse<TypeOperation>(parameterString, out var targetOperation))
+                {
+                    return currentType == targetOperation
+                        ? Visibility.Visible
+                        : Visibility.Collapsed;
+                }
+            }
+
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value is Visibility v) { return v != Visibility.Visible; }
-            
-            return false;
-        }
+            => throw new NotImplementedException();
     }
 }

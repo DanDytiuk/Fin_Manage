@@ -1,25 +1,36 @@
-﻿using FinManage.Properties;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Globalization;
-using System.Threading;
+using FinManage.Properties;
 
 namespace FinManage.Services
 {
     public class LocalizationHelper : INotifyPropertyChanged
     {
         private static LocalizationHelper _instance;
-        public static LocalizationHelper Instance => _instance ?? (_instance = new LocalizationHelper());
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        
-        public string this[string key]
+        public static LocalizationHelper Instance
         {
-            get => Resources.ResourceManager.GetString(key);
+            get
+            {
+                if (_instance == null)
+                    _instance = new LocalizationHelper();
+
+                return _instance;
+            }
         }
 
-        public void ChangeLang(string culurecode)
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string this[string key] =>
+            Resources.ResourceManager.GetString(key, Resources.Culture);
+
+        public void SetLanguage(string cultureCode)
         {
-            Thread.CurrentThread.CurrentUICulture = new CultureInfo(culurecode);
+            var culture = new CultureInfo(cultureCode);
+
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+            CultureInfo.DefaultThreadCurrentUICulture = culture;
+
+            Resources.Culture = culture;
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }

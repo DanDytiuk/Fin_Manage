@@ -117,23 +117,107 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AmountDataGrid" xml:space="preserve">
+  <data name="Gift" xml:space="preserve">
+    <value>Подарунки</value>
+  </data>
+  <data name="Government_benefits" xml:space="preserve">
+    <value>Державні виплати</value>
+  </data>
+  <data name="Income_from_the_sale_of_shares" xml:space="preserve">
+    <value>Дохід від продажу акцій</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Зарплатня</value>
+  </data>
+  <data name="Vacation_pay" xml:space="preserve">
+    <value>Відпусктні виплати</value>
+  </data>
+  <data name="Interest_on_deposits" xml:space="preserve">
+    <value>Відсотки по вкладам</value>
+  </data>
+  <data name="Pension" xml:space="preserve">
+    <value>Пенсія</value>
+  </data>
+  <data name="Scholarship" xml:space="preserve">
+    <value>Стипендія</value>
+  </data>
+  <data name="Child_support" xml:space="preserve">
+    <value>Дитячі виплати</value>
+  </data>
+  <data name="Debt_collection" xml:space="preserve">
+    <value>Повернення заборгованостей</value>
+  </data>
+  <data name="Insurance_payments" xml:space="preserve">
+    <value>Страхові виплати</value>
+  </data>
+  <data name="Lottery_or_contest_winnings" xml:space="preserve">
+    <value>Виграші в лотерею</value>
+  </data>
+  <data name="Food" xml:space="preserve">
+    <value>Їжа</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>Магазини</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Розваги</value>
+  </data>
+  <data name="Online_store" xml:space="preserve">
+    <value>Онлайн магазини</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Ігри</value>
+  </data>
+  <data name="Public_utilities" xml:space="preserve">
+    <value>Комунальні послуги</value>
+  </data>
+  <data name="Phone_top_up" xml:space="preserve">
+    <value>Поповнення моб. телефону</value>
+  </data>
+  <data name="Internet_and_TV" xml:space="preserve">
+    <value>Інтернет та ТБ</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Безпека</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Страхування</value>
+  </data>
+  <data name="E_tickets" xml:space="preserve">
+    <value>Електронні квитки</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Освіта</value>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>Транспорт</value>
+  </data>
+  <data name="Charity" xml:space="preserve">
+    <value>Благодійність</value>
+  </data>
+  <data name="Project_support" xml:space="preserve">
+    <value>Підтримка проєкту</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Інше</value>
+  </data>
+  <data name="Cashback" xml:space="preserve">
+    <value>Кешбек</value>
+  </data>
+  <data name="AboutTabControl" xml:space="preserve">
+    <value>Про програму</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
     <value>Значення</value>
   </data>
-  <data name="AnalyseExpensesDataGrid" xml:space="preserve">
+  <data name="AnalyseExpenses" xml:space="preserve">
     <value>Аналіз витрат</value>
   </data>
-  <data name="AnalyseIncomeDataGrid" xml:space="preserve">
+  <data name="AnalyseIncome" xml:space="preserve">
     <value>Аналіз доходів</value>
   </data>
-  <data name="AverageAmountAnalyseDataGrid" xml:space="preserve">
+  <data name="AverageAmount" xml:space="preserve">
     <value>Середнє значення</value>
-  </data>
-  <data name="CategoryAnalyseDataGrid" xml:space="preserve">
-    <value>Категорія</value>
-  </data>
-  <data name="CategoryDataGrid" xml:space="preserve">
-    <value>Категорія</value>
   </data>
   <data name="Select Category" xml:space="preserve">
     <value>Категорія</value>
@@ -147,34 +231,16 @@
   <data name="ConverterDataGrid" xml:space="preserve">
     <value>Конвертер валют</value>
   </data>
-  <data name="CurrencyAnalyseDataGrid" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="CurrencyDataGrid" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="CurrencyForAnalyse" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="DateOperationMainPage" xml:space="preserve">
-    <value>Дата транзакції</value>
-  </data>
-  <data name="DeleteInfoMainPage" xml:space="preserve">
+  <data name="DeleteInfo" xml:space="preserve">
     <value>Видалити дані</value>
   </data>
-  <data name="DescriptionDataGrid" xml:space="preserve">
-    <value>Опис</value>
-  </data>
-  <data name="DescriptionMainPage" xml:space="preserve">
+  <data name="Description" xml:space="preserve">
     <value>Опис</value>
   </data>
   <data name="ExitFromFinManage" xml:space="preserve">
     <value>Вихід</value>
   </data>
-  <data name="FiltersDataGridTabControl" xml:space="preserve">
-    <value>Фільтри</value>
-  </data>
-  <data name="FinTableDataGridTabControl" xml:space="preserve">
+  <data name="FinTableTabControl" xml:space="preserve">
     <value>Фінансова таблиця</value>
   </data>
   <data name="GoAnalyse" xml:space="preserve">
@@ -183,28 +249,13 @@
   <data name="LimitsMenuBar" xml:space="preserve">
     <value>Ліміти</value>
   </data>
-  <data name="MaximumAmountAnalyseDataGrid" xml:space="preserve">
-    <value>Максимальне значення</value>
-  </data>
-  <data name="MinimalAmountAnalyseDataGrid" xml:space="preserve">
-    <value>Мінімальне значення</value>
-  </data>
-  <data name="MonthAnalyseDataGrid" xml:space="preserve">
+  <data name="Month" xml:space="preserve">
     <value>Місяць</value>
   </data>
-  <data name="MonthOfYearAnalyse" xml:space="preserve">
-    <value>Місяць</value>
-  </data>
-  <data name="MonthOfYearAnalyseIncome" xml:space="preserve">
-    <value>Місяць</value>
-  </data>
-  <data name="NameOfAmountDataGrid" xml:space="preserve">
+  <data name="NameOfAmount" xml:space="preserve">
     <value>Місце дії</value>
   </data>
-  <data name="NameOfAmountMainPage" xml:space="preserve">
-    <value>Місце дії</value>
-  </data>
-  <data name="OperationTypeDataGrid" xml:space="preserve">
+  <data name="OperationType" xml:space="preserve">
     <value>Тип операції</value>
   </data>
   <data name="RefreshAnalyse" xml:space="preserve">
@@ -216,62 +267,20 @@
   <data name="SettingsMenuBar" xml:space="preserve">
     <value>Налаштування</value>
   </data>
-  <data name="TypeOperation" xml:space="preserve">
-    <value>Тип операції</value>
-  </data>
-  <data name="YearAnalyseDataGrid" xml:space="preserve">
+  <data name="Year" xml:space="preserve">
     <value>Рік</value>
   </data>
-  <data name="YearAnalyse" xml:space="preserve">
-    <value>Рік</value>
-  </data>
-  <data name="AmountOfLimitAnalyseDataGrid" xml:space="preserve">
-    <value>Значення ліміту</value>
-  </data>
-  <data name="YearAnalyseIncome" xml:space="preserve">
-    <value>Рік</value>
-  </data>
-  <data name="CurrencyForAnalyseIncome" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="GoAnalyseIncome" xml:space="preserve">
-    <value>Аналіз</value>
-  </data>
-  <data name="DateDataGrid" xml:space="preserve">
+  <data name="DateData" xml:space="preserve">
     <value>Дата транзакції</value>
   </data>
-  <data name="CleanAnalyseIncome" xml:space="preserve">
-    <value>Очистити форму</value>
-  </data>
-  <data name="RefreshAnalyseIncome" xml:space="preserve">
-    <value>Оновити</value>
-  </data>
-  <data name="MonthDataGridAnalyseIncome" xml:space="preserve">
-    <value>Місяць</value>
-  </data>
-  <data name="CurrencyDataGridAnalyseIncome" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="CategoryDataGridAnalyseIncome" xml:space="preserve">
-    <value>Категорія</value>
-  </data>
-  <data name="MinimalAmountDataGridAnalyseIncome" xml:space="preserve">
+  <data name="MinimalAmount" xml:space="preserve">
     <value>Мінімальне значення</value>
   </data>
-  <data name="AverageAmountDataGridAnalyseIncome" xml:space="preserve">
-    <value>Середнє значення</value>
-  </data>
-  <data name="MaximumAmountDataGridAnalyseIncome" xml:space="preserve">
+  <data name="MaximumAmount" xml:space="preserve">
     <value>Максимальне значення</value>
   </data>
-  <data name="CategoryFilter" xml:space="preserve">
+  <data name="Category" xml:space="preserve">
     <value>Категорія</value>
-  </data>
-  <data name="TypeOperationFilter" xml:space="preserve">
-    <value>Тип операції</value>
-  </data>
-  <data name="CurrencyFilter" xml:space="preserve">
-    <value>Валюта</value>
   </data>
   <data name="FromDateOperationFilter" xml:space="preserve">
     <value>З</value>
@@ -279,133 +288,64 @@
   <data name="ToDateOperationFilter" xml:space="preserve">
     <value>До</value>
   </data>
-  <data name="NameOfAmountFilter" xml:space="preserve">
-    <value>Місце дії</value>
-  </data>
-  <data name="DescriptionFilter" xml:space="preserve">
-    <value>Опис</value>
-  </data>
-  <data name="CategoryDataGridFilter" xml:space="preserve">
-    <value>Категорія</value>
-  </data>
-  <data name="OperationTypeDataGridFilter" xml:space="preserve">
-    <value>Тип операції</value>
-  </data>
-  <data name="NameOfAmountDataGridFilter" xml:space="preserve">
-    <value>Місце дії</value>
-  </data>
-  <data name="AmountDataGridFilter" xml:space="preserve">
-    <value>Значення</value>
-  </data>
-  <data name="CurrencyDataGridFilter" xml:space="preserve">
-    <value>Валюта</value>
-  </data>
-  <data name="DateDataGridFilter" xml:space="preserve">
-    <value>Дата транзакції</value>
-  </data>
-  <data name="DescriptionDataGridFilter" xml:space="preserve">
-    <value>Опис</value>
-  </data>
-  <data name="AmountMainPage" xml:space="preserve">
-    <value>Значення</value>
-  </data>
   <data name="FromAmountFilter" xml:space="preserve">
     <value>З</value>
   </data>
   <data name="ToAmountFilter" xml:space="preserve">
     <value>До</value>
   </data>
-  <data name="FilterButtonFIlterPage" xml:space="preserve">
-    <value>Фільтр</value>
-  </data>
-  <data name="AboutTabControl" xml:space="preserve">
-    <value>Про програму</value>
-  </data>
-  <data name="CurrencyFinManage" xml:space="preserve">
+  <data name="Currency" xml:space="preserve">
     <value>Валюта</value>
   </data>
-  <data name="Salary" xml:space="preserve">
-    <value>Зарплатня</value>
+  <data name="Title" xml:space="preserve">
+    <value>FinManage | Фінансовий менеджер</value>
   </data>
-  <data name="Charity" xml:space="preserve">
-    <value>Благодійність</value>
+  <data name="TotalAmount" xml:space="preserve">
+    <value>Загальне значення</value>
   </data>
-  <data name="Child_support" xml:space="preserve">
-    <value />
+  <data name="AmountLimit" xml:space="preserve">
+    <value>Значення ліміту</value>
   </data>
-  <data name="Debt_collection" xml:space="preserve">
-    <value />
+  <data name="Filters" xml:space="preserve">
+    <value>Фільтри</value>
   </data>
-  <data name="Education" xml:space="preserve">
-    <value />
+  <data name="Filter" xml:space="preserve">
+    <value>Фільтр</value>
   </data>
-  <data name="Entertainment" xml:space="preserve">
-    <value />
+  <data name="Theme" xml:space="preserve">
+    <value>Тема</value>
   </data>
-  <data name="E_tickets" xml:space="preserve">
-    <value />
+  <data name="Language" xml:space="preserve">
+    <value>Мова</value>
   </data>
-  <data name="Food" xml:space="preserve">
-    <value />
+  <data name="Save" xml:space="preserve">
+    <value>Зберегти</value>
   </data>
-  <data name="Games" xml:space="preserve">
-    <value />
+  <data name="Cancel" xml:space="preserve">
+    <value>Відміна</value>
   </data>
-  <data name="Gift" xml:space="preserve">
-    <value />
+  <data name="TitleLimit" xml:space="preserve">
+    <value>FinManage |  Ліміти</value>
   </data>
-  <data name="Government_benefits" xml:space="preserve">
-    <value />
+  <data name="TitleSettings" xml:space="preserve">
+    <value>FinManage |  Налаштування</value>
   </data>
-  <data name="Income_from_the_sale_of_shares" xml:space="preserve">
-    <value />
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
   </data>
-  <data name="Insurance" xml:space="preserve">
-    <value />
+  <data name="StartLimit" xml:space="preserve">
+    <value>Початок ліміту</value>
   </data>
-  <data name="Insurance_payments" xml:space="preserve">
-    <value />
+  <data name="EndLimit" xml:space="preserve">
+    <value>Кінець ліміту</value>
   </data>
-  <data name="Interest_on_deposits" xml:space="preserve">
-    <value />
+  <data name="TypeOperation_Unknown" xml:space="preserve">
+    <value>Невідомо</value>
   </data>
-  <data name="Internet_and_TV" xml:space="preserve">
-    <value />
+  <data name="TypeOperation_Expenses" xml:space="preserve">
+    <value>Витрати</value>
   </data>
-  <data name="Lottery_or_contest_winnings" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Online_store" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Other" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Pension" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Phone_top_up" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Project_support" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Public_utilities" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Scholarship" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Security" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Store" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Transport" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Vacation_Pay" xml:space="preserve">
-    <value />
+  <data name="TypeOperation_Income" xml:space="preserve">
+    <value>Дохід</value>
   </data>
 </root>

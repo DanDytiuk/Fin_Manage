@@ -219,6 +219,26 @@
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\LimitData.cs" />
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
+    <Compile Include="Properties\Resources.es-ES.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.es-ES.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.ru-RU.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ru-RU.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.uk-UA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.uk-UA.resx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppModel.cs" />
     <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\LanguageModel.cs" />
@@ -228,6 +248,7 @@
     <Compile Include="Models\SettingsModel.cs" />
     <Compile Include="Models\StatisticsModel.cs" />
     <Compile Include="Services\DataBaseWork.cs" />
+    <Compile Include="Services\EnumConvert.cs" />
     <Compile Include="Services\EnumLocalizationHelper.cs" />
     <Compile Include="Services\LocalizationHelper.cs" />
     <Compile Include="Services\VisibilityConverter.cs" />
@@ -289,25 +310,25 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Languages\Resources.es.resx">
+    <EmbeddedResource Include="Properties\Resources.es-ES.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.es.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.es-ES.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Languages\Resources.fr.resx">
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.fr.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Languages\Resources.uk.resx">
+    <EmbeddedResource Include="Properties\Resources.uk-UA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.uk.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.uk-UA.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Languages\Resources.ru.resx">
+    <EmbeddedResource Include="Properties\Resources.ru-RU.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>Resources.ru.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.ru-RU.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

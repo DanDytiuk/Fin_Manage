@@ -355,6 +355,7 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<CategoryModel> IncomeCategories { get; }
         public ObservableCollection<CategoryModel> ExpensesCategories { get; }
+        public ObservableCollection<CategoryModel> OperationTypes { get; }
 
         #endregion
 
@@ -363,8 +364,7 @@ namespace FinManage.ViewModels
         public DateTime MinDate { get; } = new DateTime(2020, 1, 1);
         public DateTime MaxDate { get; } = new DateTime(2099, 12, 31);
 
-
-        private string _category;
+        private CategoryModel _category;
         private TypeOperation _typeOperation;
         private string _nameOfAmount;
         private string _typesOfCurrency;
@@ -380,7 +380,7 @@ namespace FinManage.ViewModels
             set => Set(ref _isSecondComboBoxVisible, value);
         }
 
-        public string Category
+        public CategoryModel Category
         {
             get => _category;
             set => Set(ref _category, value);
@@ -446,7 +446,7 @@ namespace FinManage.ViewModels
         #region Main functions
         private void AddFinDataInfo(object p)
         {
-            if (string.IsNullOrWhiteSpace(Category) | Amount <= 0 | TypeOperation == TypeOperation.Unknown)
+            if (Category == null | Amount <= 0 | TypeOperation == TypeOperation.Unknown)
             {
                 ShowError("Please select a category, valid amount or type operation.");
             }
@@ -464,9 +464,9 @@ namespace FinManage.ViewModels
                     Values ($category, $operationtype, $nameofamount, $amount, $currency, $dateinfo, $description);
                     ";
 
-                        command.Parameters.AddWithValue("$category", Category.ToString());
-                        command.Parameters.AddWithValue("$operationtype", TypeOperation.ToString());
-                        command.Parameters.AddWithValue("$nameofamount", NameOfAmount);
+                        command.Parameters.AddWithValue("$category", Category.ResourceKey);
+                        command.Parameters.AddWithValue("$operationtype", (int)TypeOperation);
+                        command.Parameters.AddWithValue("$nameofamount", NameOfAmount ?? "");
                         command.Parameters.AddWithValue("$amount", Amount);
                         command.Parameters.AddWithValue("$currency", Currency);
                         command.Parameters.AddWithValue("$dateinfo", DataTime);
@@ -526,8 +526,8 @@ namespace FinManage.ViewModels
                             var maindata = new FinAllTableModel
                             {
                                 Id = reader.GetInt32(0),
-                                Category = reader.GetString(1),
-                                OperationType = reader.GetString(2),
+                                CategoryKey = reader.GetString(1),
+                                OperationType = (TypeOperation)reader.GetInt32(2),
                                 NameOfAmount = reader.IsDBNull(3) ? null : reader.GetString(3),
                                 Amount = reader.GetDecimal(4),
                                 Currency = reader.GetString(5),
@@ -757,12 +757,22 @@ namespace FinManage.ViewModels
                 new CategoryModel { ResourceKey = "Other" }
             };
 
+            OperationTypes = new ObservableCollection<CategoryModel>
+            {
+                new CategoryModel { ResourceKey = "TypeOperation_Unknown" },
+                new CategoryModel { ResourceKey = "TypeOperation_Expenses" },
+                new CategoryModel { ResourceKey = "TypeOperation_Income" }
+            };
+
             LocalizationHelper.Instance.PropertyChanged += (s, e) =>
             {
                 foreach (var cat in IncomeCategories)
                     cat.Refresh();
 
                 foreach (var cat in ExpensesCategories)
+                    cat.Refresh();
+
+                foreach (var cat in OperationTypes)
                     cat.Refresh();
             };
 

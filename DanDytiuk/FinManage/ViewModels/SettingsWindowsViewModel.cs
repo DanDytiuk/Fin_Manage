@@ -1,13 +1,16 @@
 ﻿using FinManage.Infrastructure.Commands;
 using FinManage.Models;
+using FinManage.Properties;
 using FinManage.Services;
 using FinManage.ViewModels.Base;
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Windows;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -35,15 +38,16 @@ namespace FinManage.ViewModels
         public ObservableCollection<Themes> Themes { get; }
         public ObservableCollection<TypesOfCurrency> Currency { get; }
         public ObservableCollection<Category> Category { get; }
+        public ObservableCollection<LanguageModel> LanguagesCB { get; }
 
-        public ObservableCollection<LanguageModel> LanguagesCB { get; } = new ObservableCollection<LanguageModel>
+        /*public ObservableCollection<LanguageModel> LanguagesCB { get; } = new ObservableCollection<LanguageModel>
         {
             new LanguageModel { DisplayName = "English", LanguageCode = "en" },
             new LanguageModel { DisplayName = "Українська", LanguageCode = "uk"},
             new LanguageModel { DisplayName = "Русский", LanguageCode = "ru"},
             new LanguageModel { DisplayName = "Espanol", LanguageCode = "es"},
             new LanguageModel { DisplayName = "Francais", LanguageCode = "fr"}
-        };
+        };*/
 
         #endregion
 
@@ -60,6 +64,17 @@ namespace FinManage.ViewModels
             return JsonSerializer.Deserialize<SettingsModel>(json, Options) ?? new SettingsModel();
         }
 
+        private LanguageModel CreateLanguage(string cultureCode)
+        {
+            var culture = new CultureInfo(cultureCode);
+
+            return new LanguageModel
+            {
+                DisplayName = culture.NativeName,
+                LanguageCode = cultureCode
+            };
+        }
+
         private void SaveSettings(SettingsModel settings)
         {
             string json = JsonSerializer.Serialize(settings, Options);
@@ -67,11 +82,19 @@ namespace FinManage.ViewModels
         }
         private void SaveFromAppExecute(object parameter)
         {
+            if (SelectedLanguage == null)
+                return;
+
             Settings.Language = SelectedLanguage.LanguageCode;
             SaveSettings(Settings);
 
-            LocalizationHelper.Instance.ChangeLang(Settings.Language);
-            CloseAction?.Invoke();
+            LocalizationHelper.Instance.SetLanguage(Settings.Language);
+
+            MessageBox.Show(
+                LocalizationHelper.Instance["LanguageRestartMessage"],
+                LocalizationHelper.Instance["Information"],
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
         }
         private void CancelFromAppExecute(object parameter)
         {
@@ -84,6 +107,16 @@ namespace FinManage.ViewModels
             Currency = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
             Category = new ObservableCollection<Category>((Category[])Enum.GetValues(typeof(Category)));
             
+            LanguagesCB = new ObservableCollection<LanguageModel>
+            {
+                CreateLanguage("en-US"),
+                CreateLanguage("ru-RU"),
+                CreateLanguage("uk-UA"),
+                CreateLanguage("es-ES"),
+                CreateLanguage("fr-FR")
+            };
+
+
             string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 
             string appFolder = Path.Combine(appData, "FinManage");
@@ -91,6 +124,7 @@ namespace FinManage.ViewModels
             Directory.CreateDirectory(appFolder);
 
             FilePath = Path.Combine(appFolder, "settings.json");
+            
             Options.Converters.Add(new JsonStringEnumConverter());
 
             Settings = LoadSettings();

@@ -61,11 +61,92 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на About program.
+        /// </summary>
+        public static string AboutTabControl {
+            get {
+                return ResourceManager.GetString("AboutTabControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Amount limit.
+        /// </summary>
+        public static string AmountLimit {
+            get {
+                return ResourceManager.GetString("AmountLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Analyse expenses.
+        /// </summary>
+        public static string AnalyseExpenses {
+            get {
+                return ResourceManager.GetString("AnalyseExpenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Analyse income.
+        /// </summary>
+        public static string AnalyseIncome {
+            get {
+                return ResourceManager.GetString("AnalyseIncome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Average amount.
+        /// </summary>
+        public static string AverageAmount {
+            get {
+                return ResourceManager.GetString("AverageAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Cashback.
         /// </summary>
         public static string Cashback {
             get {
                 return ResourceManager.GetString("Cashback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Change info.
+        /// </summary>
+        public static string ChangeInfo {
+            get {
+                return ResourceManager.GetString("ChangeInfo", resourceCulture);
             }
         }
         
@@ -88,11 +169,74 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Clean.
+        /// </summary>
+        public static string CleanAnalyse {
+            get {
+                return ResourceManager.GetString("CleanAnalyse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Converter.
+        /// </summary>
+        public static string ConverterDataGrid {
+            get {
+                return ResourceManager.GetString("ConverterDataGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Currency.
+        /// </summary>
+        public static string Currency {
+            get {
+                return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Date operation.
+        /// </summary>
+        public static string DateData {
+            get {
+                return ResourceManager.GetString("DateData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Debt collection.
         /// </summary>
         public static string Debt_collection {
             get {
                 return ResourceManager.GetString("Debt_collection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Delete info.
+        /// </summary>
+        public static string DeleteInfo {
+            get {
+                return ResourceManager.GetString("DeleteInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -115,6 +259,15 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на End limit.
+        /// </summary>
+        public static string EndLimit {
+            get {
+                return ResourceManager.GetString("EndLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Entertainment.
         /// </summary>
         public static string Entertainment {
@@ -124,11 +277,65 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Exit.
+        /// </summary>
+        public static string ExitFromFinManage {
+            get {
+                return ResourceManager.GetString("ExitFromFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Filters.
+        /// </summary>
+        public static string Filters {
+            get {
+                return ResourceManager.GetString("Filters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Fin table.
+        /// </summary>
+        public static string FinTableTabControl {
+            get {
+                return ResourceManager.GetString("FinTableTabControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Food.
         /// </summary>
         public static string Food {
             get {
                 return ResourceManager.GetString("Food", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на From amount.
+        /// </summary>
+        public static string FromAmountFilter {
+            get {
+                return ResourceManager.GetString("FromAmountFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на From date.
+        /// </summary>
+        public static string FromDateOperationFilter {
+            get {
+                return ResourceManager.GetString("FromDateOperationFilter", resourceCulture);
             }
         }
         
@@ -147,6 +354,15 @@ namespace FinManage.Properties {
         public static string Gift {
             get {
                 return ResourceManager.GetString("Gift", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Go.
+        /// </summary>
+        public static string GoAnalyse {
+            get {
+                return ResourceManager.GetString("GoAnalyse", resourceCulture);
             }
         }
         
@@ -205,6 +421,24 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Language.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Limits.
+        /// </summary>
+        public static string LimitsMenuBar {
+            get {
+                return ResourceManager.GetString("LimitsMenuBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Lottery/contest winnings.
         /// </summary>
         public static string Lottery_or_contest_winnings {
@@ -214,11 +448,56 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Maximum amount.
+        /// </summary>
+        public static string MaximumAmount {
+            get {
+                return ResourceManager.GetString("MaximumAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Minimal amount.
+        /// </summary>
+        public static string MinimalAmount {
+            get {
+                return ResourceManager.GetString("MinimalAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Month.
+        /// </summary>
+        public static string Month {
+            get {
+                return ResourceManager.GetString("Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Name of amount.
+        /// </summary>
+        public static string NameOfAmount {
+            get {
+                return ResourceManager.GetString("NameOfAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Online store.
         /// </summary>
         public static string Online_store {
             get {
                 return ResourceManager.GetString("Online_store", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Type operation.
+        /// </summary>
+        public static string OperationType {
+            get {
+                return ResourceManager.GetString("OperationType", resourceCulture);
             }
         }
         
@@ -268,11 +547,38 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Refresh.
+        /// </summary>
+        public static string RefreshAnalyse {
+            get {
+                return ResourceManager.GetString("RefreshAnalyse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Salary.
         /// </summary>
         public static string Salary {
             get {
                 return ResourceManager.GetString("Salary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save.
+        /// </summary>
+        public static string Save {
+            get {
+                return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Save info.
+        /// </summary>
+        public static string SaveNewInfo {
+            get {
+                return ResourceManager.GetString("SaveNewInfo", resourceCulture);
             }
         }
         
@@ -295,11 +601,101 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Category.
+        /// </summary>
+        public static string Select_Category {
+            get {
+                return ResourceManager.GetString("Select Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings.
+        /// </summary>
+        public static string SettingsMenuBar {
+            get {
+                return ResourceManager.GetString("SettingsMenuBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Start limit.
+        /// </summary>
+        public static string StartLimit {
+            get {
+                return ResourceManager.GetString("StartLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Store.
         /// </summary>
         public static string Store {
             get {
                 return ResourceManager.GetString("Store", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Theme.
+        /// </summary>
+        public static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FinManage | Financial manager.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FinManage | Limits.
+        /// </summary>
+        public static string TitleLimit {
+            get {
+                return ResourceManager.GetString("TitleLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на FinManage | Settings.
+        /// </summary>
+        public static string TitleSettings {
+            get {
+                return ResourceManager.GetString("TitleSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To amount.
+        /// </summary>
+        public static string ToAmountFilter {
+            get {
+                return ResourceManager.GetString("ToAmountFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To date.
+        /// </summary>
+        public static string ToDateOperationFilter {
+            get {
+                return ResourceManager.GetString("ToDateOperationFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Total amount.
+        /// </summary>
+        public static string TotalAmount {
+            get {
+                return ResourceManager.GetString("TotalAmount", resourceCulture);
             }
         }
         
@@ -313,11 +709,47 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Expenses.
+        /// </summary>
+        public static string TypeOperation_Expenses {
+            get {
+                return ResourceManager.GetString("TypeOperation_Expenses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Income.
+        /// </summary>
+        public static string TypeOperation_Income {
+            get {
+                return ResourceManager.GetString("TypeOperation_Income", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Unknown.
+        /// </summary>
+        public static string TypeOperation_Unknown {
+            get {
+                return ResourceManager.GetString("TypeOperation_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Vacation pay.
         /// </summary>
         public static string Vacation_pay {
             get {
                 return ResourceManager.GetString("Vacation_pay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Year.
+        /// </summary>
+        public static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

@@ -27,6 +27,8 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<TypesOfCurrency> CurrencyCB { get; }
 
+        public ObservableCollection<CategoryModel> CategoryComboBox { get; }
+
         public ObservableCollection<string> CategoriesCB { get; } =
            new ObservableCollection<string>
            {
@@ -57,7 +59,7 @@ namespace FinManage.ViewModels
         public DateTime MinDate { get; } = new DateTime(2020, 1, 1);
         public DateTime MaxDate { get; } = new DateTime(2099, 12, 31);
 
-        private string _selectedCategory;
+        private CategoryModel _selectedCategory;
         private decimal _amount;
         private string _currency;
         private string _description;
@@ -65,7 +67,7 @@ namespace FinManage.ViewModels
         private DateTime _startDate = DateTime.Now;
         private DateTime _endDate = DateTime.Now;
 
-        public string SelectedCategory
+        public CategoryModel SelectedCategory
         {
             get => _selectedCategory;
             set => Set(ref _selectedCategory, value);
@@ -141,7 +143,7 @@ namespace FinManage.ViewModels
 
         private void AddLimit(object p)
         {
-            if (string.IsNullOrWhiteSpace(SelectedCategory))
+            if (SelectedCategory == null)
             {
                 ShowError("Please select a category.");
                 return;
@@ -153,7 +155,7 @@ namespace FinManage.ViewModels
                 return;
             }
 
-            if (Limits.Any(l => l.Category == SelectedCategory && l.Currency == Currency))
+            if (Limits.Any(l => l.CategoryKey == SelectedCategory.ResourceKey && l.Currency == Currency))
             {
                 ShowError($"Limit for this category - {SelectedCategory} already exists!");
                 return;
@@ -171,7 +173,7 @@ namespace FinManage.ViewModels
                     VALUES ($category, $amount, $currency, $description, $startdate, $enddate);
                     ";
 
-                    command.Parameters.AddWithValue("$category", SelectedCategory);
+                    command.Parameters.AddWithValue("$category", SelectedCategory.ResourceKey);
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency ?? "");
                     command.Parameters.AddWithValue("$description", Description ?? "");
@@ -237,7 +239,7 @@ namespace FinManage.ViewModels
                             var limit = new LimitsModel
                             {
                                 Id = reader.GetInt32(0),
-                                Category = reader.GetString(1),
+                                CategoryKey = reader.GetString(1),
                                 Amount = reader.GetDecimal(2),
                                 Currency = reader.GetString(3),
                                 Description = reader.IsDBNull(4) ? null : reader.GetString(4),
@@ -247,8 +249,8 @@ namespace FinManage.ViewModels
 
                             Limits.Add(limit);
 
-                            if (!Categories.Contains(limit.Category))
-                                Categories.Add(limit.Category);
+                            if (!Categories.Contains(limit.CategoryKey))
+                                Categories.Add(limit.CategoryKey);
                         }
                     }
                 }
@@ -264,9 +266,35 @@ namespace FinManage.ViewModels
             _database = new DataBaseWork();
             CurrencyCB = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
 
+            CategoryComboBox = new ObservableCollection<CategoryModel>
+            {
+                new CategoryModel { ResourceKey = "Food" },
+                new CategoryModel { ResourceKey = "Store" },
+                new CategoryModel { ResourceKey = "Entertainment" },
+                new CategoryModel { ResourceKey = "Online_store" },
+                new CategoryModel { ResourceKey = "Games" },
+                new CategoryModel { ResourceKey = "Public_utilities" },
+                new CategoryModel { ResourceKey = "Phone_top_up" },
+                new CategoryModel { ResourceKey = "Internet_and_TV" },
+                new CategoryModel { ResourceKey = "Security" },
+                new CategoryModel { ResourceKey = "Insurance" },
+                new CategoryModel { ResourceKey = "E_tickets" },
+                new CategoryModel { ResourceKey = "Education" },
+                new CategoryModel { ResourceKey = "Transport" },
+                new CategoryModel { ResourceKey = "Charity" },
+                new CategoryModel { ResourceKey = "Project_support" },
+                new CategoryModel { ResourceKey = "Other" }
+            };
+
             AddLimitCommand = new LambdaCommand(AddLimit);
             DeleteLimitCommand = new LambdaCommand(DeleteLimit);
             CancelCommand = new LambdaCommand(Cancel);
+
+            LocalizationHelper.Instance.PropertyChanged += (s, e) =>
+            {
+                foreach (var cat in CategoryComboBox)
+                    cat.Refresh();
+            };
 
             LoadFromDatabase();
         }

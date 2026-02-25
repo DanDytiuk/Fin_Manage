@@ -117,23 +117,107 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AmountDataGrid" xml:space="preserve">
+  <data name="Gift" xml:space="preserve">
+    <value>Regalo</value>
+  </data>
+  <data name="Government_benefits" xml:space="preserve">
+    <value>Beneficios gubernamentales</value>
+  </data>
+  <data name="Income_from_the_sale_of_shares" xml:space="preserve">
+    <value>Ingresos por la venta de acciones</value>
+  </data>
+  <data name="Salary" xml:space="preserve">
+    <value>Salario</value>
+  </data>
+  <data name="Vacation_pay" xml:space="preserve">
+    <value>Pago de vacaciones</value>
+  </data>
+  <data name="Interest_on_deposits" xml:space="preserve">
+    <value>Intereses sobre depósitos</value>
+  </data>
+  <data name="Pension" xml:space="preserve">
+    <value>Pensión</value>
+  </data>
+  <data name="Scholarship" xml:space="preserve">
+    <value>Beca</value>
+  </data>
+  <data name="Child_support" xml:space="preserve">
+    <value>Manutención infantil</value>
+  </data>
+  <data name="Debt_collection" xml:space="preserve">
+    <value>Cobro de deudas</value>
+  </data>
+  <data name="Insurance_payments" xml:space="preserve">
+    <value>Pagos de seguros</value>
+  </data>
+  <data name="Lottery_or_contest_winnings" xml:space="preserve">
+    <value>Ganancias de lotería o concurso</value>
+  </data>
+  <data name="Food" xml:space="preserve">
+    <value>Alimento</value>
+  </data>
+  <data name="Store" xml:space="preserve">
+    <value>Tienda</value>
+  </data>
+  <data name="Entertainment" xml:space="preserve">
+    <value>Entretenimiento</value>
+  </data>
+  <data name="Online_store" xml:space="preserve">
+    <value>Tienda en línea</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Juegos</value>
+  </data>
+  <data name="Public_utilities" xml:space="preserve">
+    <value>Servicios públicos</value>
+  </data>
+  <data name="Phone_top_up" xml:space="preserve">
+    <value>Recarga de teléfono</value>
+  </data>
+  <data name="Internet_and_TV" xml:space="preserve">
+    <value>Internet y televisión</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>Seguridad</value>
+  </data>
+  <data name="Insurance" xml:space="preserve">
+    <value>Seguro</value>
+  </data>
+  <data name="E_tickets" xml:space="preserve">
+    <value>Billetes electrónicos</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Educación</value>
+  </data>
+  <data name="Transport" xml:space="preserve">
+    <value>Transporte</value>
+  </data>
+  <data name="Charity" xml:space="preserve">
+    <value>Caridad</value>
+  </data>
+  <data name="Project_support" xml:space="preserve">
+    <value>Apoyo a proyectos</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Otros</value>
+  </data>
+  <data name="Cashback" xml:space="preserve">
+    <value>Reembolso</value>
+  </data>
+  <data name="AboutTabControl" xml:space="preserve">
+    <value>Acerca del programa</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
     <value>Significado</value>
   </data>
-  <data name="AnalyseExpensesDataGrid" xml:space="preserve">
+  <data name="AnalyseExpenses" xml:space="preserve">
     <value>Significado del límite</value>
   </data>
-  <data name="AnalyseIncomeDataGrid" xml:space="preserve">
+  <data name="AnalyseIncome" xml:space="preserve">
     <value>Análisis de ingresos</value>
   </data>
-  <data name="AverageAmountAnalyseDataGrid" xml:space="preserve">
+  <data name="AverageAmount" xml:space="preserve">
     <value>Valor medio</value>
-  </data>
-  <data name="CategoryAnalyseDataGrid" xml:space="preserve">
-    <value>Categoría</value>
-  </data>
-  <data name="CategoryDataGrid" xml:space="preserve">
-    <value>Categoría</value>
   </data>
   <data name="Select Category" xml:space="preserve">
     <value>Categoría</value>
@@ -147,34 +231,16 @@
   <data name="ConverterDataGrid" xml:space="preserve">
     <value>Conversor de divisas</value>
   </data>
-  <data name="CurrencyAnalyseDataGrid" xml:space="preserve">
-    <value>Moneda</value>
-  </data>
-  <data name="CurrencyDataGrid" xml:space="preserve">
-    <value>Moneda</value>
-  </data>
-  <data name="CurrencyForAnalyse" xml:space="preserve">
-    <value>Moneda</value>
-  </data>
-  <data name="DateOperationMainPage" xml:space="preserve">
-    <value>Fecha de la operación</value>
-  </data>
-  <data name="DeleteInfoMainPage" xml:space="preserve">
+  <data name="DeleteInfo" xml:space="preserve">
     <value>Eliminar datos</value>
   </data>
-  <data name="DescriptionDataGrid" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="DescriptionMainPage" xml:space="preserve">
+  <data name="Description" xml:space="preserve">
     <value>Descripción</value>
   </data>
   <data name="ExitFromFinManage" xml:space="preserve">
     <value>Salida</value>
   </data>
-  <data name="FiltersDataGridTabControl" xml:space="preserve">
-    <value>Filtros</value>
-  </data>
-  <data name="FinTableDataGridTabControl" xml:space="preserve">
+  <data name="FinTableTabControl" xml:space="preserve">
     <value>Cuadro financiero</value>
   </data>
   <data name="GoAnalyse" xml:space="preserve">
@@ -183,28 +249,13 @@
   <data name="LimitsMenuBar" xml:space="preserve">
     <value>Límites</value>
   </data>
-  <data name="MaximumAmountAnalyseDataGrid" xml:space="preserve">
-    <value>Valor máximo</value>
-  </data>
-  <data name="MinimalAmountAnalyseDataGrid" xml:space="preserve">
-    <value>Valor mínimo</value>
-  </data>
-  <data name="MonthAnalyseDataGrid" xml:space="preserve">
+  <data name="Month" xml:space="preserve">
     <value>Mes</value>
   </data>
-  <data name="MonthOfYearAnalyse" xml:space="preserve">
-    <value>Mes</value>
-  </data>
-  <data name="MonthOfYearAnalyseIncome" xml:space="preserve">
-    <value>Mes</value>
-  </data>
-  <data name="NameOfAmountDataGrid" xml:space="preserve">
+  <data name="NameOfAmount" xml:space="preserve">
     <value>Lugar de acción</value>
   </data>
-  <data name="NameOfAmountMainPage" xml:space="preserve">
-    <value>Lugar de acción</value>
-  </data>
-  <data name="OperationTypeDataGrid" xml:space="preserve">
+  <data name="OperationType" xml:space="preserve">
     <value>Tipo de operación</value>
   </data>
   <data name="RefreshAnalyse" xml:space="preserve">
@@ -216,62 +267,20 @@
   <data name="SettingsMenuBar" xml:space="preserve">
     <value>Ajustes</value>
   </data>
-  <data name="TypeOperation" xml:space="preserve">
-    <value>Tipo de operación</value>
-  </data>
-  <data name="YearAnalyseDataGrid" xml:space="preserve">
+  <data name="Year" xml:space="preserve">
     <value>Año</value>
   </data>
-  <data name="YearAnalyse" xml:space="preserve">
-    <value>Año</value>
-  </data>
-  <data name="AmountOfLimitAnalyseDataGrid" xml:space="preserve">
-    <value>Significado del límite</value>
-  </data>
-  <data name="YearAnalyseIncome" xml:space="preserve">
-    <value>Año</value>
-  </data>
-  <data name="CurrencyForAnalyseIncome" xml:space="preserve">
-    <value>Moneda</value>
-  </data>
-  <data name="GoAnalyseIncome" xml:space="preserve">
-    <value>Análisis</value>
-  </data>
-  <data name="DateDataGrid" xml:space="preserve">
+  <data name="DateData" xml:space="preserve">
     <value>Fecha de la operación</value>
   </data>
-  <data name="CleanAnalyseIncome" xml:space="preserve">
-    <value>Limpiar el formulario</value>
-  </data>
-  <data name="RefreshAnalyseIncome" xml:space="preserve">
-    <value>Actualizar</value>
-  </data>
-  <data name="MonthDataGridAnalyseIncome" xml:space="preserve">
-    <value>Mes</value>
-  </data>
-  <data name="CurrencyDataGridAnalyseIncome" xml:space="preserve">
-    <value>Moneda</value>
-  </data>
-  <data name="CategoryDataGridAnalyseIncome" xml:space="preserve">
-    <value>Categoría</value>
-  </data>
-  <data name="MinimalAmountDataGridAnalyseIncome" xml:space="preserve">
+  <data name="MinimalAmount" xml:space="preserve">
     <value>Valor mínimo</value>
   </data>
-  <data name="AverageAmountDataGridAnalyseIncome" xml:space="preserve">
-    <value>Valor medio</value>
-  </data>
-  <data name="MaximumAmountDataGridAnalyseIncome" xml:space="preserve">
+  <data name="MaximumAmount" xml:space="preserve">
     <value>Valor máximo</value>
   </data>
-  <data name="CategoryFilter" xml:space="preserve">
+  <data name="Category" xml:space="preserve">
     <value>Categoría</value>
-  </data>
-  <data name="TypeOperationFilter" xml:space="preserve">
-    <value>Tipo de operación</value>
-  </data>
-  <data name="CurrencyFilter" xml:space="preserve">
-    <value>Moneda</value>
   </data>
   <data name="FromDateOperationFilter" xml:space="preserve">
     <value>Con</value>
@@ -279,133 +288,65 @@
   <data name="ToDateOperationFilter" xml:space="preserve">
     <value>Hasta</value>
   </data>
-  <data name="NameOfAmountFilter" xml:space="preserve">
-    <value>Lugar de acción</value>
-  </data>
-  <data name="DescriptionFilter" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="CategoryDataGridFilter" xml:space="preserve">
-    <value>Categoría</value>
-  </data>
-  <data name="OperationTypeDataGridFilter" xml:space="preserve">
-    <value>Tipo de operación</value>
-  </data>
-  <data name="NameOfAmountDataGridFilter" xml:space="preserve">
-    <value>Lugar de acción</value>
-  </data>
-  <data name="AmountDataGridFilter" xml:space="preserve">
-    <value>Significado</value>
-  </data>
-  <data name="CurrencyDataGridFilter" xml:space="preserve">
-    <value>Moneda</value>
-  </data>
-  <data name="DateDataGridFilter" xml:space="preserve">
-    <value>Fecha de la operación</value>
-  </data>
-  <data name="DescriptionDataGridFilter" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
-  <data name="AmountMainPage" xml:space="preserve">
-    <value>Significado</value>
-  </data>
   <data name="FromAmountFilter" xml:space="preserve">
     <value>Con</value>
   </data>
   <data name="ToAmountFilter" xml:space="preserve">
     <value>Hasta</value>
   </data>
-  <data name="FilterButtonFIlterPage" xml:space="preserve">
-    <value>Filtro</value>
-  </data>
-  <data name="AboutTabControl" xml:space="preserve">
-    <value>Acerca del programa</value>
-  </data>
-  <data name="CurrencyFinManage" xml:space="preserve">
+  <data name="Currency" xml:space="preserve">
     <value>Moneda</value>
   </data>
-  <data name="Salary" xml:space="preserve">
-    <value>Salario</value>
+  <data name="Title" xml:space="preserve">
+    <value>FinManage | Gerente financiero</value>
   </data>
-  <data name="Charity" xml:space="preserve">
-    <value>Caridad</value>
-  </data>
-  <data name="Child_support" xml:space="preserve">
-    <value>Manutención infantil</value>
-  </data>
-  <data name="Debt_collection" xml:space="preserve">
-    <value>Cobro de deudas</value>
-  </data>
-  <data name="Education" xml:space="preserve">
-    <value>Educación</value>
-  </data>
-  <data name="Entertainment" xml:space="preserve">
-    <value>Entretenimiento</value>
-  </data>
-  <data name="E_tickets" xml:space="preserve">
-    <value>Billetes electrónicos</value>
-  </data>
-  <data name="Food" xml:space="preserve">
-    <value>Alimento</value>
-  </data>
-  <data name="Games" xml:space="preserve">
-    <value>Juegos</value>
-  </data>
-  <data name="Gift" xml:space="preserve">
-    <value>Regalo</value>
-  </data>
-  <data name="Government_benefits" xml:space="preserve">
-    <value>Beneficios gubernamentales</value>
-  </data>
-  <data name="Income_from_the_sale_of_shares" xml:space="preserve">
-    <value>Ingresos por la venta de acciones</value>
-  </data>
-  <data name="Insurance" xml:space="preserve">
-    <value>Seguro</value>
-  </data>
-  <data name="Insurance_payments" xml:space="preserve">
-    <value>Pagos de seguros</value>
-  </data>
-  <data name="Interest_on_deposits" xml:space="preserve">
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TotalAmount" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="Internet_and_TV" xml:space="preserve">
-    <value />
+  <data name="AmountLimit" xml:space="preserve">
+    <value>Límite de importe</value>
   </data>
-  <data name="Lottery_or_contest_winnings" xml:space="preserve">
-    <value />
+  <data name="Filters" xml:space="preserve">
+    <value>Filtros</value>
   </data>
-  <data name="Online_store" xml:space="preserve">
-    <value />
+  <data name="Filter" xml:space="preserve">
+    <value>Filtro</value>
   </data>
-  <data name="Other" xml:space="preserve">
-    <value />
+  <data name="Theme" xml:space="preserve">
+    <value>Tema</value>
   </data>
-  <data name="Pension" xml:space="preserve">
-    <value />
+  <data name="Language" xml:space="preserve">
+    <value>Idioma</value>
   </data>
-  <data name="Phone_top_up" xml:space="preserve">
-    <value />
+  <data name="Save" xml:space="preserve">
+    <value>Ahorro</value>
   </data>
-  <data name="Project_support" xml:space="preserve">
-    <value />
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
-  <data name="Public_utilities" xml:space="preserve">
-    <value />
+  <data name="TitleLimit" xml:space="preserve">
+    <value>FinManage | Límites</value>
   </data>
-  <data name="Scholarship" xml:space="preserve">
-    <value />
+  <data name="TitleSettings" xml:space="preserve">
+    <value>FinManage | Ajustes</value>
   </data>
-  <data name="Security" xml:space="preserve">
-    <value />
+  <data name="Delete" xml:space="preserve">
+    <value>Eliminar</value>
   </data>
-  <data name="Store" xml:space="preserve">
-    <value />
+  <data name="StartLimit" xml:space="preserve">
+    <value>Límite de inicio</value>
   </data>
-  <data name="Transport" xml:space="preserve">
-    <value />
+  <data name="EndLimit" xml:space="preserve">
+    <value>Límite final</value>
   </data>
-  <data name="Vacation_Pay" xml:space="preserve">
-    <value />
+  <data name="TypeOperation_Unknown" xml:space="preserve">
+    <value>Desconocido</value>
+  </data>
+  <data name="TypeOperation_Expenses" xml:space="preserve">
+    <value>Gastos</value>
+  </data>
+  <data name="TypeOperation_Income" xml:space="preserve">
+    <value>Ingreso</value>
   </data>
 </root>

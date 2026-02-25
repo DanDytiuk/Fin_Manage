@@ -1,19 +1,21 @@
-﻿using System;
+﻿using FinManage.Properties;
+using System;
 using System.Globalization;
 using System.Windows.Data;
 
 namespace FinManage.Services
 {
-    internal class EnumLocalizationHelper : IValueConverter
+    public static class EnumLocalizationHelper
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public static string GetLocalized<T>(T enumValue) where T : Enum
         {
-            return LocalizationHelper.Instance[value.ToString()];
-        }
+            string key = $"{typeof(T).Name}_{enumValue}";
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
+            string localized = Resources.ResourceManager.GetString(key, Resources.Culture);
+
+            return string.IsNullOrEmpty(localized)
+                ? enumValue.ToString()
+                : localized;
         }
     }
 }
