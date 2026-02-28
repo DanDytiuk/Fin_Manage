@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -25,42 +26,6 @@ namespace FinManage.ViewModels
 
         #region Helpers
 
-        private void ShowError(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Error",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowMessage(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Info",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Information);
-        }
-
-        private void ShowAttention(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Attention",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        private void ShowLearn(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Welcome",
-                System.Windows.MessageBoxButton.OKCancel,
-                System.Windows.MessageBoxImage.Question);
-        }
-
         private void CleanComboBox()
         {
             Category = null;
@@ -69,11 +34,6 @@ namespace FinManage.ViewModels
             Amount = 0;
             Description = string.Empty;
             DataTime = DateTime.Today;
-        }
-
-        private void CleanComboBoxAnalyse()
-        {
-
         }
 
         #endregion
@@ -97,22 +57,7 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int>(Enumerable.Range(2025, 20));
 
-        public ObservableCollection<StatisticsModel> Months { get; } =
-            new ObservableCollection<StatisticsModel>
-            {
-                new StatisticsModel { ValueMonth = 1, NameMonth = "January" },
-                new StatisticsModel { ValueMonth = 2, NameMonth = "February" },
-                new StatisticsModel { ValueMonth = 3, NameMonth = "March" },
-                new StatisticsModel { ValueMonth = 4, NameMonth = "April" },
-                new StatisticsModel { ValueMonth = 5, NameMonth = "May" },
-                new StatisticsModel { ValueMonth = 6, NameMonth = "June" },
-                new StatisticsModel { ValueMonth = 7, NameMonth = "July" },
-                new StatisticsModel { ValueMonth = 8, NameMonth = "August" },
-                new StatisticsModel { ValueMonth = 9, NameMonth = "September" },
-                new StatisticsModel { ValueMonth = 10, NameMonth = "October" },
-                new StatisticsModel { ValueMonth = 11, NameMonth = "November" },
-                new StatisticsModel { ValueMonth = 12, NameMonth = "December" }
-            };
+        public ObservableCollection<MonthModel> Months { get; }
 
         #endregion
 
@@ -120,6 +65,7 @@ namespace FinManage.ViewModels
 
         private string _selectedYearCB;
         private StatisticsModel _selectedMonthCB;
+        private MonthModel _selectedMonth;
         private string _selectedCurrency;
 
         public string SelectedYearCB
@@ -131,6 +77,11 @@ namespace FinManage.ViewModels
         {
             get => _selectedMonthCB;
             set => Set(ref _selectedMonthCB, value);
+        }
+        public MonthModel SelectedMonth
+        {
+            get => _selectedMonth;
+            set => Set(ref _selectedMonth, value);
         }
         public string SelectedCurrency
         {
@@ -154,9 +105,12 @@ namespace FinManage.ViewModels
             var limits = LoadLimits();
 
             StatisticsList = BuildStatisticsList(
-                CategoriesCB,
+                CategoriesCBExpenses,
                 expenseStats,
                 limits);
+
+            foreach (var item in StatisticsList)
+                item.RefreshLocalizationCategory();
 
             OnPropertyChanged(nameof(StatisticsList));
 
@@ -171,15 +125,16 @@ namespace FinManage.ViewModels
             SelectedMonthCB = null;
             SelectedCurrency = null;
         }
+
         #endregion
 
         #region Database functions
 
         private Dictionary<string, StatisticsModel> LoadStatistics()
         {
-            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
+            if (SelectedCurrency == null || SelectedMonth == null || SelectedYearCB == null)
             {
-                ShowError("Please select a month, year or type currency.");
+                MessageHelper.ShowError("PleaseSelectCurrencyMonthYearMessage", "Error");
                 return new Dictionary<string, StatisticsModel>();
             }
             else
@@ -205,7 +160,7 @@ namespace FinManage.ViewModels
                     GROUP BY Category";
 
                         command.Parameters.AddWithValue("@currency", SelectedCurrency);
-                        command.Parameters.AddWithValue("@month", SelectedMonthCB.ValueMonth.ToString("D2"));
+                        command.Parameters.AddWithValue("@month", SelectedMonth.ValueMonth.ToString("D2"));
                         command.Parameters.AddWithValue("@year", SelectedYearCB.ToString());
 
                         using (var reader = command.ExecuteReader())
@@ -233,7 +188,7 @@ namespace FinManage.ViewModels
 
         private Dictionary<string, decimal> LoadLimits()
         {
-            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
+            if (SelectedCurrency == null || SelectedMonth == null || SelectedYearCB == null)
             {
                 return new Dictionary<string, decimal>();
             }
@@ -292,7 +247,7 @@ namespace FinManage.ViewModels
 
         private ObservableCollection<StatisticsModel> BuildValuelist()
         {
-            if (SelectedCurrency == null || SelectedMonthCB == null || SelectedYearCB == null)
+            if (SelectedCurrency == null || SelectedMonth == null || SelectedYearCB == null)
             {
                 return new ObservableCollection<StatisticsModel>();
             }
@@ -302,7 +257,7 @@ namespace FinManage.ViewModels
                 new StatisticsModel
                 {
                     SelectedCurrency = SelectedCurrency,
-                    SelectedMonth = SelectedMonthCB.ValueMonth.ToString(),
+                    SelectedMonth = SelectedMonth.DisplayName,
                     SelectedYear = SelectedYearCB
                 }
             };
@@ -310,6 +265,181 @@ namespace FinManage.ViewModels
             return list;
         }
 
+
+        #endregion
+
+        #endregion
+
+        #region AnalyseIncome
+
+        #region Commands Unit
+
+        public ICommand GoInfoIncomeCommand { get; }
+        public ICommand RefreshInfoIncomeCommand { get; }
+        public ICommand CleanCBIncomeCommand { get; }
+        private bool CanGoInfoIncomeCommandExecute(object p) => true;
+        private bool CanRefreshInfoIncomeCommandExecute(object p) => true;
+        private bool CanCleanCBIncomeCommandExecute(object p) => true;
+
+        #endregion
+
+        #region PropertyChanged
+
+        private string _selectedYearIncomeCB;
+        private MonthModel _selectedMonthIncomeCB;
+        private string _selectedCurrencyIncome;
+
+        public string SelectedYearIncomeCB
+        {
+            get => _selectedYearIncomeCB;
+            set => Set(ref _selectedYearIncomeCB, value);
+        }
+        public MonthModel SelectedMonthIncomeCB
+        {
+            get => _selectedMonthIncomeCB;
+            set => Set(ref _selectedMonthIncomeCB, value);
+        }
+        public string SelectedCurrencyIncomeCB
+        {
+            get => _selectedCurrencyIncome;
+            set => Set(ref _selectedCurrencyIncome, value);
+        }
+
+        #endregion
+
+        #region Collections
+
+        public ObservableCollection<StatisticsModel> StatisticsListIncome { get; set; } = new ObservableCollection<StatisticsModel>();
+        public ObservableCollection<StatisticsModel> ValueListIncome { get; set; } = new ObservableCollection<StatisticsModel>();
+
+        #endregion
+
+        #region Main functions
+
+        private void GoLoadAnalyticsIncome(object p)
+        {
+            var expenseStats = LoadStatisticsIncome();
+
+            StatisticsListIncome = BuildStatisticsListIncome(
+                CategoriesCBIncome,
+                expenseStats
+                );
+
+            foreach (var item in StatisticsListIncome)
+                item.RefreshLocalizationCategory();
+
+            OnPropertyChanged(nameof(StatisticsListIncome));
+
+            ValueList = BuildValueIncomeList();
+
+            OnPropertyChanged(nameof(ValueListIncome));
+        }
+        private void CleanCBAnalyticsIncome(object p)
+        {
+            SelectedYearIncomeCB = null;
+            SelectedMonthIncomeCB = null;
+            SelectedCurrencyIncomeCB = null;
+        }
+
+        #endregion
+
+        #region Database functions
+
+        private Dictionary<string, StatisticsModel> LoadStatisticsIncome()
+        {
+            if (SelectedCurrencyIncomeCB == null || SelectedYearIncomeCB == null || SelectedYearIncomeCB == null)
+            {
+                MessageHelper.ShowError("PleaseSelectCurrencyMonthYearMessage", "Error");
+                return new Dictionary<string, StatisticsModel>();
+            }
+            else
+            {
+                var result = new Dictionary<string, StatisticsModel>();
+
+                using (var connection = _database.GetConnection())
+                {
+                    connection.Open();
+
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText =
+                        @"SELECT Category,
+                        IFNULL(MIN(Amount),0),
+                        IFNULL(AVG(Amount),0),
+                        IFNULL(MAX(Amount),0),
+                        IFNULL(SUM(Amount),0)
+                    FROM MainData
+                    WHERE Currency = @currency
+                        AND strftime('%m', DateInfo) = @month
+                        AND strftime('%Y', DateInfo) = @year
+                    GROUP BY Category";
+
+                        command.Parameters.AddWithValue("@currency", SelectedCurrencyIncomeCB);
+                        command.Parameters.AddWithValue("@month", SelectedMonthIncomeCB.ValueMonth.ToString("D2"));
+                        command.Parameters.AddWithValue("@year", SelectedYearIncomeCB.ToString());
+                    
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var category = reader.GetString(0);
+
+                                result[category] = new StatisticsModel 
+                                {
+                                    Category = category,
+                                    MinAmount = reader.GetDecimal(1),
+                                    AvgAmount = reader.GetDecimal(2),
+                                    MaxAmount = reader.GetDecimal(3),
+                                    TotalAmount = reader.GetDecimal(4)
+                                };
+                            }
+                        }
+                    }
+                }
+                return result;
+            }
+        }
+
+        private ObservableCollection<StatisticsModel> BuildStatisticsListIncome(
+        IEnumerable<string> categories,
+        Dictionary<string, StatisticsModel> expenses)
+        {
+            var list = new ObservableCollection<StatisticsModel>();
+
+            foreach (var category in categories)
+            {
+                expenses.TryGetValue(category, out var stat);
+                
+                list.Add(new StatisticsModel 
+                { 
+                    Category = category,
+                    MinAmount = stat?.MinAmount ?? 0,
+                    AvgAmount = stat?.AvgAmount ?? 0,
+                    MaxAmount = stat?.MaxAmount ?? 0,
+                    TotalAmount = stat?.TotalAmount ?? 0
+                });
+            }
+            return list;
+        }
+
+        private ObservableCollection<StatisticsModel> BuildValueIncomeList()
+        {
+            if (SelectedCurrencyIncomeCB == null || SelectedYearIncomeCB == null || SelectedYearCB == null)
+            {
+                return new ObservableCollection<StatisticsModel>();
+            }
+
+            var list = new ObservableCollection<StatisticsModel>
+            {
+                new StatisticsModel
+                {
+                    SelectedCurrency = SelectedCurrencyIncomeCB,
+                    SelectedMonth = SelectedMonthIncomeCB.DisplayName,
+                    SelectedYear = SelectedYearIncomeCB
+                }
+            };
+            return list;
+        }
 
         #endregion
 
@@ -330,32 +460,49 @@ namespace FinManage.ViewModels
         public Array CurrencyCB => Enum.GetValues(typeof(TypesOfCurrency));
         public ObservableCollection<TypeOperation> OperationCB { get; }
         public ObservableCollection<string> Categories { get; }
-        public ObservableCollection<string> CategoriesCB { get; } =
+        public ObservableCollection<string> CategoriesCBExpenses { get; } =
            new ObservableCollection<string>
            {
                 "Food",
                 "Store",
                 "Entertainment",
-                "Online store",
+                "Online_store",
                 "Games",
-                "Public Utilities",
-                "Phone Top Up",
-                "Card Top Up",
-                "Internet And TV",
+                "Public_utilities",
+                "Phone_top_up",
+                "Internet_and_TV",
                 "Security",
                 "Insurance",
-                "E-Tickets",
+                "E_tickets",
                 "Education",
                 "Transport",
                 "Charity",
-                "Commission",
-                "Project Support",
+                "Project_support",
+                "Other"
+           };
+
+        public ObservableCollection<string> CategoriesCBIncome { get; } =
+           new ObservableCollection<string>
+           {
+                "Salary",
+                "Gift",
+                "Vacation_pay",
+                "Cashback",
+                "Income_from_the_sale_of_shares",
+                "Interest_on_deposits",
+                "Government_benefits",
+                "Pension",
+                "Scholarship",
+                "Child_support",
+                "Debt_collection",
+                "Insurance_payments",
+                "Lottery_or_contest_winnings",
                 "Other"
            };
 
         public ObservableCollection<CategoryModel> IncomeCategories { get; }
         public ObservableCollection<CategoryModel> ExpensesCategories { get; }
-        public ObservableCollection<CategoryModel> OperationTypes { get; }
+        public ObservableCollection<OperationModel> OperationTypes { get; }
 
         #endregion
 
@@ -372,13 +519,6 @@ namespace FinManage.ViewModels
         private DateTime? _dataTime = DateTime.Today;
         private string _description;
         private FinAllTableModel _selectedFinManage;
-        private bool _isSecondComboBoxVisible;
-
-        public bool IsSecondComboBoxVisible
-        {
-            get => _isSecondComboBoxVisible;
-            set => Set(ref _isSecondComboBoxVisible, value);
-        }
 
         public CategoryModel Category
         {
@@ -394,6 +534,8 @@ namespace FinManage.ViewModels
 
                 OnPropertyChanged(nameof(IsIncomeVisible));
                 OnPropertyChanged(nameof(IsExpenseVisible));
+
+                Category = null;
             }
         }
 
@@ -448,7 +590,7 @@ namespace FinManage.ViewModels
         {
             if (Category == null | Amount <= 0 | TypeOperation == TypeOperation.Unknown)
             {
-                ShowError("Please select a category, valid amount or type operation.");
+                MessageHelper.ShowError("PleaseSelectCategoryAmountMessage", "Error");
             }
             else
             {
@@ -483,7 +625,7 @@ namespace FinManage.ViewModels
         }
         private void DeleteFinDatainfo(object p)
         {
-            if (SelectedFinManage == null) { ShowAttention("Please a select string for delete!"); return; }
+            if (SelectedFinManage == null) { MessageHelper.ShowAttention("SelectStringMessage", "Attention"); return; }
 
             using (var connection = _database.GetConnection())
             {
@@ -709,16 +851,7 @@ namespace FinManage.ViewModels
 
         public MainWindowViewModel()
         {
-            #region MenuBar
-            CloseAppCommand = new LambdaCommand(CloseAppCommandExecute, CanCloseAppCommandExecute);
-            OpenSettingsCommand = new LambdaCommand(OpenSettingsCommandExecute, CanOpenSettingsCommandExecute);
-            OpenLimitsCommand = new LambdaCommand(OpenLimitsCommandExecute, CanOpenLimitsCommandExecute);
-            #endregion
-
-            #region FinManageData
-
-            _database = new DataBaseWork();
-            OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
+            #region ComboBox
 
             IncomeCategories = new ObservableCollection<CategoryModel>
             {
@@ -737,8 +870,8 @@ namespace FinManage.ViewModels
                 new CategoryModel { ResourceKey = "Lottery_or_contest_winnings" }
             };
 
-            ExpensesCategories = new ObservableCollection<CategoryModel> 
-            { 
+            ExpensesCategories = new ObservableCollection<CategoryModel>
+            {
                 new CategoryModel { ResourceKey = "Food" },
                 new CategoryModel { ResourceKey = "Store" },
                 new CategoryModel { ResourceKey = "Entertainment" },
@@ -757,11 +890,26 @@ namespace FinManage.ViewModels
                 new CategoryModel { ResourceKey = "Other" }
             };
 
-            OperationTypes = new ObservableCollection<CategoryModel>
+            OperationTypes = new ObservableCollection<OperationModel>
             {
-                new CategoryModel { ResourceKey = "TypeOperation_Unknown" },
-                new CategoryModel { ResourceKey = "TypeOperation_Expenses" },
-                new CategoryModel { ResourceKey = "TypeOperation_Income" }
+                new OperationModel { Type = TypeOperation.Expenses  ,ResourceKey = "TypeOperation_Expenses" },
+                new OperationModel { Type = TypeOperation.Income ,ResourceKey = "TypeOperation_Income" }
+            };
+
+            Months = new ObservableCollection<MonthModel>
+            {
+                new MonthModel { ValueMonth = 1, ResourceKey = "January" },
+                new MonthModel { ValueMonth = 2, ResourceKey = "February" },
+                new MonthModel { ValueMonth = 3, ResourceKey = "March" },
+                new MonthModel { ValueMonth = 4, ResourceKey = "April" },
+                new MonthModel { ValueMonth = 5, ResourceKey = "May" },
+                new MonthModel { ValueMonth = 6, ResourceKey = "June" },
+                new MonthModel { ValueMonth = 7, ResourceKey = "July" },
+                new MonthModel { ValueMonth = 8, ResourceKey = "August" },
+                new MonthModel { ValueMonth = 9, ResourceKey = "September" },
+                new MonthModel { ValueMonth = 10, ResourceKey = "October" },
+                new MonthModel { ValueMonth = 11, ResourceKey = "November" },
+                new MonthModel { ValueMonth = 12, ResourceKey = "December" }
             };
 
             LocalizationHelper.Instance.PropertyChanged += (s, e) =>
@@ -774,20 +922,48 @@ namespace FinManage.ViewModels
 
                 foreach (var cat in OperationTypes)
                     cat.Refresh();
+
+                foreach (var cat in Months)
+                    cat.Refresh();
             };
+
+            #endregion
+
+            #region MenuBar
+
+            CloseAppCommand = new LambdaCommand(CloseAppCommandExecute, CanCloseAppCommandExecute);
+            OpenSettingsCommand = new LambdaCommand(OpenSettingsCommandExecute, CanOpenSettingsCommandExecute);
+            OpenLimitsCommand = new LambdaCommand(OpenLimitsCommandExecute, CanOpenLimitsCommandExecute);
+
+            #endregion
+
+            #region FinManageData
+
+            _database = new DataBaseWork();
+
+            OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
 
             AddFinDataInfoCommand = new LambdaCommand(AddFinDataInfo, CanAddFinDataInfoCommandExecute);
             DeleteFinDataInfoCommand = new LambdaCommand(DeleteFinDatainfo, CanDeleteDataInfoCommandExecute);
 
             LoadFromDB();
+
             #endregion
 
-            #region Analysis
+            #region AnalyseExpenses
 
             GoInfoCommand = new LambdaCommand(GoLoadAnalytics, CanGoInfoCommandExecute);
             CleanCBCommand = new LambdaCommand(CleanCBAnalytics, CanCleanCBCommandExecute);
             RefreshInfoCommand = new LambdaCommand(GoLoadAnalytics, CanRefreshInfoCommandExecute);
 
+            #endregion
+
+            #region AnalyseIncome
+
+            GoInfoIncomeCommand = new LambdaCommand(GoLoadAnalyticsIncome, CanGoInfoIncomeCommandExecute);
+            CleanCBIncomeCommand = new LambdaCommand(CleanCBAnalyticsIncome, CanCleanCBIncomeCommandExecute);
+            RefreshInfoIncomeCommand = new LambdaCommand(GoLoadAnalyticsIncome, CanRefreshInfoIncomeCommandExecute);
+            
             #endregion
 
             #region Filter

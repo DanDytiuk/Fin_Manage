@@ -91,7 +91,7 @@
                               DisplayMemberPath="DisplayName" 
                               SelectedItem="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                               Height="25"
-                              Visibility="{Binding TypeOperation, Converter={StaticResource VisibleConvert}, ConverterParameter=Income}"/>
+                              Visibility="{Binding IsIncomeVisible, Converter={StaticResource VisibleConvert}}"/>
 
                     <ComboBox HorizontalAlignment="Left"
                               Margin="280,45,0,0"
@@ -101,15 +101,16 @@
                               ItemsSource="{Binding ExpensesCategories}"
                               DisplayMemberPath="DisplayName"
                               SelectedItem="{Binding Category, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              Visibility="{Binding TypeOperation, Converter={StaticResource VisibleConvert}, ConverterParameter=Expenses}"/>
+                              Visibility="{Binding IsExpenseVisible, Converter={StaticResource VisibleConvert}}"/>
 
                     <ComboBox HorizontalAlignment="Left" 
                               Margin="140,15,0,0" 
                               VerticalAlignment="Top" 
                               Width="260" 
-                              DisplayMemberPath="DisplayName"
                               ItemsSource="{Binding OperationTypes}" 
-                              SelectedItem="{Binding TypeOperation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="Type"
+                              SelectedValue="{Binding TypeOperation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
                               Height="25"/>
 
 
@@ -236,8 +237,9 @@
                               VerticalAlignment="Top" 
                               Width="120" 
                               ItemsSource="{Binding Months, Mode=OneWay}" 
-                              DisplayMemberPath="NameMonth" 
-                              SelectedItem="{Binding SelectedMonthCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="ValueMonth"
+                              SelectedItem="{Binding SelectedMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <ComboBox HorizontalAlignment="Left" 
                               Margin="221,50,0,0" 
@@ -255,7 +257,7 @@
                             <DataGridTextColumn 
                                 Header="{Binding [Category], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding Category}"/>
+                                Binding="{Binding CategoryLocalize}"/>
                             <DataGridTextColumn 
                                 Header="{Binding [MinimalAmount], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
@@ -344,10 +346,120 @@
             <TabItem Header="{Binding [AnalyseIncome], Source={StaticResource Loc}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
                         <ColumnDefinition Width="13*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="1"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="10,25,0,0" 
+                               TextWrapping="Wrap" 
+                               Text="{Binding [Month], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" Width="120"/>
+
+                    <ComboBox HorizontalAlignment="Left" 
+                              Margin="10,50,0,0" 
+                              VerticalAlignment="Top" 
+                              Width="120" 
+                              ItemsSource="{Binding Months, Mode=OneWay}" 
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="ValueMonth"
+                              SelectedItem="{Binding SelectedMonthIncomeCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ComboBox HorizontalAlignment="Left" 
+                              Margin="221,50,0,0" 
+                              VerticalAlignment="Top" 
+                              Width="120" 
+                              ItemsSource="{Binding YearsCB, Mode=OneWay}" 
+                              SelectedItem="{Binding SelectedYearIncomeCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <DataGrid Grid.Column="1" 
+                              AutoGenerateColumns="False" 
+                              ItemsSource="{Binding StatisticsListIncome, Mode=OneWay}" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn 
+                                Header="{Binding [Category], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding CategoryLocalize}"/>
+                            <DataGridTextColumn 
+                                Header="{Binding [MinimalAmount], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding MinAmount}"/>
+                            <DataGridTextColumn 
+                                Header="{Binding [AverageAmount], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding AvgAmount}"/>
+                            <DataGridTextColumn 
+                                Header="{Binding [MaximumAmount], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding MaxAmount}"/>
+                            <DataGridTextColumn 
+                                Header="{Binding [TotalAmount], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding TotalAmount}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="221,25,0,0" 
+                               TextWrapping="Wrap" 
+                               Text="{Binding [Year], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="10,113,0,0" 
+                               TextWrapping="Wrap" 
+                               Text="{Binding [Currency], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" Width="120"/>
+
+                    <ComboBox HorizontalAlignment="Left" 
+                              Margin="10,151,0,0" 
+                              VerticalAlignment="Top" 
+                              Width="120" 
+                              ItemsSource="{Binding CurrencyCB, Mode=OneWay}" 
+                              SelectedItem="{Binding SelectedCurrencyIncomeCB, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <Button Content="{Binding [GoAnalyse], Source={StaticResource Loc}}" 
+                            HorizontalAlignment="Left" 
+                            Margin="188,99,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="153" 
+                            Command="{Binding GoInfoIncomeCommand}"/>
+
+                    <DataGrid ItemsSource="{Binding ValueListIncome}" Margin="0,248,0,426" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="{Binding [Month], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding SelectedMonth}"
+                                Width="100"/>
+                            <DataGridTextColumn
+                                Header="{Binding [Year], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding SelectedYear}"
+                                Width="100"/>
+                            <DataGridTextColumn
+                                Header="{Binding [Currency], Source={StaticResource Loc}}"
+                                IsReadOnly="True"
+                                Binding="{Binding SelectedCurrency}"
+                                Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button Content="{Binding [CleanAnalyse], Source={StaticResource Loc}}" 
+                            HorizontalAlignment="Left" 
+                            Margin="189,144,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="152" 
+                            Command="{Binding CleanCBIncomeCommand}"/>
+
+                    <Button Content="{Binding [RefreshAnalyse], Source={StaticResource Loc}}" 
+                            HorizontalAlignment="Left" 
+                            Margin="190,195,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="152" 
+                            Command="{Binding RefreshInfoIncomeCommand}"/>
                 </Grid>
             </TabItem>
             <TabItem Header="{Binding [Filters], Source={StaticResource Loc}}">
@@ -359,7 +471,9 @@
                     <DataGrid Grid.Column="1"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="{Binding [ConverterDataGrid], Source={StaticResource Loc}}"></TabItem>
+            <TabItem Header="{Binding [ConverterDataGrid], Source={StaticResource Loc}}">
+                
+            </TabItem>
 
 
         </TabControl>

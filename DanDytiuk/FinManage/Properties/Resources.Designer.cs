@@ -106,6 +106,33 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на April.
+        /// </summary>
+        public static string April {
+            get {
+                return ResourceManager.GetString("April", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Attention.
+        /// </summary>
+        public static string Attention {
+            get {
+                return ResourceManager.GetString("Attention", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на August.
+        /// </summary>
+        public static string August {
+            get {
+                return ResourceManager.GetString("August", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Average amount.
         /// </summary>
         public static string AverageAmount {
@@ -214,6 +241,15 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на December.
+        /// </summary>
+        public static string December {
+            get {
+                return ResourceManager.GetString("December", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Delete.
         /// </summary>
         public static string Delete {
@@ -277,11 +313,29 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Exit.
         /// </summary>
         public static string ExitFromFinManage {
             get {
                 return ResourceManager.GetString("ExitFromFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на February.
+        /// </summary>
+        public static string February {
+            get {
+                return ResourceManager.GetString("February", resourceCulture);
             }
         }
         
@@ -304,7 +358,7 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Fin table.
+        ///   Ищет локализованную строку, похожую на Financial table.
         /// </summary>
         public static string FinTableTabControl {
             get {
@@ -385,6 +439,15 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Information.
+        /// </summary>
+        public static string Information {
+            get {
+                return ResourceManager.GetString("Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Insurance.
         /// </summary>
         public static string Insurance {
@@ -421,11 +484,47 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на January.
+        /// </summary>
+        public static string January {
+            get {
+                return ResourceManager.GetString("January", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на July.
+        /// </summary>
+        public static string July {
+            get {
+                return ResourceManager.GetString("July", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на June.
+        /// </summary>
+        public static string June {
+            get {
+                return ResourceManager.GetString("June", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Language.
         /// </summary>
         public static string Language {
             get {
                 return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на The selected language will be applied after restarting the application..
+        /// </summary>
+        public static string LanguageRestartMessage {
+            get {
+                return ResourceManager.GetString("LanguageRestartMessage", resourceCulture);
             }
         }
         
@@ -448,11 +547,29 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на March.
+        /// </summary>
+        public static string March {
+            get {
+                return ResourceManager.GetString("March", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Maximum amount.
         /// </summary>
         public static string MaximumAmount {
             get {
                 return ResourceManager.GetString("MaximumAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на May.
+        /// </summary>
+        public static string May {
+            get {
+                return ResourceManager.GetString("May", resourceCulture);
             }
         }
         
@@ -480,6 +597,24 @@ namespace FinManage.Properties {
         public static string NameOfAmount {
             get {
                 return ResourceManager.GetString("NameOfAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на November.
+        /// </summary>
+        public static string November {
+            get {
+                return ResourceManager.GetString("November", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на October.
+        /// </summary>
+        public static string October {
+            get {
+                return ResourceManager.GetString("October", resourceCulture);
             }
         }
         
@@ -525,6 +660,24 @@ namespace FinManage.Properties {
         public static string Phone_top_up {
             get {
                 return ResourceManager.GetString("Phone_top_up", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Please select a category or valid amount..
+        /// </summary>
+        public static string PleaseSelectCategoryAmountMessage {
+            get {
+                return ResourceManager.GetString("PleaseSelectCategoryAmountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Please select currency, month or year for analyse!.
+        /// </summary>
+        public static string PleaseSelectCurrencyMonthYearMessage {
+            get {
+                return ResourceManager.GetString("PleaseSelectCurrencyMonthYearMessage", resourceCulture);
             }
         }
         
@@ -606,6 +759,24 @@ namespace FinManage.Properties {
         public static string Select_Category {
             get {
                 return ResourceManager.GetString("Select Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Please a select string for delete!.
+        /// </summary>
+        public static string SelectStringMessage {
+            get {
+                return ResourceManager.GetString("SelectStringMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на September.
+        /// </summary>
+        public static string September {
+            get {
+                return ResourceManager.GetString("September", resourceCulture);
             }
         }
         
@@ -723,15 +894,6 @@ namespace FinManage.Properties {
         public static string TypeOperation_Income {
             get {
                 return ResourceManager.GetString("TypeOperation_Income", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Unknown.
-        /// </summary>
-        public static string TypeOperation_Unknown {
-            get {
-                return ResourceManager.GetString("TypeOperation_Unknown", resourceCulture);
             }
         }
         

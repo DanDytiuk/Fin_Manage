@@ -196,7 +196,7 @@
     <value>Благодійність</value>
   </data>
   <data name="Project_support" xml:space="preserve">
-    <value>Підтримка проєкту</value>
+    <value>Підтримка проекту</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Інше</value>
@@ -339,13 +339,67 @@
   <data name="EndLimit" xml:space="preserve">
     <value>Кінець ліміту</value>
   </data>
-  <data name="TypeOperation_Unknown" xml:space="preserve">
-    <value>Невідомо</value>
-  </data>
   <data name="TypeOperation_Expenses" xml:space="preserve">
     <value>Витрати</value>
   </data>
   <data name="TypeOperation_Income" xml:space="preserve">
     <value>Дохід</value>
+  </data>
+  <data name="LanguageRestartMessage" xml:space="preserve">
+    <value>Вибрана мова застосується після перезавантаження програми</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Інформація</value>
+  </data>
+  <data name="SelectStringMessage" xml:space="preserve">
+    <value>Будь ласка, виберіть рядок для видалення!</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Увага</value>
+  </data>
+  <data name="PleaseSelectCategoryAmountMessage" xml:space="preserve">
+    <value>Будь ласка, виберіть категорію або дійсну суму.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="PleaseSelectCurrencyMonthYearMessage" xml:space="preserve">
+    <value>Будь ласка, виберіть валюту, місяць або рік для аналізу!</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Январь</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Лютий</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Березень</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Квітень</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Травень</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Червень</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Липень</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Серпень</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Вересень</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Жовтень</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Листопад</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Грудень</value>
   </data>
 </root>

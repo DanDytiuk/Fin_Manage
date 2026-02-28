@@ -40,15 +40,6 @@ namespace FinManage.ViewModels
         public ObservableCollection<Category> Category { get; }
         public ObservableCollection<LanguageModel> LanguagesCB { get; }
 
-        /*public ObservableCollection<LanguageModel> LanguagesCB { get; } = new ObservableCollection<LanguageModel>
-        {
-            new LanguageModel { DisplayName = "English", LanguageCode = "en" },
-            new LanguageModel { DisplayName = "Українська", LanguageCode = "uk"},
-            new LanguageModel { DisplayName = "Русский", LanguageCode = "ru"},
-            new LanguageModel { DisplayName = "Espanol", LanguageCode = "es"},
-            new LanguageModel { DisplayName = "Francais", LanguageCode = "fr"}
-        };*/
-
         #endregion
 
         public ICommand SaveCommand { get; }
@@ -89,13 +80,15 @@ namespace FinManage.ViewModels
             SaveSettings(Settings);
 
             LocalizationHelper.Instance.SetLanguage(Settings.Language);
-
-            MessageBox.Show(
+            //if (SelectedLanguage == Settings.Language)
+            /*MessageBox.Show(
                 LocalizationHelper.Instance["LanguageRestartMessage"],
                 LocalizationHelper.Instance["Information"],
                 MessageBoxButton.OK,
-                MessageBoxImage.Information);
-        }
+                MessageBoxImage.Information);*/
+
+            MessageHelper.ShowMessage("LanguageRestartMessage", "Information");
+        } 
         private void CancelFromAppExecute(object parameter)
         {
             CloseAction?.Invoke();

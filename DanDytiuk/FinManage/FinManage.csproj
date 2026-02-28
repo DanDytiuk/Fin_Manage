@@ -219,6 +219,8 @@
     <Compile Include="Data\CategoryData.cs" />
     <Compile Include="Data\LimitData.cs" />
     <Compile Include="Infrastructure\EnumInfrastructure.cs" />
+    <Compile Include="Models\MonthModel.cs" />
+    <Compile Include="Models\OperationModel.cs" />
     <Compile Include="Properties\Resources.es-ES.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -251,6 +253,7 @@
     <Compile Include="Services\EnumConvert.cs" />
     <Compile Include="Services\EnumLocalizationHelper.cs" />
     <Compile Include="Services\LocalizationHelper.cs" />
+    <Compile Include="Services\MessageHelper.cs" />
     <Compile Include="Services\VisibilityConverter.cs" />
     <Compile Include="ViewModels\AboutAppWindowViewModel.cs" />
     <Compile Include="ViewModels\LimitWindowsViewModel.cs" />

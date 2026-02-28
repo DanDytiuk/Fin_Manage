@@ -340,13 +340,67 @@
   <data name="EndLimit" xml:space="preserve">
     <value>Límite final</value>
   </data>
-  <data name="TypeOperation_Unknown" xml:space="preserve">
-    <value>Desconocido</value>
-  </data>
   <data name="TypeOperation_Expenses" xml:space="preserve">
     <value>Gastos</value>
   </data>
   <data name="TypeOperation_Income" xml:space="preserve">
     <value>Ingreso</value>
+  </data>
+  <data name="LanguageRestartMessage" xml:space="preserve">
+    <value>El idioma seleccionado se aplicará después de reiniciar la aplicación.</value>
+  </data>
+  <data name="Information" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="SelectStringMessage" xml:space="preserve">
+    <value>¡Por favor, seleccione una cadena para eliminar!</value>
+  </data>
+  <data name="Attention" xml:space="preserve">
+    <value>Atención</value>
+  </data>
+  <data name="PleaseSelectCategoryAmountMessage" xml:space="preserve">
+    <value>Seleccione una categoría o cantidad válida.</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="PleaseSelectCurrencyMonthYearMessage" xml:space="preserve">
+    <value>Seleccione moneda, mes o año para analizar!</value>
+  </data>
+  <data name="January" xml:space="preserve">
+    <value>Enero</value>
+  </data>
+  <data name="February" xml:space="preserve">
+    <value>Febrero</value>
+  </data>
+  <data name="March" xml:space="preserve">
+    <value>Marzo</value>
+  </data>
+  <data name="April" xml:space="preserve">
+    <value>Abril</value>
+  </data>
+  <data name="May" xml:space="preserve">
+    <value>Mayo</value>
+  </data>
+  <data name="June" xml:space="preserve">
+    <value>Junio</value>
+  </data>
+  <data name="July" xml:space="preserve">
+    <value>Julio</value>
+  </data>
+  <data name="August" xml:space="preserve">
+    <value>Agosto</value>
+  </data>
+  <data name="September" xml:space="preserve">
+    <value>Septiembre</value>
+  </data>
+  <data name="October" xml:space="preserve">
+    <value>Octubre</value>
+  </data>
+  <data name="November" xml:space="preserve">
+    <value>Noviembre</value>
+  </data>
+  <data name="December" xml:space="preserve">
+    <value>Diciembre</value>
   </data>
 </root>
