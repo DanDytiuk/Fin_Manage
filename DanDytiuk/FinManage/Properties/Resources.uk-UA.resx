@@ -282,14 +282,14 @@
   <data name="Category" xml:space="preserve">
     <value>Категорія</value>
   </data>
-  <data name="FromDateOperationFilter" xml:space="preserve">
-    <value>З</value>
+  <data name="FilterFromDate" xml:space="preserve">
+    <value>Зі значення</value>
   </data>
   <data name="ToDateOperationFilter" xml:space="preserve">
     <value>До</value>
   </data>
-  <data name="FromAmountFilter" xml:space="preserve">
-    <value>З</value>
+  <data name="FilterFromAmount" xml:space="preserve">
+    <value>Зі значення</value>
   </data>
   <data name="ToAmountFilter" xml:space="preserve">
     <value>До</value>
@@ -401,5 +401,26 @@
   </data>
   <data name="December" xml:space="preserve">
     <value>Грудень</value>
+  </data>
+  <data name="FilterToAmount" xml:space="preserve">
+    <value>До значення</value>
+  </data>
+  <data name="FilterCategory" xml:space="preserve">
+    <value>Фільтр по категорії</value>
+  </data>
+  <data name="FilterToDate" xml:space="preserve">
+    <value>По дату</value>
+  </data>
+  <data name="FilterShopName" xml:space="preserve">
+    <value>Фільтр по назві міста</value>
+  </data>
+  <data name="FilterOperationType" xml:space="preserve">
+    <value>Фільтр по типу операції</value>
+  </data>
+  <data name="FilterCurrency" xml:space="preserve">
+    <value>Фільтр по валюті</value>
+  </data>
+  <data name="FilterDescription" xml:space="preserve">
+    <value>Фільтр по опису</value>
   </data>
 </root>

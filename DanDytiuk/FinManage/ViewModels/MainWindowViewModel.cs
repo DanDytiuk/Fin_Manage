@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -503,6 +504,7 @@ namespace FinManage.ViewModels
         public ObservableCollection<CategoryModel> IncomeCategories { get; }
         public ObservableCollection<CategoryModel> ExpensesCategories { get; }
         public ObservableCollection<OperationModel> OperationTypes { get; }
+        public ObservableCollection<CategoryModel> FullCategories { get; }
 
         #endregion
 
@@ -719,9 +721,17 @@ namespace FinManage.ViewModels
 
         #region Commands Unit
 
-        public ICommand FilterCommand { get; }
+        public ICommand GoFilterCommand { get; }
         public ICommand FilterCleanValueCommand { get; }
-
+        public ICommand CleanFilterCategoryCommand { get; }
+        public ICommand CleanFilterAmountFromCommand { get; }
+        public ICommand CleanFilterAmountToCommand { get; }
+        public ICommand CleanFilterDateFromCommand { get; }
+        public ICommand CleanFilterCurrencyCommand { get; }
+        public ICommand CleanFilterDateToCommand { get; }
+        public ICommand CleanFilterShopNameCommand { get; }
+        public ICommand CleanFilterOperationTypeCommand { get; }
+        public ICommand CleanFilterDescriptionCommand { get; }
         private bool CanFilterCommandExecute (object p) => true;
         private bool CanFilterCleanValueCommandExecute(object p) => true;
 
@@ -730,45 +740,22 @@ namespace FinManage.ViewModels
         #region ComboBox
 
         public Array CurrencyCBFilter => Enum.GetValues(typeof(TypesOfCurrency));
-        public ObservableCollection<TypeOperation> OperationCBFilter { get; }
-        public ObservableCollection<string> CategoriesCBFilter { get; } =
-          new ObservableCollection<string>
-          {
-                "Food",
-                "Store",
-                "Entertainment",
-                "Online store",
-                "Games",
-                "Public Utilities",
-                "Phone Top Up",
-                "Card Top Up",
-                "Internet And TV",
-                "Security",
-                "Insurance",
-                "E-Tickets",
-                "Education",
-                "Transport",
-                "Charity",
-                "Commission",
-                "Project Support",
-                "Other"
-          };
-
+        
         #endregion
 
         #region Property Changed
 
-        private string _filterCategory;
+        private CategoryModel _filterCategory;
         private decimal? _filterAmountFrom;
         private decimal? _filterAmountTo;
         private DateTime? _filterDateFrom;
         private DateTime? _filterDateTo;
         private string _filterShopName;
-        private string _filterOperationType;
+        private OperationModel _filterOperationType;
         private string _filterCurrency;
         private string _filterDescription;
 
-        public string FilterCategory
+        public CategoryModel FilterCategory
         {
             get => _filterCategory;
             set => Set(ref _filterCategory, value);
@@ -804,7 +791,7 @@ namespace FinManage.ViewModels
             set => Set(ref _filterShopName, value);
         }
 
-        public string FilterOperationType
+        public OperationModel FilterOperationType
         {
             get => _filterOperationType;
             set => Set(ref _filterOperationType, value);
@@ -837,7 +824,130 @@ namespace FinManage.ViewModels
 
         #region Main functions
 
+        private bool FilterData(object p)
+        {
+            if (!(p is FinAllTableModel item))
+                return false;
 
+            if (FilterCategory != null && item.CategoryKey != FilterCategory.ResourceKey) { return false; }
+
+            if (FilterAmountFrom.HasValue && item.Amount < FilterAmountFrom.Value) { return false; }
+
+            if (FilterAmountTo.HasValue && item.Amount > FilterAmountTo.Value) { return false; }
+        
+            if (FilterDateFrom.HasValue && item.DateInfo < FilterDateFrom.Value) { return false; }
+
+            if (FilterDateTo.HasValue && item.DateInfo > FilterDateTo.Value) { return false; }
+
+            if (!string.IsNullOrEmpty(FilterShopName))
+            {
+                if (item.NameOfAmount == null ||
+                    !item.NameOfAmount.ToLower().Contains(FilterShopName.ToLower()))
+                    return false;
+            }
+
+            if (FilterOperationType != null &&
+                item.OperationType != FilterOperationType.Type)
+                return false;
+
+            if (!string.IsNullOrEmpty(FilterCurrency) &&
+                item.Currency != FilterCurrency)
+                return false;
+
+            if (!string.IsNullOrWhiteSpace(FilterDescription) && 
+                (item.Description == null || 
+                item.Description.IndexOf(FilterDescription, StringComparison.OrdinalIgnoreCase) < 0)) return false;
+            
+            return true;
+        }
+
+        private void GoFilter(object p)
+        {
+            if (FilterFinCollection == null) return;
+
+            FilterFinCollection.Refresh();
+        }
+
+        private void CleanFilter(object p)
+        {
+            FilterCategory = null;
+            FilterAmountFrom = null;
+            FilterAmountTo = null;
+            FilterDateFrom = null;
+            FilterDateTo = null;
+            FilterShopName = null;
+            FilterOperationType = null;
+            FilterCurrency = null;
+            FilterDescription = null;
+
+            FilterFinCollection.Refresh();
+        }
+        
+        private void CleanFilterCategory(object p)
+        {
+            if (FilterCategory == null) return;
+
+            FilterCategory = null;
+            FilterFinCollection.Refresh();
+        }
+
+        private void CleanFilterAmountFrom(object p)
+        {
+            if (FilterAmountFrom == null) return;
+
+            FilterAmountFrom = null;
+            FilterFinCollection.Refresh();
+        }
+
+        private void CleanFilterAmountTo(object p)
+        {
+            if (FilterAmountTo == null) return;
+
+            FilterAmountTo = null;
+            FilterFinCollection.Refresh();
+        }
+        private void CleanFilterDateFrom(object p)
+        {
+            if (FilterDateFrom == null) return;
+
+            FilterAmountFrom = null;
+            FilterFinCollection.Refresh();
+        }
+        private void CleanFilterDateTo(object p)
+        {
+            if (FilterDateTo == null) return;
+
+            FilterDateTo = null;
+            FilterFinCollection.Refresh();
+        }
+        private void CleanFilterShopName(object p)
+        {
+            if (FilterShopName == null) return;
+
+            FilterShopName = null;
+            FilterFinCollection.Refresh();
+        }
+        private void CleanFilterOperationType(object p)
+        {
+            if (FilterOperationType == null) return;
+
+            FilterOperationType = null;
+            FilterFinCollection.Refresh();
+        }
+        private void CleanFilterCurrency(object p)
+        {
+            if (FilterCurrency == null) return;
+
+            FilterCurrency = null;
+            FilterFinCollection.Refresh();
+        }
+        private void CleanFilterDescription(object p)
+        {
+            if (FilterDescription == null) return;
+
+            FilterDescription = null; 
+            FilterFinCollection.Refresh();
+        }
 
         #endregion
 
@@ -890,6 +1000,39 @@ namespace FinManage.ViewModels
                 new CategoryModel { ResourceKey = "Other" }
             };
 
+            FullCategories = new ObservableCollection<CategoryModel>
+            {
+                new CategoryModel { ResourceKey = "Food" },
+                new CategoryModel { ResourceKey = "Store" },
+                new CategoryModel { ResourceKey = "Entertainment" },
+                new CategoryModel { ResourceKey = "Online_store" },
+                new CategoryModel { ResourceKey = "Games" },
+                new CategoryModel { ResourceKey = "Public_utilities" },
+                new CategoryModel { ResourceKey = "Phone_top_up" },
+                new CategoryModel { ResourceKey = "Internet_and_TV" },
+                new CategoryModel { ResourceKey = "Security" },
+                new CategoryModel { ResourceKey = "Insurance" },
+                new CategoryModel { ResourceKey = "E_tickets" },
+                new CategoryModel { ResourceKey = "Education" },
+                new CategoryModel { ResourceKey = "Transport" },
+                new CategoryModel { ResourceKey = "Charity" },
+                new CategoryModel { ResourceKey = "Project_support" },
+                new CategoryModel { ResourceKey = "Other" },
+                new CategoryModel { ResourceKey = "Salary" },
+                new CategoryModel { ResourceKey = "Gift" },
+                new CategoryModel { ResourceKey = "Vacation_pay" },
+                new CategoryModel { ResourceKey = "Cashback" },
+                new CategoryModel { ResourceKey = "Income_from_the_sale_of_shares" },
+                new CategoryModel { ResourceKey = "Interest_on_deposits" },
+                new CategoryModel { ResourceKey = "Government_benefits" },
+                new CategoryModel { ResourceKey = "Pension" },
+                new CategoryModel { ResourceKey = "Scholarship" },
+                new CategoryModel { ResourceKey = "Child_support" },
+                new CategoryModel { ResourceKey = "Debt_collection" },
+                new CategoryModel { ResourceKey = "Insurance_payments" },
+                new CategoryModel { ResourceKey = "Lottery_or_contest_winnings" }
+            };
+
             OperationTypes = new ObservableCollection<OperationModel>
             {
                 new OperationModel { Type = TypeOperation.Expenses  ,ResourceKey = "TypeOperation_Expenses" },
@@ -924,6 +1067,9 @@ namespace FinManage.ViewModels
                     cat.Refresh();
 
                 foreach (var cat in Months)
+                    cat.Refresh();
+
+                foreach (var cat in FullCategories) 
                     cat.Refresh();
             };
 
@@ -963,12 +1109,26 @@ namespace FinManage.ViewModels
             GoInfoIncomeCommand = new LambdaCommand(GoLoadAnalyticsIncome, CanGoInfoIncomeCommandExecute);
             CleanCBIncomeCommand = new LambdaCommand(CleanCBAnalyticsIncome, CanCleanCBIncomeCommandExecute);
             RefreshInfoIncomeCommand = new LambdaCommand(GoLoadAnalyticsIncome, CanRefreshInfoIncomeCommandExecute);
-            
+
             #endregion
 
             #region Filter
 
+            FilterFinCollection = CollectionViewSource.GetDefaultView(MainFinAllTableColection);
+            FilterFinCollection.Filter = FilterData;
 
+            GoFilterCommand = new LambdaCommand(GoFilter, CanFilterCommandExecute);
+            FilterCleanValueCommand = new LambdaCommand(CleanFilter, CanFilterCleanValueCommandExecute);
+
+            CleanFilterCategoryCommand = new LambdaCommand(CleanFilterCategory);
+            CleanFilterAmountFromCommand = new LambdaCommand(CleanFilterAmountFrom);
+            CleanFilterAmountToCommand = new LambdaCommand(CleanFilterAmountTo);
+            CleanFilterDateFromCommand = new LambdaCommand(CleanFilterDateFrom);
+            CleanFilterDateToCommand = new LambdaCommand(CleanFilterDateTo);
+            CleanFilterCurrencyCommand = new LambdaCommand(CleanFilterCurrency);
+            CleanFilterShopNameCommand = new LambdaCommand(CleanFilterShopName);
+            CleanFilterOperationTypeCommand = new LambdaCommand(CleanFilterOperationType);
+            CleanFilterDescriptionCommand = new LambdaCommand(CleanFilterDescription);
 
             #endregion
         }

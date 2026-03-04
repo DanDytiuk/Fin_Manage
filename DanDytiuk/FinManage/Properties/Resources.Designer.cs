@@ -349,11 +349,92 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Category for filter.
+        /// </summary>
+        public static string FilterCategory {
+            get {
+                return ResourceManager.GetString("FilterCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Currency for filter.
+        /// </summary>
+        public static string FilterCurrency {
+            get {
+                return ResourceManager.GetString("FilterCurrency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Description for filter.
+        /// </summary>
+        public static string FilterDescription {
+            get {
+                return ResourceManager.GetString("FilterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на From amount.
+        /// </summary>
+        public static string FilterFromAmount {
+            get {
+                return ResourceManager.GetString("FilterFromAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на From date.
+        /// </summary>
+        public static string FilterFromDate {
+            get {
+                return ResourceManager.GetString("FilterFromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Operation type for filter.
+        /// </summary>
+        public static string FilterOperationType {
+            get {
+                return ResourceManager.GetString("FilterOperationType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Filters.
         /// </summary>
         public static string Filters {
             get {
                 return ResourceManager.GetString("Filters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Shop name for filter.
+        /// </summary>
+        public static string FilterShopName {
+            get {
+                return ResourceManager.GetString("FilterShopName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To amount.
+        /// </summary>
+        public static string FilterToAmount {
+            get {
+                return ResourceManager.GetString("FilterToAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на To date.
+        /// </summary>
+        public static string FilterToDate {
+            get {
+                return ResourceManager.GetString("FilterToDate", resourceCulture);
             }
         }
         
@@ -372,24 +453,6 @@ namespace FinManage.Properties {
         public static string Food {
             get {
                 return ResourceManager.GetString("Food", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на From amount.
-        /// </summary>
-        public static string FromAmountFilter {
-            get {
-                return ResourceManager.GetString("FromAmountFilter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на From date.
-        /// </summary>
-        public static string FromDateOperationFilter {
-            get {
-                return ResourceManager.GetString("FromDateOperationFilter", resourceCulture);
             }
         }
         

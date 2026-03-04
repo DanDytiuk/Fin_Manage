@@ -282,13 +282,13 @@
   <data name="Category" xml:space="preserve">
     <value>Category</value>
   </data>
-  <data name="FromDateOperationFilter" xml:space="preserve">
+  <data name="FilterFromDate" xml:space="preserve">
     <value>From date</value>
   </data>
   <data name="ToDateOperationFilter" xml:space="preserve">
     <value>To date</value>
   </data>
-  <data name="FromAmountFilter" xml:space="preserve">
+  <data name="FilterFromAmount" xml:space="preserve">
     <value>From amount</value>
   </data>
   <data name="ToAmountFilter" xml:space="preserve">
@@ -401,5 +401,26 @@
   </data>
   <data name="December" xml:space="preserve">
     <value>December</value>
+  </data>
+  <data name="FilterToAmount" xml:space="preserve">
+    <value>To amount</value>
+  </data>
+  <data name="FilterCategory" xml:space="preserve">
+    <value>Category for filter</value>
+  </data>
+  <data name="FilterToDate" xml:space="preserve">
+    <value>To date</value>
+  </data>
+  <data name="FilterShopName" xml:space="preserve">
+    <value>Shop name for filter</value>
+  </data>
+  <data name="FilterOperationType" xml:space="preserve">
+    <value>Operation type for filter</value>
+  </data>
+  <data name="FilterCurrency" xml:space="preserve">
+    <value>Currency for filter</value>
+  </data>
+  <data name="FilterDescription" xml:space="preserve">
+    <value>Description for filter</value>
   </data>
 </root>

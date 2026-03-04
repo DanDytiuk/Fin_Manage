@@ -24,22 +24,22 @@
                 Command="{Binding CancelCommand}"/>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="377,10,0,0" 
+                   Margin="358,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="{Binding [Currency], Source={StaticResource Loc}}" 
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" Width="85"/>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="45,10,0,0" 
+                   Margin="20,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="{Binding [Theme], Source={StaticResource Loc}}" 
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" Width="85"/>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="194,10,0,0" 
+                   Margin="177,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="{Binding [Language], Source={StaticResource Loc}}" 
-                   VerticalAlignment="Top"/>
+                   VerticalAlignment="Top" Width="85"/>
 
         <ComboBox HorizontalAlignment="Left" 
                   Margin="20,31,0,0" 

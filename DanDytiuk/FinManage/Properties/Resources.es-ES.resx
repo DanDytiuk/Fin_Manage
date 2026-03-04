@@ -282,14 +282,14 @@
   <data name="Category" xml:space="preserve">
     <value>Categoría</value>
   </data>
-  <data name="FromDateOperationFilter" xml:space="preserve">
-    <value>Con</value>
+  <data name="FilterFromDate" xml:space="preserve">
+    <value>Desde la fecha</value>
   </data>
   <data name="ToDateOperationFilter" xml:space="preserve">
     <value>Hasta</value>
   </data>
-  <data name="FromAmountFilter" xml:space="preserve">
-    <value>Con</value>
+  <data name="FilterFromAmount" xml:space="preserve">
+    <value>De la cantidad</value>
   </data>
   <data name="ToAmountFilter" xml:space="preserve">
     <value>Hasta</value>
@@ -402,5 +402,26 @@
   </data>
   <data name="December" xml:space="preserve">
     <value>Diciembre</value>
+  </data>
+  <data name="FilterToAmount" xml:space="preserve">
+    <value>Importe</value>
+  </data>
+  <data name="FilterCategory" xml:space="preserve">
+    <value>Categoría para filtro</value>
+  </data>
+  <data name="FilterToDate" xml:space="preserve">
+    <value>Hasta la fecha</value>
+  </data>
+  <data name="FilterShopName" xml:space="preserve">
+    <value>Nombre de la tienda para el filtro</value>
+  </data>
+  <data name="FilterOperationType" xml:space="preserve">
+    <value>Tipo de operación para filtro</value>
+  </data>
+  <data name="FilterCurrency" xml:space="preserve">
+    <value>Moneda para el filtro</value>
+  </data>
+  <data name="FilterDescription" xml:space="preserve">
+    <value>Descripción del filtro</value>
   </data>
 </root>

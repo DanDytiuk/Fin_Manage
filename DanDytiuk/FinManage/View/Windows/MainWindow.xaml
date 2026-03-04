@@ -427,22 +427,26 @@
                             Width="153" 
                             Command="{Binding GoInfoIncomeCommand}"/>
 
-                    <DataGrid ItemsSource="{Binding ValueListIncome}" Margin="0,248,0,426" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
+                    <DataGrid ItemsSource="{Binding ValueListIncome}" 
+                              Margin="0,248,0,426" 
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="{Binding [Month], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding SelectedMonth}"
+                                Binding="{Binding SelectedMonthIncomeCB}"
                                 Width="100"/>
                             <DataGridTextColumn
                                 Header="{Binding [Year], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding SelectedYear}"
+                                Binding="{Binding SelectedYearIncomeCB}"
                                 Width="100"/>
                             <DataGridTextColumn
                                 Header="{Binding [Currency], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding SelectedCurrency}"
+                                Binding="{Binding SelectedCurrencyIncomeCB}"
                                 Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -468,11 +472,271 @@
                         <ColumnDefinition Width="5*"></ColumnDefinition>
                         <ColumnDefinition Width="11*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <DataGrid Grid.Column="1"/>
+                    <DataGrid Grid.Column="1"
+                              ItemsSource="{Binding FilterFinCollection}"
+                              AutoGenerateColumns="False" 
+                              CanUserAddRows="False" 
+                              CanUserDeleteRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn
+                                Header="{Binding [Category], Source={StaticResource Loc}}"
+                                Binding="{Binding CategoryDisplay}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="{Binding [OperationType], Source={StaticResource Loc}}"
+                                Binding="{Binding OperationTypeDisplay}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="{Binding [NameOfAmount], Source={StaticResource Loc}}"
+                                Binding="{Binding NameOfAmount}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="{Binding [Amount], Source={StaticResource Loc}}"
+                                Binding="{Binding Amount}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="{Binding [Currency], Source={StaticResource Loc}}"
+                                Binding="{Binding Currency}"
+                                IsReadOnly="True"/>
+                            <DataGridTextColumn
+                                Header="{Binding [DateData], Source={StaticResource Loc}}"
+                                Binding="{Binding DateInfo, StringFormat=dd.MM.yyyy}"
+                                IsReadOnly="True"
+                                Width="100"/>
+                            <DataGridTextColumn
+                                 Header="{Binding [Description], Source={StaticResource Loc}}"
+                                 Binding="{Binding Description}"
+                                 IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <TextBox HorizontalAlignment="Left" 
+                             Margin="26,40,0,0" 
+                             TextWrapping="Wrap" 
+                             Text="{Binding FilterAmountFrom, Mode=TwoWay}" 
+                             VerticalAlignment="Top" 
+                             Width="120"/>
+
+                    <TextBox HorizontalAlignment="Left" 
+                             Margin="326,40,0,0" 
+                             TextWrapping="Wrap" 
+                             Text="{Binding FilterAmountTo, Mode=TwoWay}" 
+                             VerticalAlignment="Top" 
+                             Width="120"/>
+
+                    <TextBox HorizontalAlignment="Left" 
+                             Margin="30,205,0,0" 
+                             TextWrapping="Wrap" 
+                             Text="{Binding FilterShopName, Mode=TwoWay}" 
+                             VerticalAlignment="Top" 
+                             Width="120"/>
+
+                    <DatePicker HorizontalAlignment="Left" 
+                                Margin="30,296,0,0" 
+                                VerticalAlignment="Top" 
+                                Width="120"
+                                DisplayDateStart="{Binding MinDate, Mode=OneWay}"
+                                DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"
+                                SelectedDate="{Binding FilterDateFrom, Mode=TwoWay}"/>
+
+                    <DatePicker HorizontalAlignment="Left" 
+                                Margin="326,296,0,0" 
+                                VerticalAlignment="Top" 
+                                Width="120"
+                                DisplayDateStart="{Binding MinDate, Mode=OneWay}"
+                                DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"
+                                SelectedDate="{Binding FilterDateTo, Mode=TwoWay}"/>
+
+                    <ComboBox HorizontalAlignment="Left" 
+                              Margin="326,205,0,0" 
+                              VerticalAlignment="Top" 
+                              Width="120"
+                              ItemsSource="{Binding CurrencyCB}"
+                              SelectedValue="{Binding FilterCurrency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ComboBox HorizontalAlignment="Left" 
+                              Margin="26,121,0,0" 
+                              VerticalAlignment="Top" 
+                              Width="120"
+                              ItemsSource="{Binding FullCategories}"
+                              DisplayMemberPath="DisplayName"
+                              SelectedValue="{Binding FilterCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <ComboBox HorizontalAlignment="Left" 
+                              Margin="326,121,0,0" 
+                              VerticalAlignment="Top" 
+                              Width="120"
+                              ItemsSource="{Binding OperationTypes}"
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="Type"
+                              SelectedItem="{Binding FilterOperationType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox HorizontalAlignment="Center" 
+                             TextWrapping="Wrap" 
+                             Text="{Binding FilterDescription, Mode=TwoWay}" 
+                             VerticalAlignment="Center" 
+                             Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="26,10,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterFromAmount], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="326,10,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterToAmount], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="30,100,0,0" 
+                               TextWrapping="Wrap" 
+                               Text="{Binding [FilterCategory], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="290,98,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterOperationType], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="200"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="10,174,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterShopName], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="190"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="326,179,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterCurrency], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="30,266,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterFromDate], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Left" 
+                               Margin="326,266,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterToDate], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="120"/>
+
+                    <TextBlock HorizontalAlignment="Center" 
+                               Margin="0,350,0,0" 
+                               TextWrapping="Wrap" 
+                               TextAlignment="Center"
+                               Text="{Binding [FilterDescription], Source={StaticResource Loc}}" 
+                               VerticalAlignment="Top" 
+                               Width="200"/>
+
+                    <Button Content="{Binding [Filter], Source={StaticResource Loc}}" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding GoFilterCommand}"
+                            Margin="26,435,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="200"/>
+
+                    <Button Content="{Binding [CleanAnalyse], Source={StaticResource Loc}}" 
+                            HorizontalAlignment="Left" 
+                            Margin="250,435,0,0" 
+                            Command="{Binding FilterCleanValueCommand}"
+                            VerticalAlignment="Top" 
+                            Width="200"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding CleanFilterCategoryCommand}"
+                            Margin="159,127,0,0" 
+                            VerticalAlignment="Top" 
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding CleanFilterAmountFromCommand}"
+                            Margin="159,52,0,0" 
+                            VerticalAlignment="Top" 
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding CleanFilterShopNameCommand}"
+                            Margin="159,211,0,0" 
+                            VerticalAlignment="Top" 
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Margin="159,302,0,0" 
+                            VerticalAlignment="Top" 
+                            Command="{Binding CleanFilterDateFromCommand}"
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding CleanFilterOperationTypeCommand}"
+                            Margin="280,127,0,0" 
+                            VerticalAlignment="Top" 
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Command="{Binding CleanFilterAmountToCommand}"
+                            Margin="280,52,0,0" 
+                            VerticalAlignment="Top" 
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Margin="280,211,0,0" 
+                            VerticalAlignment="Top"
+                            Command="{Binding CleanFilterCurrencyCommand}"
+                            Height="26" 
+                            Width="41"/>
+
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Margin="280,302,0,0" 
+                            VerticalAlignment="Top"
+                            Command="{Binding CleanFilterDateToCommand}"
+                            Height="26" 
+                            Width="41"/>
+                    
+                    <Button Content="Х" 
+                            HorizontalAlignment="Left" 
+                            Margin="326,375,0,0" 
+                            VerticalAlignment="Top" 
+                            Command="{Binding CleanFilterDescriptionCommand}"
+                            Height="26" 
+                            Width="41"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="{Binding [ConverterDataGrid], Source={StaticResource Loc}}">
-                
+
             </TabItem>
 
 
