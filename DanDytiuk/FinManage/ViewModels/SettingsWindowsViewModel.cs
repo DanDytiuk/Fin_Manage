@@ -80,13 +80,7 @@ namespace FinManage.ViewModels
             SaveSettings(Settings);
 
             LocalizationHelper.Instance.SetLanguage(Settings.Language);
-            //if (SelectedLanguage == Settings.Language)
-            /*MessageBox.Show(
-                LocalizationHelper.Instance["LanguageRestartMessage"],
-                LocalizationHelper.Instance["Information"],
-                MessageBoxButton.OK,
-                MessageBoxImage.Information);*/
-
+            
             MessageHelper.ShowMessage("LanguageRestartMessage", "Information");
         } 
         private void CancelFromAppExecute(object parameter)

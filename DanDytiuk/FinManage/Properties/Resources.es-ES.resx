@@ -424,4 +424,13 @@
   <data name="FilterDescription" xml:space="preserve">
     <value>Descripción del filtro</value>
   </data>
+  <data name="LimitExistsMessage" xml:space="preserve">
+    <value>El límite para la categoría ya existe.</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Advertencia</value>
+  </data>
+  <data name="SelectedLimitNullMessage" xml:space="preserve">
+    <value>No se ha seleccionado ningún límite de eliminación</value>
+  </data>
 </root>

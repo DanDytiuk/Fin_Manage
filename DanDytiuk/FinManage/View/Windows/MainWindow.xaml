@@ -307,7 +307,7 @@
                             Width="153" 
                             Command="{Binding GoInfoCommand}"/>
 
-                    <DataGrid ItemsSource="{Binding ValueList}" Margin="0,248,0,426" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
+                    <DataGrid ItemsSource="{Binding ValueListIncome}" Margin="0,248,0,426" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
                         <DataGrid.Columns>
                             <DataGridTextColumn
                                 Header="{Binding [Month], Source={StaticResource Loc}}"
@@ -436,17 +436,17 @@
                             <DataGridTextColumn
                                 Header="{Binding [Month], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding SelectedMonthIncomeCB}"
+                                Binding="{Binding SelectedMonth}"
                                 Width="100"/>
                             <DataGridTextColumn
                                 Header="{Binding [Year], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding SelectedYearIncomeCB}"
+                                Binding="{Binding SelectedYear}"
                                 Width="100"/>
                             <DataGridTextColumn
                                 Header="{Binding [Currency], Source={StaticResource Loc}}"
                                 IsReadOnly="True"
-                                Binding="{Binding SelectedCurrencyIncomeCB}"
+                                Binding="{Binding SelectedCurrency}"
                                 Width="100"/>
                         </DataGrid.Columns>
                     </DataGrid>
@@ -724,7 +724,7 @@
                             Command="{Binding CleanFilterDateToCommand}"
                             Height="26" 
                             Width="41"/>
-                    
+
                     <Button Content="Х" 
                             HorizontalAlignment="Left" 
                             Margin="326,375,0,0" 
@@ -732,14 +732,8 @@
                             Command="{Binding CleanFilterDescriptionCommand}"
                             Height="26" 
                             Width="41"/>
-
                 </Grid>
             </TabItem>
-            <TabItem Header="{Binding [ConverterDataGrid], Source={StaticResource Loc}}">
-
-            </TabItem>
-
-
         </TabControl>
     </DockPanel>
 </Window>

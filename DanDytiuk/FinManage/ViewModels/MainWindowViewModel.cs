@@ -22,6 +22,7 @@ namespace FinManage.ViewModels
         #region Data
 
         private readonly DataBaseWork _database;
+        private readonly LimitService _limitService;
 
         #endregion
 
@@ -30,11 +31,47 @@ namespace FinManage.ViewModels
         private void CleanComboBox()
         {
             Category = null;
-            TypeOperation = TypeOperation.Unknown;
+            TypeOperation = TypeOperation;
             NameOfAmount = string.Empty;
             Amount = 0;
             Description = string.Empty;
             DataTime = DateTime.Today;
+        }
+        private void CheckLimitAfterOperation(FinAllTableModel model)
+        {
+            if (model.OperationType != TypeOperation.Expenses)
+                return;
+
+            var result = _limitService.CheckLimit(model.DateInfo, model.CategoryKey);
+
+            switch (result)
+            {
+                case LimitCheckResult.Expired:
+
+                    if (MessageBox.Show(
+                        LocalizationHelper.Instance["LimitExpired"],
+                        LocalizationHelper.Instance["Warning"],
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        OpenLimitsCommand.Execute(null);
+                    }
+
+                    break;
+
+                case LimitCheckResult.OverLimit:
+
+                    if (MessageBox.Show(
+                        LocalizationHelper.Instance["LimitExceeded"],
+                        LocalizationHelper.Instance["Warning"],
+                        MessageBoxButton.YesNo,
+                        MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                    {
+                        OpenLimitsCommand.Execute(null);
+                    }
+
+                    break;
+            }
         }
 
         #endregion
@@ -331,7 +368,7 @@ namespace FinManage.ViewModels
 
             OnPropertyChanged(nameof(StatisticsListIncome));
 
-            ValueList = BuildValueIncomeList();
+            ValueListIncome = BuildValueIncomeList();
 
             OnPropertyChanged(nameof(ValueListIncome));
         }
@@ -348,7 +385,7 @@ namespace FinManage.ViewModels
 
         private Dictionary<string, StatisticsModel> LoadStatisticsIncome()
         {
-            if (SelectedCurrencyIncomeCB == null || SelectedYearIncomeCB == null || SelectedYearIncomeCB == null)
+            if (SelectedCurrencyIncomeCB == null || SelectedYearIncomeCB == null || SelectedMonthIncomeCB == null)
             {
                 MessageHelper.ShowError("PleaseSelectCurrencyMonthYearMessage", "Error");
                 return new Dictionary<string, StatisticsModel>();
@@ -425,7 +462,7 @@ namespace FinManage.ViewModels
 
         private ObservableCollection<StatisticsModel> BuildValueIncomeList()
         {
-            if (SelectedCurrencyIncomeCB == null || SelectedYearIncomeCB == null || SelectedYearCB == null)
+            if (SelectedCurrencyIncomeCB == null || SelectedYearIncomeCB == null || SelectedMonthIncomeCB == null)
             {
                 return new ObservableCollection<StatisticsModel>();
             }
@@ -590,7 +627,7 @@ namespace FinManage.ViewModels
         #region Main functions
         private void AddFinDataInfo(object p)
         {
-            if (Category == null | Amount <= 0 | TypeOperation == TypeOperation.Unknown)
+            if (Category == null || Amount <= 0)
             {
                 MessageHelper.ShowError("PleaseSelectCategoryAmountMessage", "Error");
             }
@@ -620,8 +657,19 @@ namespace FinManage.ViewModels
                     }
                 }
 
-                LoadFromDB();
+                var operation = new FinAllTableModel
+                {
+                    CategoryKey = Category.ResourceKey,
+                    OperationType = TypeOperation,
+                    NameOfAmount = NameOfAmount ?? "",
+                    Amount = Amount,
+                    Currency = Currency,
+                    DateInfo = (DateTime)DataTime,
+                    Description = Description ?? ""
+                };
 
+                //CheckLimitAfterOperation(operation);
+                LoadFromDB();
                 CleanComboBox();
             }
         }
@@ -959,6 +1007,8 @@ namespace FinManage.ViewModels
 
         #endregion
 
+        #region Constructor
+
         public MainWindowViewModel()
         {
             #region ComboBox
@@ -1086,6 +1136,7 @@ namespace FinManage.ViewModels
             #region FinManageData
 
             _database = new DataBaseWork();
+            _limitService = new LimitService(_database);
 
             OperationCB = new ObservableCollection<TypeOperation>((TypeOperation[])Enum.GetValues(typeof(TypeOperation)));
 
@@ -1132,5 +1183,8 @@ namespace FinManage.ViewModels
 
             #endregion
         }
+
+        #endregion
+
     }
 }

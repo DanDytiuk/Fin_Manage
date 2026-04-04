@@ -80,6 +80,14 @@ namespace FinManage.Infrastructure
             November,
             December
         }
+
+        public enum LimitCheckResult
+        {
+            NoLimit,
+            Ok,
+            OverLimit,
+            Expired
+        }
     }
 }
 

@@ -3,7 +3,6 @@ using FinManage.Models;
 using FinManage.Models.Models_for_db;
 using FinManage.Services;
 using FinManage.ViewModels.Base;
-using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -64,8 +63,8 @@ namespace FinManage.ViewModels
         private string _currency;
         private string _description;
         private LimitsModel _selectedLimit;
-        private DateTime _startDate = DateTime.Now;
-        private DateTime _endDate = DateTime.Now;
+        private DateTime _startDate;
+        private DateTime _endDate;
 
         public CategoryModel SelectedCategory
         {
@@ -126,38 +125,19 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region Helpers
-
-        private void ShowError(string message)
-        {
-            System.Windows.MessageBox.Show(
-                message,
-                "Error",
-                System.Windows.MessageBoxButton.OK,
-                System.Windows.MessageBoxImage.Warning);
-        }
-
-        #endregion
-
         #region Commands Logic
 
         private void AddLimit(object p)
         {
-            if (SelectedCategory == null)
+            if (SelectedCategory == null || Amount <= 0)
             {
-                ShowError("Please select a category.");
-                return;
-            }
-
-            if (Amount <= 0)
-            {
-                ShowError("Please enter a valid amount.");
+                MessageHelper.ShowError("PleaseSelectCategoryAmountMessage", "Warning");
                 return;
             }
 
             if (Limits.Any(l => l.CategoryKey == SelectedCategory.ResourceKey && l.Currency == Currency))
             {
-                ShowError($"Limit for this category - {SelectedCategory} already exists!");
+                MessageHelper.ShowError("LimitExistsMessage", "Warning");
                 return;
             }
 
@@ -189,8 +169,12 @@ namespace FinManage.ViewModels
 
         private void DeleteLimit(object p)
         {
-            if (SelectedLimit == null)
-                return;
+            if (SelectedLimit == null) 
+            {
+                MessageHelper.ShowError("SelectedLimitNullMessage", "Warning");
+                return; 
+            }
+                
 
             using (var connection = _database.GetConnection())
             {

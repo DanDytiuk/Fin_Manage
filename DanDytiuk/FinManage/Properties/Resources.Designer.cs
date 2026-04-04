@@ -592,6 +592,15 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Limit for category already exists..
+        /// </summary>
+        public static string LimitExistsMessage {
+            get {
+                return ResourceManager.GetString("LimitExistsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Limits.
         /// </summary>
         public static string LimitsMenuBar {
@@ -826,6 +835,15 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на No deletion limit selected.
+        /// </summary>
+        public static string SelectedLimitNullMessage {
+            get {
+                return ResourceManager.GetString("SelectedLimitNullMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Please a select string for delete!.
         /// </summary>
         public static string SelectStringMessage {
@@ -966,6 +984,15 @@ namespace FinManage.Properties {
         public static string Vacation_pay {
             get {
                 return ResourceManager.GetString("Vacation_pay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Warning.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
         
