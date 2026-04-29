@@ -65,6 +65,8 @@ namespace FinManage.ViewModels
         private LimitsModel _selectedLimit;
         private DateTime _startDate;
         private DateTime _endDate;
+        private string _Month;
+        private int _Year;
 
         public CategoryModel SelectedCategory
         {
@@ -104,6 +106,16 @@ namespace FinManage.ViewModels
         {
             get => _endDate;
             set => Set(ref _endDate,value);
+        }
+        public string Month
+        {
+            get => _Month;
+            set => Set(ref _Month, value);
+        }
+        public int Year
+        {
+            get => _Year;
+            set => Set(ref _Year, value);
         }
 
         #endregion
@@ -149,16 +161,16 @@ namespace FinManage.ViewModels
                 {
                     command.CommandText =
                     @"
-                    INSERT INTO Limits (Category, Amount, Currency, Description, StartDate, EndDate)
-                    VALUES ($category, $amount, $currency, $description, $startdate, $enddate);
+                    INSERT INTO Limits (Category, Amount, Currency, Description, Month, Year)
+                    VALUES ($category, $amount, $currency, $description, $month, $year);
                     ";
 
                     command.Parameters.AddWithValue("$category", SelectedCategory.ResourceKey);
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency ?? "");
                     command.Parameters.AddWithValue("$description", Description ?? "");
-                    command.Parameters.AddWithValue("$startdate", StartDate);
-                    command.Parameters.AddWithValue("$enddate", EndDate);
+                    command.Parameters.AddWithValue("$month", Month);
+                    command.Parameters.AddWithValue("$year", Year);
 
                     command.ExecuteNonQuery();
                 }
@@ -214,7 +226,7 @@ namespace FinManage.ViewModels
                 using (var command = connection.CreateCommand())
                 {
                     command.CommandText =
-                    "SELECT Id, Category, Amount, Currency, Description, StartDate, EndDate FROM Limits;";
+                    "SELECT Id, Category, Amount, Currency, Description, Month, Year FROM Limits;";
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -227,8 +239,8 @@ namespace FinManage.ViewModels
                                 Amount = reader.GetDecimal(2),
                                 Currency = reader.GetString(3),
                                 Description = reader.IsDBNull(4) ? null : reader.GetString(4),
-                                StartDate = reader.GetDateTime(5),
-                                EndDate = reader.GetDateTime(6)
+                                Month = reader.GetString(5),
+                                Year = reader.GetInt32(6)
                             };
 
                             Limits.Add(limit);

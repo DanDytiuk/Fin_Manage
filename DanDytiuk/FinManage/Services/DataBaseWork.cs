@@ -37,8 +37,8 @@ namespace FinManage.Services
                     Amount REAL NOT NULL,
                     Currency TEXT NOT NULL,
                     Description TEXT,
-                    StartDate TEXT NOT NULL,
-                    EndDate TEXT NOT NULL
+                    Month TEXT NOT NULL,
+                    Year TEXT NOT NULL
                 );
                 ";
 

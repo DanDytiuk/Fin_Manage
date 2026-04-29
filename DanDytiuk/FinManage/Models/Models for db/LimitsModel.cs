@@ -16,6 +16,8 @@ namespace FinManage.Models.Models_for_db
         public string Description { get; set; } = "";
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public string Month { get; set; }
+        public int Year { get; set; }
 
         public string CategoryDisplay => LocalizationHelper.Instance[CategoryKey];
 
