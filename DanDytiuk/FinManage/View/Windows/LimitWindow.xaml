@@ -146,15 +146,6 @@
                  VerticalAlignment="Top" 
                  Width="200"/>
 
-        <DatePicker HorizontalAlignment="Center" 
-                    Margin="0,195,0,0" 
-                    Grid.Row="1" 
-                    VerticalAlignment="Top" 
-                    Width="200" 
-                    SelectedDate="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                    DisplayDateStart="{Binding MinDate, Mode=OneWay}" 
-                    DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"/>
-        
         <TextBlock HorizontalAlignment="Center" 
                    Margin="0,165,0,0" 
                    Grid.Row="1" 
@@ -163,15 +154,6 @@
                    Text="{Binding [EndLimit], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" Width="200"/>
 
-        <DatePicker HorizontalAlignment="Center" 
-                    Grid.Row="1" 
-                    VerticalAlignment="Top" 
-                    Width="200" 
-                    Margin="0,123,0,0" 
-                    SelectedDate="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
-                    DisplayDateStart="{Binding MinDate, Mode=OneWay}" 
-                    DisplayDateEnd="{Binding MaxDate, Mode=OneWay}"/>
-        
         <TextBlock HorizontalAlignment="Center" 
                    Margin="0,94,0,0" 
                    Grid.Row="1" 

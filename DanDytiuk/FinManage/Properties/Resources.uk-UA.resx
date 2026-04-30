@@ -334,10 +334,10 @@
     <value>Видалити</value>
   </data>
   <data name="StartLimit" xml:space="preserve">
-    <value>Початок ліміту</value>
+    <value>Рік ліміту</value>
   </data>
   <data name="EndLimit" xml:space="preserve">
-    <value>Кінець ліміту</value>
+    <value>Місяць для ліміту</value>
   </data>
   <data name="TypeOperation_Expenses" xml:space="preserve">
     <value>Витрати</value>

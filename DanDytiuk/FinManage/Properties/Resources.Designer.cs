@@ -295,7 +295,7 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на End limit.
+        ///   Ищет локализованную строку, похожую на Monthly limit.
         /// </summary>
         public static string EndLimit {
             get {

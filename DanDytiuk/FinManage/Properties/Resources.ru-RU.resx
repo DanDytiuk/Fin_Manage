@@ -334,10 +334,10 @@
     <value>Удалить</value>
   </data>
   <data name="StartLimit" xml:space="preserve">
-    <value>Начало лимита</value>
+    <value>Год лимита</value>
   </data>
   <data name="EndLimit" xml:space="preserve">
-    <value>Конец лимита</value>
+    <value>Месяц для лимита</value>
   </data>
   <data name="TypeOperation_Expenses" xml:space="preserve">
     <value>Расходы</value>

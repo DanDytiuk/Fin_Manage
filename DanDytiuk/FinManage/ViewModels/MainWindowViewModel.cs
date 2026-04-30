@@ -1,4 +1,6 @@
-﻿using FinManage.Infrastructure.Commands;
+﻿#region Using
+
+using FinManage.Infrastructure.Commands;
 using FinManage.Models;
 using FinManage.Models.Models_for_db;
 using FinManage.Services;
@@ -8,12 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
+
+#endregion
 
 namespace FinManage.ViewModels
 {

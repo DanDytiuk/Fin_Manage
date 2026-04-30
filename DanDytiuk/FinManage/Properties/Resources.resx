@@ -337,7 +337,7 @@
     <value>Start limit</value>
   </data>
   <data name="EndLimit" xml:space="preserve">
-    <value>End limit</value>
+    <value>Monthly limit</value>
   </data>
   <data name="TypeOperation_Expenses" xml:space="preserve">
     <value>Expenses</value>

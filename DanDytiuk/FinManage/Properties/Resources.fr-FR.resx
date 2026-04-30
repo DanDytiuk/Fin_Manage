@@ -335,10 +335,10 @@
     <value>Supprimer</value>
   </data>
   <data name="StartLimit" xml:space="preserve">
-    <value>Limite de départ</value>
+    <value>Limite annuelle</value>
   </data>
   <data name="EndLimit" xml:space="preserve">
-    <value>Limite finale</value>
+    <value>Limite mensuelle</value>
   </data>
   <data name="TypeOperation_Expenses" xml:space="preserve">
     <value>Dépenses</value>
