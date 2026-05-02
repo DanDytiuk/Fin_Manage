@@ -28,7 +28,7 @@
                 Grid.Row="2" 
                 VerticalAlignment="Top" 
                 Width="247"/>
-        
+
         <Button Grid.Column="1" 
                 Content="{Binding [Delete], Source={StaticResource Loc}}" 
                 Command="{Binding DeleteLimitCommand}" 
@@ -37,7 +37,7 @@
                 Grid.Row="2" 
                 VerticalAlignment="Top" 
                 Width="246"/>
-        
+
         <Button Grid.Column="2" 
                 Content="{Binding [Cancel], Source={StaticResource Loc}}" 
                 Command="{Binding CancelCommand}" 
@@ -72,11 +72,11 @@
                     IsReadOnly="True"/>
                 <DataGridTextColumn
                     Header="{Binding [StartLimit], Source={StaticResource Loc}}"
-                    Binding="{Binding StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=dd.MM.yyyy}"
+                    Binding="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=dd.MM.yyyy}"
                     IsReadOnly="True"/>
                 <DataGridTextColumn
                     Header="{Binding [EndLimit], Source={StaticResource Loc}}"
-                    Binding="{Binding EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=dd.MM.yyyy}"
+                    Binding="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=dd.MM.yyyy}"
                     IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -93,10 +93,10 @@
                     <TextBlock Text="{Binding DisplayName}" />
                 </DataTemplate>
             </ComboBox.ItemTemplate>
-            
-            </ComboBox>
 
-            <TextBlock HorizontalAlignment="Center" 
+        </ComboBox>
+
+        <TextBlock HorizontalAlignment="Center" 
                    Margin="0,20,0,0" 
                    TextAlignment="Center"
                    TextWrapping="Wrap" 
@@ -109,7 +109,7 @@
                    Text="{Binding [Amount], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" 
                    Margin="0,95,0,0" Width="200"/>
-        
+
         <TextBox HorizontalAlignment="Center" 
                  Margin="0,126,0,0" 
                  TextWrapping="Wrap" 
@@ -124,7 +124,7 @@
                    VerticalAlignment="Top" 
                    Margin="0,169,0,0" 
                    Width="200"/>
-        
+
         <ComboBox Margin="50,202,50,0" 
                   VerticalAlignment="Top" 
                   ItemsSource="{Binding CurrencyCB}" 
@@ -137,7 +137,7 @@
                    TextWrapping="Wrap" 
                    Text="{Binding [Description], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" Width="200"/>
-        
+
         <TextBox HorizontalAlignment="Center" 
                  Margin="0,49,0,0" 
                  Grid.Row="1" 
@@ -161,6 +161,24 @@
                    TextWrapping="Wrap" 
                    Text="{Binding [StartLimit], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" Width="200" />
+        
+        <ComboBox HorizontalAlignment="Center" 
+                  Margin="0,119,0,0" 
+                  Grid.Row="1" 
+                  VerticalAlignment="Top" 
+                  Width="120"
+                  ItemsSource="{Binding YearsCB, Mode=OneWay}" 
+                  SelectedItem="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <ComboBox HorizontalAlignment="Center" 
+                  Margin="0,195,0,0" 
+                  Grid.Row="1" 
+                  VerticalAlignment="Top" 
+                  Width="200"
+                  ItemsSource="{Binding Months, Mode=OneWay}"
+                  DisplayMemberPath="DisplayName"
+                  SelectedValuePath="ValueMonth"
+                  SelectedItem="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
     </Grid>
 </Window>

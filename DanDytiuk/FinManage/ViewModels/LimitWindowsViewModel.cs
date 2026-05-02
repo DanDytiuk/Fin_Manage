@@ -21,6 +21,10 @@ namespace FinManage.ViewModels
 
         #region ComboBox
 
+        public ObservableCollection<int> YearsCB { get; } = new ObservableCollection<int>(Enumerable.Range(2025, 20));
+        
+        public ObservableCollection<MonthModel> Months { get; }
+
         public ObservableCollection<string> Categories { get; }
             = new ObservableCollection<string>();
 
@@ -282,6 +286,22 @@ namespace FinManage.ViewModels
                 new CategoryModel { ResourceKey = "Other" }
             };
 
+            Months = new ObservableCollection<MonthModel>
+            {
+                new MonthModel { ValueMonth = 1, ResourceKey = "January" },
+                new MonthModel { ValueMonth = 2, ResourceKey = "February" },
+                new MonthModel { ValueMonth = 3, ResourceKey = "March" },
+                new MonthModel { ValueMonth = 4, ResourceKey = "April" },
+                new MonthModel { ValueMonth = 5, ResourceKey = "May" },
+                new MonthModel { ValueMonth = 6, ResourceKey = "June" },
+                new MonthModel { ValueMonth = 7, ResourceKey = "July" },
+                new MonthModel { ValueMonth = 8, ResourceKey = "August" },
+                new MonthModel { ValueMonth = 9, ResourceKey = "September" },
+                new MonthModel { ValueMonth = 10, ResourceKey = "October" },
+                new MonthModel { ValueMonth = 11, ResourceKey = "November" },
+                new MonthModel { ValueMonth = 12, ResourceKey = "December" }
+            };
+
             AddLimitCommand = new LambdaCommand(AddLimit);
             DeleteLimitCommand = new LambdaCommand(DeleteLimit);
             CancelCommand = new LambdaCommand(Cancel);
@@ -289,6 +309,9 @@ namespace FinManage.ViewModels
             LocalizationHelper.Instance.PropertyChanged += (s, e) =>
             {
                 foreach (var cat in CategoryComboBox)
+                    cat.Refresh();
+
+                foreach (var cat in Months)
                     cat.Refresh();
             };
 
