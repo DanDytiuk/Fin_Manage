@@ -15,7 +15,7 @@ namespace FinManage.Models
             {
                 return Resources.ResourceManager.GetString(
                     Category,
-                    CultureInfo.CurrentUICulture) ?? Category;
+                    Resources.Culture) ?? Category;
             }
         }
 

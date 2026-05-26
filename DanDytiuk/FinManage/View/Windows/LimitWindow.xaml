@@ -72,11 +72,11 @@
                     IsReadOnly="True"/>
                 <DataGridTextColumn
                     Header="{Binding [StartLimit], Source={StaticResource Loc}}"
-                    Binding="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=dd.MM.yyyy}"
+                    Binding="{Binding Month.DisplayName}"
                     IsReadOnly="True"/>
                 <DataGridTextColumn
                     Header="{Binding [EndLimit], Source={StaticResource Loc}}"
-                    Binding="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, StringFormat=dd.MM.yyyy}"
+                    Binding="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
@@ -147,7 +147,7 @@
                  Width="200"/>
 
         <TextBlock HorizontalAlignment="Center" 
-                   Margin="0,165,0,0" 
+                   Margin="0,90,0,0" 
                    Grid.Row="1" 
                    TextAlignment="Center"
                    TextWrapping="Wrap" 
@@ -155,21 +155,21 @@
                    VerticalAlignment="Top" Width="200"/>
 
         <TextBlock HorizontalAlignment="Center" 
-                   Margin="0,94,0,0" 
+                   Margin="0,174,0,0" 
                    Grid.Row="1" 
                    TextAlignment="Center"
                    TextWrapping="Wrap" 
                    Text="{Binding [StartLimit], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" Width="200" />
-        
+
         <ComboBox HorizontalAlignment="Center" 
                   Margin="0,119,0,0" 
                   Grid.Row="1" 
                   VerticalAlignment="Top" 
-                  Width="120"
+                  Width="200"
                   ItemsSource="{Binding YearsCB, Mode=OneWay}" 
                   SelectedItem="{Binding Year, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-        
+
         <ComboBox HorizontalAlignment="Center" 
                   Margin="0,195,0,0" 
                   Grid.Row="1" 
@@ -178,7 +178,8 @@
                   ItemsSource="{Binding Months, Mode=OneWay}"
                   DisplayMemberPath="DisplayName"
                   SelectedValuePath="ValueMonth"
-                  SelectedItem="{Binding Month, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                  SelectedItem="{Binding Month}"
+                  />
 
     </Grid>
 </Window>

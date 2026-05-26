@@ -69,7 +69,7 @@ namespace FinManage.ViewModels
         private LimitsModel _selectedLimit;
         private DateTime _startDate;
         private DateTime _endDate;
-        private string _Month;
+        private MonthModel _Month;
         private int _Year;
 
         public CategoryModel SelectedCategory
@@ -111,7 +111,7 @@ namespace FinManage.ViewModels
             get => _endDate;
             set => Set(ref _endDate,value);
         }
-        public string Month
+        public MonthModel Month
         {
             get => _Month;
             set => Set(ref _Month, value);
@@ -173,7 +173,8 @@ namespace FinManage.ViewModels
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency ?? "");
                     command.Parameters.AddWithValue("$description", Description ?? "");
-                    command.Parameters.AddWithValue("$month", Month);
+                    //command.Parameters.AddWithValue("$month", Month);
+                    command.Parameters.AddWithValue("$month", Month?.ValueMonth ?? 0);
                     command.Parameters.AddWithValue("$year", Year);
 
                     command.ExecuteNonQuery();
@@ -218,7 +219,7 @@ namespace FinManage.ViewModels
 
         #region Database Load
 
-        private void LoadFromDatabase()
+        /*private void LoadFromDatabase()
         {
             Limits.Clear();
             Categories.Clear();
@@ -244,6 +245,51 @@ namespace FinManage.ViewModels
                                 Currency = reader.GetString(3),
                                 Description = reader.IsDBNull(4) ? null : reader.GetString(4),
                                 Month = reader.GetString(5),
+                                Year = reader.GetInt32(6)
+                            };
+
+                            Limits.Add(limit);
+
+                            if (!Categories.Contains(limit.CategoryKey))
+                                Categories.Add(limit.CategoryKey);
+                        }
+                    }
+                }
+            }
+        }*/
+
+        private void LoadFromDatabase()
+        {
+            Limits.Clear();
+            Categories.Clear();
+
+            using (var connection = _database.GetConnection())
+            {
+                connection.Open();
+
+                using (var command = connection.CreateCommand())
+                {
+                    command.CommandText =
+                        "SELECT Id, Category, Amount, Currency, Description, Month, Year FROM Limits;";
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int monthValue = reader.GetInt32(5);
+
+                            var monthObj = Months.FirstOrDefault(m => m.ValueMonth == monthValue);
+
+                            var limit = new LimitsModel
+                            {
+                                Id = reader.GetInt32(0),
+                                CategoryKey = reader.GetString(1),
+                                Amount = reader.GetDecimal(2),
+                                Currency = reader.GetString(3),
+                                Description = reader.IsDBNull(4) ? "" : reader.GetString(4),
+
+                                Month = monthObj,
+
                                 Year = reader.GetInt32(6)
                             };
 

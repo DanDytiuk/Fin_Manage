@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -163,7 +165,7 @@ namespace FinManage.ViewModels
         private void CleanCBAnalytics(object p)
         {
             SelectedYearCB = null;
-            SelectedMonthCB = null;
+            SelectedMonth = null;
             SelectedCurrency = null;
         }
 
@@ -245,9 +247,14 @@ namespace FinManage.ViewModels
                     command.CommandText =
                         @"SELECT Category, IFNULL(Amount,0)
                   FROM Limits
-                  WHERE Currency = $currency";
+                  WHERE Currency = @currency
+                    AND Month = @month
+                    AND Year = @year";
 
-                    command.Parameters.AddWithValue("$currency", SelectedCurrency);
+                    command.Parameters.AddWithValue("@currency", SelectedCurrency);
+                    command.Parameters.AddWithValue("@month", SelectedMonth.ValueMonth);
+                    int.TryParse(SelectedYearCB, out var yearValue);
+                    command.Parameters.AddWithValue("@year", yearValue);
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -306,7 +313,6 @@ namespace FinManage.ViewModels
             return list;
         }
 
-
         #endregion
 
         #endregion
@@ -318,6 +324,7 @@ namespace FinManage.ViewModels
         public ICommand GoInfoIncomeCommand { get; }
         public ICommand RefreshInfoIncomeCommand { get; }
         public ICommand CleanCBIncomeCommand { get; }
+
         private bool CanGoInfoIncomeCommandExecute(object p) => true;
         private bool CanRefreshInfoIncomeCommandExecute(object p) => true;
         private bool CanCleanCBIncomeCommandExecute(object p) => true;
@@ -660,18 +667,6 @@ namespace FinManage.ViewModels
                     }
                 }
 
-                var operation = new FinAllTableModel
-                {
-                    CategoryKey = Category.ResourceKey,
-                    OperationType = TypeOperation,
-                    NameOfAmount = NameOfAmount ?? "",
-                    Amount = Amount,
-                    Currency = Currency,
-                    DateInfo = (DateTime)DataTime,
-                    Description = Description ?? ""
-                };
-
-                //CheckLimitAfterOperation(operation);
                 LoadFromDB();
                 CleanComboBox();
             }
