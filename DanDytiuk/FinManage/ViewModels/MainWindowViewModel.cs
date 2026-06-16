@@ -997,12 +997,6 @@ namespace FinManage.ViewModels
 
         #endregion
 
-        #region DataBase Functions
-
-
-
-        #endregion
-
         #endregion
 
         #region Constructor

@@ -432,4 +432,7 @@
   <data name="SelectedLimitNullMessage" xml:space="preserve">
     <value>No deletion limit selected</value>
   </data>
+  <data name="SettingsFinManage" xml:space="preserve">
+    <value>FinManage | Settings</value>
+  </data>
 </root>

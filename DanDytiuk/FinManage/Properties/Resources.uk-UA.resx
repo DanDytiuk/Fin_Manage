@@ -367,7 +367,7 @@
     <value>Будь ласка, виберіть валюту, місяць або рік для аналізу!</value>
   </data>
   <data name="January" xml:space="preserve">
-    <value>Январь</value>
+    <value>Січень</value>
   </data>
   <data name="February" xml:space="preserve">
     <value>Лютий</value>
@@ -431,5 +431,8 @@
   </data>
   <data name="SelectedLimitNullMessage" xml:space="preserve">
     <value>Не вибрано ліміт для видалення</value>
+  </data>
+  <data name="SettingsFinManage" xml:space="preserve">
+    <value>FinManage | Налаштування</value>
   </data>
 </root>

@@ -32,29 +32,6 @@ namespace FinManage.ViewModels
 
         public ObservableCollection<CategoryModel> CategoryComboBox { get; }
 
-        public ObservableCollection<string> CategoriesCB { get; } =
-           new ObservableCollection<string>
-           {
-                "Food",
-                "Store",
-                "Entertainment",
-                "Online store",
-                "Games",
-                "Public Utilities",
-                "Phone Top Up",
-                "Card Top Up",
-                "Internet And TV",
-                "Security",
-                "Insurance",
-                "E-Tickets",
-                "Education",
-                "Transport",
-                "Charity",
-                "Commission",
-                "Project Support",
-                "Other"
-           };
-
         #endregion
 
         #region PropertyChanged
@@ -67,8 +44,6 @@ namespace FinManage.ViewModels
         private string _currency;
         private string _description;
         private LimitsModel _selectedLimit;
-        private DateTime _startDate;
-        private DateTime _endDate;
         private MonthModel _Month;
         private int _Year;
 
@@ -77,39 +52,25 @@ namespace FinManage.ViewModels
             get => _selectedCategory;
             set => Set(ref _selectedCategory, value);
         }
-
         public decimal Amount
         {
             get => _amount;
             set => Set(ref _amount, value);
         }
-
         public LimitsModel SelectedLimit
         {
             get => _selectedLimit;
             set => Set(ref _selectedLimit, value);
         }
-
         public string Currency
         {
             get => _currency;
             set => Set(ref _currency, value);
         }
-
         public string Description
         {
             get => _description;
             set => Set(ref _description, value);
-        }
-        public DateTime StartDate
-        {
-            get => _startDate;
-            set => Set(ref _startDate, value);
-        }
-        public DateTime EndDate
-        {
-            get => _endDate;
-            set => Set(ref _endDate,value);
         }
         public MonthModel Month
         {
@@ -136,7 +97,6 @@ namespace FinManage.ViewModels
         public ICommand AddLimitCommand { get; }
         public ICommand DeleteLimitCommand { get; }
         public ICommand CancelCommand { get; }
-
         public Action CloseAction { get; set; }
 
         #endregion
@@ -173,14 +133,13 @@ namespace FinManage.ViewModels
                     command.Parameters.AddWithValue("$amount", Amount);
                     command.Parameters.AddWithValue("$currency", Currency ?? "");
                     command.Parameters.AddWithValue("$description", Description ?? "");
-                    //command.Parameters.AddWithValue("$month", Month);
                     command.Parameters.AddWithValue("$month", Month?.ValueMonth ?? 0);
                     command.Parameters.AddWithValue("$year", Year);
 
                     command.ExecuteNonQuery();
                 }
             }
-
+            CleanCB();
             LoadFromDatabase();
         }
 
@@ -192,7 +151,6 @@ namespace FinManage.ViewModels
                 return; 
             }
                 
-
             using (var connection = _database.GetConnection())
             {
                 connection.Open();
@@ -208,6 +166,16 @@ namespace FinManage.ViewModels
             }
 
             Limits.Remove(SelectedLimit);
+        }
+
+        private void CleanCB()
+        {
+            SelectedCategory = null;
+            Amount = 0;
+            Currency = null;
+            Description = null;
+            Month = null;
+            Year = 0;
         }
 
         private void Cancel(object p)

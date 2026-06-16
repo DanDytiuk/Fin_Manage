@@ -432,4 +432,7 @@
   <data name="SelectedLimitNullMessage" xml:space="preserve">
     <value>Не выбран лимит для удаления</value>
   </data>
+  <data name="SettingsFinManage" xml:space="preserve">
+    <value>FinManage | Настройки</value>
+  </data>
 </root>

@@ -7,8 +7,8 @@
         xmlns:viewmodels="clr-namespace:FinManage.ViewModels" 
         xmlns:infrastracture="clr-namespace:FinManage.Infrastructure" d:DataContext="{d:DesignInstance Type=viewmodels:SettingsWindowsViewModel}"
         mc:Ignorable="d"
-        Title="Settings FinManage" Height="200" Width="500">
-    <Grid Background="SpringGreen" Margin="0,0,0,-61">
+        Title="{Binding [SettingsFinManage], Source={StaticResource Loc}}" Height="200" Width="500">
+    <Grid Margin="0,0,0,-61">
         <Button Content="{Binding [Save], Source={StaticResource Loc}}" 
                 HorizontalAlignment="Left" 
                 Margin="20,97,0,0" 
@@ -24,19 +24,13 @@
                 Command="{Binding CancelCommand}"/>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="358,10,0,0" 
-                   TextWrapping="Wrap" 
-                   Text="{Binding [Currency], Source={StaticResource Loc}}" 
-                   VerticalAlignment="Top" Width="85"/>
-
-        <TextBlock HorizontalAlignment="Left" 
                    Margin="20,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="{Binding [Theme], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" Width="85"/>
 
         <TextBlock HorizontalAlignment="Left" 
-                   Margin="177,10,0,0" 
+                   Margin="283,10,0,0" 
                    TextWrapping="Wrap" 
                    Text="{Binding [Language], Source={StaticResource Loc}}" 
                    VerticalAlignment="Top" Width="85"/>
@@ -49,15 +43,8 @@
                   SelectedItem="{Binding Settings.Theme, Mode=TwoWay}"/>
 
         <ComboBox HorizontalAlignment="Left" 
-                  Margin="358,31,0,0" 
-                  VerticalAlignment="Top" 
-                  Width="85" 
-                  ItemsSource="{Binding Currency}" 
-                  SelectedItem="{Binding Settings.Currency, Mode=TwoWay}"/>
-
-        <ComboBox HorizontalAlignment="Left" 
-                  Width="85" 
-                  Margin="177,31,0,0" 
+                  Width="86" 
+                  Margin="282,31,0,0" 
                   VerticalAlignment="Top" 
                   ItemsSource="{Binding LanguagesCB}" 
                   SelectedItem="{Binding SelectedLanguage, Mode=TwoWay}"

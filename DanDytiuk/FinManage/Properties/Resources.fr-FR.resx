@@ -433,4 +433,7 @@
   <data name="SelectedLimitNullMessage" xml:space="preserve">
     <value>Aucune limite de suppression sélectionnée</value>
   </data>
+  <data name="SettingsFinManage" xml:space="preserve">
+    <value>FinManage | Paramètres</value>
+  </data>
 </root>

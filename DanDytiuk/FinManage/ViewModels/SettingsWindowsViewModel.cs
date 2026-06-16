@@ -1,6 +1,5 @@
 ﻿using FinManage.Infrastructure.Commands;
 using FinManage.Models;
-using FinManage.Properties;
 using FinManage.Services;
 using FinManage.ViewModels.Base;
 using System;
@@ -10,7 +9,6 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Windows;
 using System.Windows.Input;
 using static FinManage.Infrastructure.EnumInfrastructure;
 
@@ -33,11 +31,9 @@ namespace FinManage.ViewModels
             set => Set(ref _selectedLanguage,value);
         }
 
-        #region Заполнение ComboBox
+        #region ComboBox
 
         public ObservableCollection<Themes> Themes { get; }
-        public ObservableCollection<TypesOfCurrency> Currency { get; }
-        public ObservableCollection<Category> Category { get; }
         public ObservableCollection<LanguageModel> LanguagesCB { get; }
 
         #endregion
@@ -47,6 +43,8 @@ namespace FinManage.ViewModels
         public Action CloseAction { get; set; }
         private bool CanSaveCommandExecuted(object parameter) => true;
         private bool CanCancelCommandExecuted(object parameter) => true;
+
+
         private SettingsModel LoadSettings()
         {
             if (!File.Exists(FilePath)) return new SettingsModel();
@@ -91,8 +89,6 @@ namespace FinManage.ViewModels
         public SettingsWindowsViewModel()
         {
             Themes = new ObservableCollection<Themes>((Themes[])Enum.GetValues(typeof(Themes)));
-            Currency = new ObservableCollection<TypesOfCurrency>((TypesOfCurrency[])Enum.GetValues(typeof(TypesOfCurrency)));
-            Category = new ObservableCollection<Category>((Category[])Enum.GetValues(typeof(Category)));
             
             LanguagesCB = new ObservableCollection<LanguageModel>
             {
@@ -102,7 +98,6 @@ namespace FinManage.ViewModels
                 CreateLanguage("es-ES"),
                 CreateLanguage("fr-FR")
             };
-
 
             string appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 

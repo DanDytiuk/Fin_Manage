@@ -862,6 +862,15 @@ namespace FinManage.Properties {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на FinManage | Settings.
+        /// </summary>
+        public static string SettingsFinManage {
+            get {
+                return ResourceManager.GetString("SettingsFinManage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Settings.
         /// </summary>
         public static string SettingsMenuBar {
